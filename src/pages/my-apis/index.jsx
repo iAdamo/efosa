@@ -19,21 +19,24 @@ export default function MyApis() {
     setSelectedTab(value);
   };
 
-  const filteredAPIs = useMemo(() => {
-    let list = [];
-    if (searchText === "") {
-      list = [...myAPIs];
-    } else {
-      list = [
-        ...myAPIs.filter((myApi) => {
-          const { API = {} } = myApi;
-          return API.name?.toLowerCase().includes(searchText.toLowerCase());
-        }),
-      ];
-    }
+  const filterAPIs = (apis, searchText) => {
+    const searchLower = searchText.toLowerCase();
+    return apis.filter((api) => {
+      const { API = {} } = api;
+      return (
+        API.name?.toLowerCase().includes(searchLower) ||
+        API.customName?.toLowerCase().includes(searchLower)
+      );
+    });
+  };
 
-    return list;
+  const filteredMyAPIs = useMemo(() => {
+    return searchText === "" ? myAPIs : filterAPIs(myAPIs, searchText);
   }, [searchText, myAPIs]);
+
+  const filteredPublicAPIs = useMemo(() => {
+    return searchText === "" ? PublicApis : filterAPIs(PublicApis, searchText);
+  }, [searchText, PublicApis]);
 
   return (
     <div className="w-full h-screen flex flex-col pl-8 px-10 p-8">
@@ -63,17 +66,17 @@ export default function MyApis() {
           tabs={[
             {
               name: "My APIs",
-              children: <ApiCards filteredAPIs={filteredAPIs} />,
+              children: <ApiCards filteredAPIs={filteredMyAPIs} />,
             },
             {
               name: "Public APIs",
-              children: <ApiCards isPublic filteredAPIs={PublicApis} />,
+              children: <ApiCards isPublic filteredAPIs={filteredPublicAPIs} />,
             },
           ]}
         />
       </div>
       <div className="flex  justify-center items-center mt-auto">
-        <div className="bg-grey-19 w-64 flex flex-row items-center px-2 rounded-2xl">
+        <div className="bg-grey-19 w-64 flex flex-row items-center px-2 rounded-3xl">
           <CustomInput
             variant="searchBox"
             className="w-1/2"

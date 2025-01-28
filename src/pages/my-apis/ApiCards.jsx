@@ -7,7 +7,7 @@ const ApiCards = ({
   isPublic = false
 }) => {
   return (
-    <div className="w-full flex flex-wrap -mx-2">
+    <div className="w-full flex flex-wrap">
       {filteredAPIs.length > 0 ? (
           filteredAPIs?.map((card, idx) => <ApiCard isPublic={isPublic} key={idx} card={card} />)) : <EmptyData
             icon={<ZapIcon className="w-10 h-10" />}
