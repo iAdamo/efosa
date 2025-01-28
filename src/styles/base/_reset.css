@@ -1,0 +1,64 @@
+@viewport {
+  width: device-width;
+}
+
+html {
+  background-color: theme(colors.grey.1);
+  height: 100%;
+}
+
+* {
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
+  outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: theme(colors.grey.2);
+}
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-family: theme(fontFamily.default);
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  @apply text-white text-base;
+}
+
+a {
+  background: transparent;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: theme(fontFamily.display);
+  font-weight: normal;
+}
+
+span {
+  font-family: theme(fontFamily.display);
+  line-height: theme(lineHeight.base);
+}
+
+button {
+  outline: none;
+}

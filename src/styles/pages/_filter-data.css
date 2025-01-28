@@ -1,0 +1,38 @@
+.filter-data-wrapper {
+  /* .react-aria-Select {
+    width: 180px;
+  } */
+  .react-aria-Select button {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .react-aria-Select .react-aria-Button {
+    padding: 12px 10px;
+  }
+
+  .react-aria-RadioGroup {
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+  }
+  .react-aria-Radio {
+    color: var(--White, #fff);
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 11px; /* 91.667% */
+    letter-spacing: 0.36px;
+  }
+  .react-aria-Radio:before {
+    margin-top: 0px;
+  }
+
+  .data-table {
+    overflow: scroll;
+  }
+}
+
+.data-table::-webkit-scrollbar {
+  height: 5px;
+}

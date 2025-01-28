@@ -1,0 +1,40 @@
+.unique-identifier-container {
+  height: 100%;
+  overflow: hidden;
+}
+
+.unique-identifier-container .react-aria-TabList {
+  width: 50%;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+}
+.unique-identifier-container .s-input {
+  height: 32px;
+  border-radius: 50px;
+}
+.unique-identifier-container .s-input-wrapper {
+  border-radius: 50px;
+}
+
+.api-name-shadow-container {
+  position: absolute;
+  bottom: 0;
+  height: 70px;
+  width: calc(100% - 40px);
+  background: linear-gradient(0deg, #111 18.75%, rgba(17, 17, 17, 0) 110.42%);
+}
+
+.endpoints-container .tooltip-container {
+  top: 12px;
+  left: 90%;
+  right: 0px;
+}
+
+.endpoints-container .s-accordion-group {
+  gap: 5px;
+}
+
+.unique-identifier-container .accordion-item .accordion-content {
+  padding-right: 10px;
+}

@@ -1,0 +1,63 @@
+
+.label-large {
+    font-size: theme(fontSize.lg) !important;
+    line-height: theme(lineHeight.base) !important;
+    color: theme(colors.white);
+}
+
+.label-display {
+    font-size: theme(fontSize.xl) !important;
+    font-weight: theme(fontWeight.display) !important;
+    line-height: normal !important;
+}
+
+.label-display-2 {
+    font-size: theme(fontSize.xl) !important;
+    font-weight: theme(fontWeight.display) !important;
+    line-height: normal !important;
+}
+
+.label-small {
+    font-size: theme(fontSize.sm) !important;
+    line-height: theme(lineHeight.base);
+    color: theme(colors.white);
+}
+
+.label {
+    font-size: theme(fontSize.base);
+    line-height: theme(lineHeight.base);
+    color: theme(colors.white);
+    font-weight: theme(fontWeight.heading);
+}
+
+.label-bold {
+    font-weight: theme(fontWeight.bolder);
+}
+
+.label-highlight {
+    color: theme(colors.custom.yellow);
+}
+
+.label-pink {
+    color: theme(colors.custom.pink);
+}
+
+.label-mint-green {
+    color: theme(colors.custom.mintgreen);
+}
+
+.label-muted {
+    color: theme(colors.grey.5);
+}
+
+.label-error {
+    color: theme(colors.status.error);
+}
+
+.label-success {
+    color: theme(colors.status.success);
+}
+
+.label-warning {
+    color: theme(colors.status.warning);
+}

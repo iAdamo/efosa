@@ -1,0 +1,10 @@
+.marked_content {
+    a {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    h2 {
+        font-size: 12px;
+        margin: 4px 0;
+    }
+}

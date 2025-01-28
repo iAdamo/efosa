@@ -1,0 +1,50 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.source-api-text-color {
+  color: theme(colors.main.pink.1);
+}
+.destination-api-text-color {
+  color: theme(colors.secondary.mint-green);
+}
+
+.source-api-border-color {
+  border-color: theme(colors.main.pink.1);
+}
+
+.destination-api-border-color {
+  border-color: theme(colors.secondary.mint-green);
+}
+
+.source-api-background-color {
+  background-color: theme(colors.main.pink.3);
+}
+.destination-api-background-color {
+  background-color: theme(colors.secondary.mint-green-2);
+}
+
+@media (min-width: theme(screens.md)) {
+  :root {
+    --gutter: 14px;
+    --border-spacing: 20px;
+  }
+}
+@media (min-width: theme(screens.lg)) {
+  :root {
+    --gutter: 16px;
+    --border-spacing: 40px;
+  }
+}
+@media (min-width: theme(screens.xl)) {
+  :root {
+    --gutter: 16px;
+    --border-spacing: 40px;
+  }
+}

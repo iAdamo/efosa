@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+export DOLLAR="$"
+touch /etc/nginx/conf.d/site.conf
+envsubst < /etc/nginx/conf > /etc/nginx/conf.d/site.conf
+rm /etc/nginx/conf
+
+nginx -g 'daemon off;'

@@ -1,0 +1,9 @@
+
+.s-badge {
+    padding: 5px;
+    background: rgba(theme(colors.custom.yellow), 0.2);
+    color: theme(colors.white);
+    border-radius: 3px;
+    font-size: theme(fontSize.base);
+    width: fit-content;
+}

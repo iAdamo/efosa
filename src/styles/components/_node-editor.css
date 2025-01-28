@@ -1,0 +1,89 @@
+.dot-integer {
+  background-color: #77c7bd;
+}
+
+.dot-integer.active span {
+  background-color: transparent;
+
+  border: 1px solid rgb(119, 199, 189);
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  transform: translateX(-3px) translateY(-3px);
+  border-radius: 50%;
+  z-index: 10;
+}
+.dot-string {
+  background-color: #5588d3;
+}
+.dot-string.active span {
+  background-color: transparent;
+
+  border: 1px solid rgb(85, 136, 211);
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  transform: translateX(-3px) translateY(-3px);
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.dot-boolean {
+  background-color: #f1b477;
+}
+.dot-boolean.active span {
+  background-color: transparent;
+
+  border: 1px solid rgb(241, 180, 119);
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  transform: translateX(-3px) translateY(-3px);
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.dot-number {
+  background-color: #90ee90;
+}
+.dot-number.active span {
+  background-color: transparent;
+
+  border: 1px solid rgb(144, 238, 144);
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  transform: translateX(-3px) translateY(-3px);
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.dot-object {
+  background-color: #ff0000;
+}
+.dot-object.active span {
+  background-color: transparent;
+
+  border: 1px solid rgb(144, 238, 144);
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  transform: translateX(-3px) translateY(-3px);
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.dot-empty {
+  background-color: #5c6a8d;
+}
+.dot-empty.active span {
+  background-color: transparent;
+
+  border: 1px solid #5c6a8d;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  transform: translateX(-3px) translateY(-3px);
+  border-radius: 50%;
+  z-index: 10;
+}

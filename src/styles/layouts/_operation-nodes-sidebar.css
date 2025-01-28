@@ -1,0 +1,79 @@
+.operation-node-sidebar {
+}
+
+.operation-node-sidebar .s-input {
+  border: none;
+}
+.operation-node-sidebar .s-input .s-input-wrapper {
+  border-radius: 50px;
+  background-color: theme(colors.grey.1);
+  height: auto;
+}
+
+.operation-node-sidebar .s-input .s-input-wrapper input {
+  line-height: 11px;
+}
+.nodes-wrapper {
+  overflow-y: scroll;
+  @apply flex flex-col bg-grey-5 p-[10px];
+  border-radius: 5px;
+  background: var(
+    --grey-2-b-2-b-2-b,
+    linear-gradient(0deg, #2b2b2b 0%, #2b2b2b 100%),
+    rgba(43, 43, 43, 0.5)
+  );
+}
+
+.node-info-wrapper {
+  border-radius: 5px;
+  border: 1px solid var(--Yellow, #f6c519);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+}
+
+.operation-nodes-filters {
+  .react-aria-Select {
+    width: 160px;
+  }
+  .react-aria-Select .react-aria-Button {
+    padding: 12px;
+  }
+}
+.react-aria-Popover .react-aria-ListBoxItem {
+  padding: 12px !important;
+  border-radius: 0px !important;
+}
+
+.react-aria-Popover .react-aria-ListBoxItem[data-selected] {
+  background-color: theme(colors.grey.2) !important;
+}
+.operation-node-sidebar .react-aria-Select {
+  width: 160px;
+  background-color: #343A40;
+  border-radius: 4px;
+}
+
+.operation-node-sidebar .react-aria-Select .react-aria-Button {
+  justify-content: space-between;
+}
+
+.operation-node-sidebar .react-aria-Select .react-aria-Button  span{
+  color: #F8F9FA;
+  font-weight: 500;
+}
+
+.test-timestamp::-webkit-calendar-picker-indicator { filter: invert(1) }
+.generated-timestamp::-webkit-calendar-picker-indicator { display: none }
+
+
+#timePlusMinus input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+#timePlusMinus input[type=number] {
+  -moz-appearance: textfield;
+}

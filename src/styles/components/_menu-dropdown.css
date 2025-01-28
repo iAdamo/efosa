@@ -1,0 +1,12 @@
+.s-menu-popover {
+  padding: 10px;
+  background: theme(colors.grey.2);
+  border-radius: theme(borderRadius.base);
+  .s-menu-item {
+    padding: 8px;
+    &:hover {
+      background: theme(colors.grey.3);
+      border-radius: theme(borderRadius.base);
+    }
+  }
+}

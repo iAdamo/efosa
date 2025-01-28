@@ -1,0 +1,123 @@
+
+.date-picker-range {
+    .date-picker-container {
+        .react-aria-Group {
+            color: theme(colors.white);
+            font-size: theme(fontSize.base);
+            line-height: theme(lineHeight.large);
+            .react-aria-Button {
+                @apply flex items-center;
+                border: 1px solid theme(colors.grey.4);
+                padding: 8px 10px;
+                border-radius: theme(borderRadius.base);
+                --tw-ring-shadow: none;
+                outline: none;
+                .label {
+                    line-height: theme(lineHeight.small) !important;
+                }
+            }
+        }
+    }
+}
+.react-aria-Popover {
+    background: black;
+    border-radius: theme(borderRadius.base);
+    .react-aria-Dialog {
+        padding: 12px;
+        @apply flex;
+        gap: 50px;
+        .presets {
+            @apply flex flex-col justify-center;
+            gap: 5px;
+            .react-aria-Button {
+                display: flex;
+                padding: 8px 10px;
+                border: 1px solid theme(colors.grey.4);
+                border-radius: theme(borderRadius.base);
+                width: fit-content;
+                &[data-focused] {
+                    background: rgba(theme(colors.custom.pink), 0.3);
+                    border: 1px solid theme(colors.custom.pink);
+                }
+            }
+        }
+        .react-aria-RangeCalendar {
+            color: theme(colors.white);
+            font-size: theme(fontSize.lg);
+            @apply flex flex-col items-center;
+            gap: 20px;
+            .calendar-container {
+                @apply flex;
+                gap: 20px;
+                .calendar {
+                    padding: 12px;
+                    background: theme(colors.grey.2);
+                    border-radius: 16px;
+
+                    header {
+                        @apply flex items-center mb-2;
+                        gap: 15px;
+                        .icon-rounded {
+                            background: rgba(theme(colors.custom.pink), 0.3);
+                            padding: 8px;
+                            border-radius: 100%;
+                        }
+                    }
+                    .react-aria-CalendarGrid {
+                        width: 100%;
+                        & table {
+                            border-collapse: collapse;
+
+                            & td {
+                                padding: 2px 0;
+                            }
+                        }
+                        .react-aria-CalendarCell {
+                            width: 30px;
+                            line-height: 30px;
+                            text-align: center;
+                            border-radius: 6px;
+                            cursor: default;
+                            outline: none;
+                            forced-color-adjust: none;
+
+                            &[data-outside-month] {
+                                color: theme(colors.grey.5);
+                            }
+
+                            &[data-pressed] {
+                                background: var(--gray-100);
+                            }
+
+                            &[data-focus-visible] {
+                                outline: 2px solid rgba(theme(colors.custom.pink), 0.2);
+                                outline-offset: -2px;
+                            }
+
+                            &[data-selected] {
+                                background: rgba(theme(colors.custom.pink), 0.2);
+                                border-radius: 0;
+
+                                &[data-focus-visible] {
+                                    outline-offset: -3px;
+                                }
+                            }
+
+                            &[data-selection-start] {
+                                border-start-start-radius: 100%;
+                                border-end-start-radius: 100%;
+                                background: theme(colors.custom.pink);
+                            }
+
+                            &[data-selection-end] {
+                                border-start-end-radius: 100%;
+                                border-end-end-radius: 100%;
+                                background: theme(colors.custom.pink);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

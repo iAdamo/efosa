@@ -1,0 +1,16 @@
+
+.Toastify__toast-theme--colored.Toastify__toast--success
+    .Toastify__close-button
+    > svg {
+    color: #00df9c;
+    height: 20px;
+    width: 20px;
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--error
+    .Toastify__close-button
+    > svg {
+    color: #ff002e;
+    height: 20px;
+    width: 20px;
+}

@@ -1,0 +1,20 @@
+{
+  "exclude": ["node_modules"],
+  "moduleResolution": "node",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "CommonJS",
+    "target": "ES6",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@contexts/*": ["./src/contexts/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@axios/*": ["./src/axios/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@constants": ["./src/constants.js"],
+      "@pages/*": ["./src/pages/*"]
+    }
+  }
+}

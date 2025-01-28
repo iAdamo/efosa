@@ -1,0 +1,22 @@
+
+.s-file-upload {
+    background: theme(colors.grey.3);
+    border-radius: theme(borderRadius.base);
+    font-size: theme(fontSize.base);
+    line-height: theme(lineHeight.large);
+    padding: 10px 12px;
+    outline: none;
+    border: 1px solid transparent;
+    color: theme(colors.white);
+    p {
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    &:focus {
+        border: 1px solid #b82dde;
+        --tw-ring-shadow: none;
+        outline: none;
+    }
+}

@@ -1,0 +1,7 @@
+.crud-dropdown ul {
+  z-index: 10000;
+}
+
+.crud-dropdown .listbox button {
+  border-bottom: 0px;
+}

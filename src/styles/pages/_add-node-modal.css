@@ -1,0 +1,96 @@
+.add-node-modal {
+  //overflow-y: hidden;
+  //border: 1px solid white;
+}
+.add-node-modal .modal-content {
+  background-color: theme(colors.grey.1);
+}
+
+.heading-wrapper {
+  padding-bottom: 20px;
+  border-bottom: 1px solid theme(colors.grey.2);
+  padding-inline: 20px;
+}
+
+.addNodeHeading {
+  color: theme(colors.white);
+  font-family: theme(fontFamily.sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.28px;
+}
+
+.addNodeAPI {
+  //color: theme(colors.main.pink.1);
+  font-family: theme(fontFamily.sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.28px;
+}
+
+.cancel-btn {
+  width: 120px;
+  background-color: theme(colors.grey.2);
+  border-radius: 50px;
+  box-shadow: 0px 0px 2px 1px rgba(60, 60, 60, 0.05);
+  padding-block: 8px;
+  color: theme(colors.white);
+  text-align: center;
+  font-family: theme(fontFamily.sans);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0.24px;
+}
+
+.disabled-btn {
+  color: theme(colors.grey.4);
+  background-color: theme(colors.grey.9) !important;
+  background-image: none !important;
+}
+
+.add-node-search-container {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.add-node-search-container .s-input-wrapper {
+  border-radius: 50px;
+  height: 32px;
+  //width: 70%;
+}
+
+.add-node-search-container .s-input {
+  width: 60%;
+  display: flex;
+  justify-content: end;
+}
+
+.endpoints-wrapper {
+  /*margin-inline: 20px;*/
+  /*padding: 10px;*/
+  /*background: var(*/
+  /*  --grey-2-b-2-b-2-b,*/
+  /*  linear-gradient(0deg, #2b2b2b 0%, #2b2b2b 100%),*/
+  /*  rgba(43, 43, 43, 0.5)*/
+  /*);*/
+  height: 50vh;
+  overflow-y: auto;
+}
+
+.endpoint-name {
+  color: #AEAEAE;
+  font-family: theme(fontFamily.sans);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px; /* 116.667% */
+  letter-spacing: 0.24px;
+}
+
+.tab-space {
+  white-space: pre;
+}

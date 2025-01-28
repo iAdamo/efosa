@@ -1,0 +1,56 @@
+.s-input {
+  border-radius: theme(borderRadius.base);
+  border: 1px solid transparent;
+  height: 45px;
+  @apply flex justify-center items-center;
+  .s-input-wrapper {
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    background: theme(colors.grey.3);
+    border-radius: calc(theme(borderRadius.base) - 2px);
+    padding: 10px 12px;
+    @apply flex justify-between items-center;
+    input {
+      padding: 0;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: theme(colors.white);
+      font-size: theme(fontSize.base);
+      line-height: theme(lineHeight.large);
+      min-width: 5px;
+      width: 100%;
+      &:focus {
+        --tw-ring-shadow: none;
+      }
+      &::placeholder {
+        color: theme(colors.grey.5);
+      }
+    }
+  }
+}
+
+.s-input:has(input[aria-invalid="true"]) {
+  border: 1px solid theme(colors.status.error);
+  outline: none;
+}
+
+.s-input:has(input:disabled) {
+  * {
+    cursor: not-allowed;
+  }
+
+  .s-input-wrapper {
+    background: theme(colors.grey.1);
+  }
+
+  ::placeholder {
+    color: theme(colors.grey.2);
+  }
+}
+
+.s-input-pink {
+  &:focus-within {
+    outline: none;
+  }
+}

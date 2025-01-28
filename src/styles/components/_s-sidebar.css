@@ -1,0 +1,32 @@
+.sidebar-menu-item-label {
+  color: theme(colors.grey.5);
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0.24px;
+}
+
+.wizard-sidebar {
+  height: inherit;
+}
+
+.wizard-sidebar .react-aria-Tabs {
+  padding-inline: 0px;
+  height: 94%;
+}
+
+.wizard-sidebar .react-aria-Tabs .react-aria-TabPanel {
+  overflow-y: scroll;
+  height: inherit;
+}
+
+.collapse-container {
+  height: 90%;
+  overflow-y: scroll;
+}
+
+.collapse-container::-webkit-scrollbar {
+  display: none;
+}

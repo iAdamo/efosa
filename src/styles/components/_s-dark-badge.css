@@ -1,0 +1,9 @@
+.s-badge {
+  padding: 4px;
+  background: theme(colors.grey.1);
+  color: theme(colors.grey.4);
+  border-radius: 3px;
+  font-size: theme(fontSize.sm);
+  font-weight: theme(fontWeight.bold);
+  width: fit-content;
+}

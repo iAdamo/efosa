@@ -1,0 +1,46 @@
+.s-textarea {
+  border-radius: theme(borderRadius.base);
+  border: 1px solid transparent;
+  height: 256px;
+  @apply flex justify-center items-center;
+  .s-textarea-wrapper {
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    background: theme(colors.grey.3);
+    border-radius: calc(theme(borderRadius.base) - 2px);
+    padding: 10px 12px;
+    @apply flex justify-between items-center;
+    textarea {
+      padding: 0;
+      height: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: theme(colors.white);
+      font-size: theme(fontSize.base);
+      line-height: theme(lineHeight.heading);
+      min-width: 5px;
+      width: 100%;
+      resize: none;
+      overflow-x: hidden;
+      &:focus {
+        --tw-ring-shadow: none;
+      }
+      &::placeholder {
+        color: theme(colors.grey.5);
+      }
+    }
+  }
+}
+
+.s-textarea:has(textarea[aria-invalid="true"]) {
+  border: 1px solid theme(colors.status.error);
+  outline: none;
+}
+
+.s-textarea-pink {
+  &:focus-within {
+    @apply bg-gradient-to-r from-gradient-pink-1 to-gradient-pink-2;
+    outline: none;
+  }
+}

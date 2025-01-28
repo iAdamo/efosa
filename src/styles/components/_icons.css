@@ -1,0 +1,241 @@
+.icon-interactive {
+  cursor: pointer;
+  &:hover {
+    filter: brightness(1.5);
+  }
+}
+
+.icon-grey-5 {
+  filter: invert(81%) sepia(7%) saturate(4%) hue-rotate(3deg) brightness(86%)
+    contrast(90%);
+}
+
+.icon-grey-6 {
+  filter: invert(40%) sepia(10%) saturate(150%) hue-rotate(120deg)
+    brightness(105%) contrast(90%);
+}
+
+.icon-grey-7 {
+  filter: brightness(0) saturate(100%) invert(30%) sepia(6%) saturate(200%)
+    hue-rotate(185deg) brightness(95%) contrast(88%);
+}
+
+.icon-grey-13 {
+  filter: brightness(0) saturate(100%) invert(27%) sepia(12%) saturate(558%)
+    hue-rotate(172deg) brightness(90%) contrast(81%);
+}
+.icon-pink-1 {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(61%) saturate(2221%)
+    hue-rotate(198deg) brightness(99%) contrast(89%);
+}
+
+.icon-error-1 {
+  filter: brightness(0) saturate(100%) invert(50%) sepia(9%) saturate(4408%)
+    hue-rotate(316deg) brightness(100%) contrast(91%);
+}
+
+.icon-yellow {
+  filter: invert(83%) sepia(52%) saturate(1866%) hue-rotate(347deg)
+    brightness(103%) contrast(93%);
+}
+
+.icon-yellow-2 {
+  filter: brightness(0) saturate(100%) invert(87%) sepia(7%) saturate(7333%)
+    hue-rotate(347deg) brightness(103%) contrast(92%);
+}
+
+.icon-yellow-f6c519 {
+  filter: invert(83%) sepia(52%) saturate(1866%) hue-rotate(347deg)
+    brightness(103%) contrast(93%);
+}
+
+.icon-pink {
+  filter: invert(24%) sepia(67%) saturate(3428%) hue-rotate(288deg)
+    brightness(95%) contrast(91%);
+}
+
+.icon-yellow-2 {
+  filter: invert(82%) sepia(89%) saturate(2334%) hue-rotate(7deg)
+    brightness(97%) contrast(93%);
+}
+
+.icon-white {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(104deg)
+    brightness(103%) contrast(103%);
+}
+
+.icon-success {
+  filter: invert(59%) sepia(95%) saturate(1799%) hue-rotate(117deg)
+    brightness(102%) contrast(101%);
+}
+
+.icon-error {
+  filter: invert(33%) sepia(22%) saturate(4590%) hue-rotate(333deg)
+    brightness(104%) contrast(110%);
+}
+
+.icon-warning {
+  filter: invert(78%) sepia(13%) saturate(6510%) hue-rotate(331deg)
+    brightness(98%) contrast(106%);
+}
+.icon-red {
+  filter: invert(37%) sepia(49%) saturate(2886%) hue-rotate(338deg)
+    brightness(99%) contrast(104%);
+}
+
+.icon-orange {
+  filter: invert(45%) sepia(91%) saturate(473%) hue-rotate(5deg) brightness(95%)
+    contrast(100%);
+}
+
+.icon-mint-green {
+  filter: brightness(0) saturate(100%) invert(79%) sepia(93%) saturate(2956%)
+    hue-rotate(90deg) brightness(108%) contrast(108%);
+}
+
+.icon-success {
+  filter: brightness(0) saturate(100%) invert(63%) sepia(60%) saturate(2403%)
+    hue-rotate(117deg) brightness(101%) contrast(101%);
+}
+
+.icon-grey-1 {
+  filter: brightness(0) saturate(100%) invert(11%) sepia(0%) saturate(705%)
+    hue-rotate(140deg) brightness(94%) contrast(84%);
+}
+
+.icon-grey-2 {
+  filter: brightness(0) saturate(100%) invert(16%) sepia(14%) saturate(0%)
+    hue-rotate(249deg) brightness(102%) contrast(80%);
+}
+
+.icon-grey-4 {
+  filter: brightness(0) saturate(100%) invert(64%) sepia(0%) saturate(7104%)
+    hue-rotate(315deg) brightness(89%) contrast(70%);
+}
+
+.icon-grey79 {
+  filter: brightness(0) saturate(100%) invert(79%) sepia(60%) saturate(5%)
+    hue-rotate(349deg) brightness(93%) contrast(86%);
+}
+
+.group:hover .hover-icon-white {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%)
+    hue-rotate(115deg) brightness(100%) contrast(95%);
+}
+.icon-white {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%)
+    hue-rotate(115deg) brightness(100%) contrast(95%);
+}
+
+.icon-peach {
+  filter: brightness(0) saturate(100%) invert(44%) sepia(98%) saturate(415%)
+    hue-rotate(304deg) brightness(107%) contrast(87%);
+}
+
+.icon-cerise {
+  filter: brightness(0) saturate(100%) invert(29%) sepia(57%) saturate(3666%)
+    hue-rotate(284deg) brightness(90%) contrast(97%);
+}
+
+.icon-sky {
+  filter: brightness(0.9) saturate(150%) invert(50%) sepia(30%) saturate(200%)
+    hue-rotate(150deg) contrast(90%);
+}
+
+.icon-gray-1 {
+  filter: brightness(0) saturate(100%) invert(28%) sepia(7%) saturate(778%)
+    hue-rotate(172deg) brightness(97%) contrast(91%);
+}
+
+.group:hover .hover-icon-pink-5 {
+  filter: brightness(0) saturate(100%) invert(46%) sepia(67%) saturate(2195%)
+    hue-rotate(273deg) brightness(92%) contrast(91%);
+}
+
+.group:hover .hover-icon-pink-6 {
+  filter: brightness(0) saturate(100%) invert(59%) sepia(37%) saturate(5963%)
+    hue-rotate(273deg) brightness(89%) contrast(96%);
+}
+
+.icon-pink-5 {
+  filter: brightness(0) saturate(100%) invert(46%) sepia(67%) saturate(2195%)
+    hue-rotate(273deg) brightness(92%) contrast(91%);
+}
+
+.group:hover .hover-icon-blue-1 {
+  filter: brightness(0) saturate(100%) invert(48%) sepia(32%) saturate(6313%)
+    hue-rotate(232deg) brightness(93%) contrast(90%);
+}
+
+.icon-blue-1 {
+  filter: brightness(0) saturate(100%) invert(48%) sepia(32%) saturate(6313%)
+    hue-rotate(232deg) brightness(93%) contrast(90%);
+}
+
+.icon-grey-17 {
+  filter: brightness(0) saturate(100%) invert(74%) sepia(0%) saturate(234%) 
+  hue-rotate(10deg) brightness(99%) contrast(70%);
+}
+
+.icon-grey-21 {
+  filter: brightness(0) saturate(100%) invert(98%) sepia(1%) saturate(4288%)
+    hue-rotate(198deg) brightness(82%) contrast(85%);
+}
+
+.icon-aqua-1 {
+  filter: brightness(0) saturate(100%) invert(98%) sepia(5%) saturate(4395%) 
+  hue-rotate(145deg) brightness(90%) contrast(98%);
+}
+
+.icon-large {
+  height: 16px;
+  width: auto;
+}
+
+.s-icon-grey-2 {
+  & * {
+    @apply fill-grey-2;
+  }
+}
+
+.s-icon-grey-3 {
+  & * {
+    @apply fill-grey-3;
+  }
+}
+
+.s-icon-grey-4 {
+  & * {
+    @apply fill-grey-4;
+  }
+}
+
+.s-icon-grey-5 {
+  & * {
+    @apply fill-grey-5;
+  }
+}
+
+.s-icon-white {
+  & * {
+    @apply fill-white;
+  }
+}
+
+.s-icon-error {
+  & * {
+    @apply fill-status-error;
+  }
+}
+
+.s-icon-grey-16 {
+  & * {
+    @apply fill-grey-16;
+  }
+}
+
+.s-icon-pink {
+  & * {
+    @apply stroke-secondary-pink-light-1;
+  }
+}

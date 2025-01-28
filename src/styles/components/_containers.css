@@ -1,0 +1,20 @@
+.s-form-container {
+  background: #080808;
+  border-radius: theme(borderRadius.base);
+  padding: 20px;
+}
+
+.s-container {
+  background: #080808;
+  border-radius: theme(borderRadius.containers);
+  padding: 20px;
+}
+
+.container-divider-bottom {
+  border-bottom: 1px solid theme(colors.grey.2);
+}
+
+.menu-item-divider-bottom {
+    border-bottom: 1px solid theme(colors.grey.3);
+  }
+  

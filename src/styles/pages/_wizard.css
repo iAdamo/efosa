@@ -1,0 +1,12 @@
+.wizard {
+  .react-flow__controls {
+    button {
+      background-color: black;
+      border: 1px solid theme(colors.grey.1);
+      border-radius: theme(borderRadius.base);
+    }
+  }
+}
+.react-flow__attribution {
+  display: none !important;
+}

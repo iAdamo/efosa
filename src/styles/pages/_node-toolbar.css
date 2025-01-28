@@ -1,0 +1,250 @@
+.parameter-toolbar {
+  width: 25vw;
+}
+.nodetoolbar-component-wrapper {
+  overflow: scroll;
+  height: calc(100vh - 50px);
+  overflow: hidden;
+}
+
+.nodetoolbar-component {
+  background: #080808;
+  height: calc(100vh - 50px);
+  overflow: scroll;
+}
+
+.parent-node-no-data {
+  display: flex;
+  justify-content: start;
+  gap: 5px;
+  align-items: center;
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+
+.node-accordian-container {
+  .accordion-item {
+    padding-block: 20px;
+    border-top: 1px solid $grey-2;
+  }
+  .s-accordion-group {
+    gap: 0px;
+  }
+  .node-params-tabs .react-aria-Tabs {
+    padding: 0px;
+    padding-top: 12px;
+  }
+  .accordion-item > .accordion-content {
+  }
+  .react-aria-TabPanel {
+    max-height: 60vh;
+    overflow: scroll;
+  }
+}
+
+.select-parameter-container {
+  position: absolute;
+  padding: 10px;
+  left: -64%;
+  background-color: #3c3c3c;
+  border-radius: 5px;
+  top: 25%;
+}
+
+.add-identifier-parameters-container {
+  max-height: 40vh;
+  overflow: scroll;
+}
+
+.add-identifier-parameters-container::-webkit-scrollbar {
+  width: 5px;
+}
+.add-identifier-parameters-container::-webkit-scrollbar-thumb {
+  background-color: theme(colors.grey.5);
+}
+
+.add-identifier-parameters-container::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.select-list {
+}
+
+.sortBtn {
+  background-color: theme(colors.grey.2) !important;
+  border: none !important;
+  border-radius: 5px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px !important;
+  padding-block: 8px;
+  padding-inline: 8px;
+}
+
+.select-list ul {
+  width: 100%;
+  max-height: 15vh;
+}
+
+.select-list ul ::-webkit-scrollbar {
+  display: none;
+}
+
+.parameter-accordion {
+  max-height: 30vh;
+  overflow: scroll;
+  padding-bottom: 30px;
+}
+
+.parameter-accordion::-webkit-scrollbar {
+  width: 5px;
+}
+.parameter-accordion::-webkit-scrollbar-thumb {
+  background-color: theme(colors.grey.5);
+}
+
+.parameter-accordion::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.parameter-accordion .title-div {
+  justify-content: start;
+  gap: 10px;
+}
+
+.parameter-accordion .accordion-item {
+  border-top: none;
+}
+
+.node-params-tabs {
+  .react-aria-TabPanel {
+  }
+}
+
+.params-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 30vh;
+  overflow: scroll;
+  height: auto;
+}
+
+.params-container::-webkit-scrollbar {
+  width: 5px;
+  background: #080808;
+}
+
+.params-container::-webkit-scrollbar-thumb {
+  background-color: theme(colors.grey.2);
+}
+.params-container::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.node-param-container {
+}
+.node-param-container::-webkit-scrollbar {
+  width: 5px;
+}
+.node-param-container::-webkit-scrollbar-thumb {
+  background-color: theme(colors.grey.2);
+}
+.node-param-container::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+@media (max-width: 1250px) {
+  .parameter-toolbar {
+    width: 25vw;
+  }
+}
+@media (min-width: 1440px) {
+  .parameter-toolbar {
+    width: 20vw;
+  }
+}
+@media (min-width: 1900px) {
+  .parameter-toolbar {
+    width: 15vw;
+  }
+}
+
+.input-container{
+  width:100%;
+  height: 35px;
+  background-color: theme(colors.grey.2);
+  padding: 10px 12px 10px 12px ;
+  gap: 5px;
+  border-radius: theme(borderRadius.base);
+}
+
+.btn-container{
+  width: 83px;
+  height: 35px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap: 5px;
+  position:absolute;
+  top:0;
+  right:0;
+  border-radius: theme(borderRadius.base);
+  opacity:0;
+}
+
+.save-btn{
+  width: 39px;
+  height: 22px;
+  display: flex;
+  gap: 10px;
+  justify-content:center;
+  align-items:center;
+  border-radius: 3px;
+  padding:5px;
+  background-color: theme(colors.custom.destinationSelectionColor); 
+}
+
+.revert-btn{
+  width: 50px;
+  height: 22px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding: 5px;
+  gap: 10px;  
+  border-radius: theme(borderRadius.base);
+  background-color: theme(colors.grey.1);
+}
+
+.delete-btn {
+  width: 21px;
+  height:15px;
+  display:flex;
+  padding: 5px;
+  justify-content:center;
+  align-items:center;
+  gap: 5px;  
+  border-radius: 3px;
+}
+
+.edit-btn{
+  width: 20px;
+  height:15px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap: 5px;  
+  border-radius: theme(borderRadius.base);
+}
+
+.node-details-container{
+  width: 100%;
+  height: 35px;
+  display:flex;
+  align-items:center;
+  padding: 10px 0px 10px 0px;
+  gap: 5px;  
+  border-radius: theme(borderRadius.base);
+  background:transparent;
+}

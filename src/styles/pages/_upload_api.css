@@ -1,0 +1,161 @@
+.upload-wrapper {
+}
+.upload-wrapper .react-aria-Tabs {
+  padding-inline: 0px;
+  padding-top: 0px;
+}
+
+.server-container .s-input .s-input-wrapper {
+  border-radius: 5px;
+  background-color: theme(colors.grey.2);
+  height: auto;
+}
+
+.server-container .s-input .s-input-wrapper input {
+  line-height: 16px;
+}
+
+.authenticate-wrapper .s-input .s-input-wrapper {
+  border-radius: 5px;
+  background-color: theme(colors.grey.2);
+  height: auto;
+}
+
+.authenticate-wrapper .s-input .s-input-wrapper input {
+  line-height: 16px;
+}
+
+.upload-wrapper .s-input {
+  border: none;
+  height: auto;
+  width: 100%;
+}
+.upload-wrapper .s-input .s-input-wrapper {
+  border-radius: 5px;
+  background-color: theme(colors.grey.2);
+  height: auto;
+}
+
+.upload-wrapper .s-input .s-input-wrapper input {
+  line-height: 16px;
+}
+
+.ai-btn {
+  position: relative;
+  padding: 8px 15px;
+  z-index: 1;
+  border: 0px;
+  border-radius: 50px;
+  background: linear-gradient(38deg, #ed6a7d 8.06%, #ea35fa 89.78%);
+}
+
+.upload-dropzone {
+}
+
+.upload-dropzone {
+  position: relative;
+  padding: 10px 20px;
+  border: 1px dashed transparent;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.upload-dropzone {
+  padding: 1px;
+  background: transparent;
+}
+
+.upload-dropzone::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px;
+  padding: 1px;
+  background: linear-gradient(to right, #ea35fa, #ed6a7d);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+.dashed-gradient-border {
+  position: relative;
+  padding: 20px;
+  position: relative;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(
+    --grey-2-b-2-b-2-b,
+    linear-gradient(0deg, #2b2b2b 0%, #2b2b2b 100%),
+    rgba(43, 43, 43, 0.5)
+  );
+  z-index: 1;
+}
+
+.dashed-gradient-border::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 10px;
+  padding: 1px;
+  background: linear-gradient(to right, #ea35fa, #ed6a7d);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+.react-aria-Radio {
+  display: flex;
+  align-items: center;
+  gap: 0.571rem;
+  font-size: 1.143rem;
+  color: transparent;
+  forced-color-adjust: none;
+
+  &:before {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    background: transparent;
+    border-radius: 1.286rem;
+    transition: all 200ms;
+    outline: 2px solid theme(colors.custom.ghostWhite);
+    outline-offset: 3px;
+    margin-inline: 5px;
+    margin-right: 10px;
+  }
+
+  &[data-pressed]:before {
+    border-color: red;
+  }
+
+  &[data-selected] {
+    &:before {
+      border-width: 0rem;
+      background: theme(colors.custom.ghostWhite);
+    }
+
+    &[data-pressed]:before {
+      border-color: var(--highlight-background-pressed);
+    }
+
+    &[data-focussed]:before {
+      background: theme(colors.custom.ghostWhite);
+    }
+  }
+
+  &[data-focused]:before {
+    outline: 2px solid theme(colors.custom.ghostWhite);
+    outline-offset: 3px;
+  }
+}

@@ -1,0 +1,124 @@
+.ai-sidebar {
+  height: calc(100vh - 58px) !important;
+}
+
+.ai-sidebar .s-button {
+  border-radius: 5px;
+}
+
+.purple-gradient-background {
+  background: var(
+    --Purple-gradient,
+    linear-gradient(180deg, #9f4df8 0%, #624bc2 100%)
+  );
+}
+
+.mint-gradient-background {
+  background: var(
+    --Mint-green-gradient,
+    linear-gradient(220deg, #00efd2 3.94%, #008f97 96.06%)
+  );
+}
+.tasks-gradient-background {
+  background: url("@/assets/icons/task-background.svg"),
+    /* Image layer */ linear-gradient(137deg, #ed6a7d 1.9%, #ea35fa 98.1%); /* Gradient layer */
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.8);
+  background-size: cover; /* Adjust as needed */
+  background-position: center; /* Position the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+
+.border-gradient-purple {
+  border-image-slice: 1;
+  border-radius: 5px;
+  border-image-source: linear-gradient(to right, #ea35fa, #ed6a7d);
+}
+
+.pink-gradient {
+  background: var(
+    --Pink-gradient,
+    linear-gradient(180deg, #ff6bcb 0%, #ff6bcb 100%)
+  );
+}
+
+.ai-sidebar .s-input .s-input-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.ai-btn,
+.input-gradient {
+  position: relative;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: var(
+    --grey-2-b-2-b-2-b,
+    linear-gradient(0deg, #2b2b2b 0%, #2b2b2b 100%),
+    rgba(43, 43, 43, 0.5)
+  );
+  z-index: 1;
+}
+
+.input-gradient {
+  padding: 1px;
+  background: transparent;
+}
+
+.ai-btn:hover::before,
+.input-gradient::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px;
+  padding: 1px; /* Adjust this to match the border width */
+  background: linear-gradient(to right, #ea35fa, #ed6a7d);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1; /* Place it behind the button content */
+}
+
+.input-gradient::before {
+  -webkit-mask: none;
+  -webkit-mask-composite: none;
+}
+
+.ai-btn:hover::before {
+  border-radius: 5px;
+}
+
+.ai-btn:hover {
+}
+
+/* .ai-btn:hover {
+  border-image-slice: 1;
+  border-radius: 5px;
+  border-image-source: linear-gradient(to right, #ea35fa, #ed6a7d);
+} */
+
+.bgRed {
+  background-color: red;
+}
+
+.tasks-dropdown {
+  .react-aria-Select {
+    width: 150px;
+  }
+
+  .react-aria-Select .react-aria-Button {
+    padding: 12px;
+  }
+}
+
+.select-drop .react-aria-Popover {
+  background-color: red;
+}
+
+.ai-tasks-wrapper > .react-aria-Popover[data-trigger="Select"] {
+  width: 150px;
+}

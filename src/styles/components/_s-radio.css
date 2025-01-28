@@ -1,0 +1,59 @@
+.react-aria-RadioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--text-color);
+}
+.react-aria-Radio:before {
+  background-color: red;
+}
+.react-aria-Radio {
+  display: flex;
+  align-items: center;
+  gap: 0.571rem;
+  font-size: 1.143rem;
+  color: transparent;
+  forced-color-adjust: none;
+
+  &:before {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    background: transparent;
+    border-radius: 1.286rem;
+    transition: all 200ms;
+    outline: 2px solid theme(colors.main.pink.1);
+    outline-offset: 3px;
+    margin-inline: 5px;
+    margin-right: 10px;
+  }
+
+  &[data-pressed]:before {
+    border-color: red;
+  }
+
+  &[data-selected] {
+    &:before {
+      /* border-color: transparent; */
+      border-width: 0rem;
+      background: theme(colors.main.pink.1);
+    }
+
+    &[data-pressed]:before {
+      border-color: var(--highlight-background-pressed);
+    }
+
+    &[data-focussed]:before {
+      background: theme(colors.main.pink.1);
+      /* border-color: theme(colors.main.pink.1); */
+    }
+  }
+
+  &[data-focused]:before {
+    outline: 2px solid theme(colors.main.pink.1);
+    outline-offset: 3px;
+  }
+}

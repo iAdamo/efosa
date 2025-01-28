@@ -1,0 +1,151 @@
+.webhook-module-wrapper {
+  overflow: hidden;
+}
+
+.webhook-module-wrapper .s-input {
+  width: 100%;
+}
+
+.webhook-module-wrapper .s-input-wrapper {
+  border-radius: 5px;
+}
+
+.webhook-module-wrapper .s-input .s-input-wrapper {
+  background: theme(colors.grey.2);
+}
+
+.copy-icon-container {
+  @apply absolute rounded-base top-[3px] left-[89%] p-3 flex items-center justify-center;
+  border-radius: 5px;
+
+  background: theme(colors.grey.2);
+  box-shadow: -1px 0px 4px 0px rgba(0, 0, 0, 0.46);
+}
+
+.listen-button {
+  padding-inline: 15px;
+  padding-block: 8px;
+  border-radius: 50px;
+  background: linear-gradient(57deg, #d32dca 25.14%, #a207ac 75.11%);
+  box-shadow: 0px 0px 2px 1px #b82dde;
+  width: 80px;
+}
+
+.webhook-table {
+  tr {
+    border: 1px solid theme(colors.grey.2);
+    @apply grid grid-flow-col py-3 px-4 grid-cols-[2%,27%,27%,27%,7%,4%] items-center gap-[10px];
+  }
+
+  thead tr {
+    border-bottom: 0px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  th {
+    text-align: start;
+  }
+
+  .s-input {
+    height: auto;
+    border: none;
+  }
+
+  .s-input .s-input-wrapper {
+    padding: 5px 12px;
+    height: auto;
+  }
+  .s-input .s-input-wrapper input {
+    line-height: 11px;
+  }
+  .react-aria-Select {
+    width: 100%;
+    padding: 5px 10px;
+  }
+  .react-aria-Select button {
+    gap: 0px;
+    font-size: 10px;
+  }
+
+  .order-dropdown {
+  }
+  .order-dropdown .listbox-container .listbox button {
+    padding: 5px;
+    gap: 5px !important;
+  }
+  .order-dropdown button {
+    gap: 2px;
+    padding-inline: 8px;
+  }
+}
+
+.popover-class {
+}
+
+.select-popover {
+}
+
+.type-dropdown .listbox-container {
+  background-color: theme(colors.grey.2);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.type-dropdown .listbox-container .listbox {
+  margin-top: 0px;
+}
+
+.type-dropdown .listbox-container .listbox button {
+  padding: 5px 12px;
+  color: var(--grey-aeaeae, #aeaeae);
+  font-feature-settings:
+    "liga" off,
+    "clig" off;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 11px;
+  border-bottom: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.type-dropdown .listbox-container .listbox button span {
+  height: 12px;
+  width: 12px;
+}
+
+.type-dropdown .listbox-container .listbox li {
+  padding: 5px 12px;
+  color: var(--grey-aeaeae, #aeaeae);
+  font-feature-settings:
+    "liga" off,
+    "clig" off;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 11px;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.type-dropdown .listbox-container .listbox ul {
+  width: 100%;
+  max-height: 200px;
+}
+
+.type-dropdown .listbox-container .listbox li > div {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .webhook-table {
+    tr {
+      @apply grid-cols-[2%,25%,25%,25%,8%,5%];
+    }
+  }
+}

@@ -1,0 +1,119 @@
+
+.execution-summary {
+    @apply grid grid-cols-3 p-[20px];
+    height: calc(100vh - 50px);
+    width: 100%;
+    gap: 30px;
+    .summary-table {
+        @apply col-span-2 flex flex-col;
+        background: #080808;
+        border-radius: theme(borderRadius.containers);
+        padding: 20px;
+        gap: 30px;
+        .event {
+            @apply flex justify-between items-center;
+            padding: 15px;
+            border: 1px solid theme(colors.grey.2);
+            border-radius: theme(borderRadius.base);
+            overflow: hidden;
+            position: relative;
+            .overlay {
+                @apply absolute;
+                display: none;
+                right: 0;
+            }
+        }
+        .event:not(:last-child) {
+            border-bottom: none;
+        }
+        .event:hover .overlay {
+            @apply flex justify-end;
+            gap: 10px;
+            padding: 12px;
+            width: 40%;
+            height: 100%;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            .resolve-button {
+                background: rgba(theme(colors.status.success), 0.3);
+                padding: 5px;
+                display: flex;
+                height: fit-content;
+                border-radius: theme(borderRadius.base);
+                span {
+                    line-height: theme(lineHeight.small);
+                }
+            }
+            .react-aria-Button {
+                padding: 5px;
+            }
+        }
+        .event:hover[data-status="success"] {
+            background: rgba(theme(colors.status.success), 0.3);
+            border: 1px solid theme(colors.status.success);
+            .overlay {
+                .resolve-button {
+                    background: rgba(theme(colors.status.success), 0.3);
+                }
+            }
+        }
+        .event:hover[data-status="warning"] {
+            background: rgba(theme(colors.status.warning), 0.3);
+            border: 1px solid theme(colors.status.warning);
+            .overlay {
+                .resolve-button {
+                    background: rgba(theme(colors.status.warning), 0.3);
+                }
+            }
+        }
+        .event:hover[data-status="error"] {
+            background: rgba(theme(colors.status.error), 0.3);
+            border: 1px solid theme(colors.status.error);
+            .overlay {
+                .resolve-button {
+                    background: rgba(theme(colors.status.error), 0.3);
+                }
+            }
+        }
+    }
+    .sidebar-div {
+        @apply flex flex-col;
+        gap: 30px;
+        .summary {
+            @apply flex flex-col;
+            background: #080808;
+            border-radius: theme(borderRadius.containers);
+            padding: 20px;
+            gap: 20px;
+            height: 100%;
+        }
+        .scheduler {
+            @apply flex flex-col;
+            background: #080808;
+            border-radius: theme(borderRadius.containers);
+            padding: 20px;
+            gap: 30px;
+            height: 100%;
+        }
+    }
+}
+
+.MuiGauge-valueText{
+    display:none;
+}
+
+.MuiGauge-root
+{
+    width:100px;
+}
+.css-1evyvmv-MuiChartsSurface-root{
+    width:500px;
+}
+
+.css-1evyvmv-MuiChartsSurface-root > * > * {
+    border:2px solid red;
+} 
+
+.filter-icon {
+    color: #F6C519
+}

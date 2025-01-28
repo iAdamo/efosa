@@ -1,0 +1,40 @@
+
+.api-upload {
+    .builder-button {
+        width: 130px;
+    }
+    .upload-box,
+    .authenticate {
+        .change-button {
+            right: 30px;
+            top: 20px;
+            &:disabled {
+                span {
+                    color: theme(colors.grey.2);
+                }
+            }
+        }
+        .add-api-options {
+            @apply flex flex-col;
+            color: theme(colors.white);
+            font-size: theme(fontSize.base);
+            width: max-content;
+            font-weight: theme(fontWeight.heading);
+            button {
+                @apply flex justify-start;
+                padding: 8px;
+                width: 100%;
+                border-radius: theme(borderRadius.base);
+                &:hover {
+                    background: theme(colors.grey.3);
+                }
+            }
+        }
+    }
+    .add-oauth{
+        @apply w-full;
+        background: theme(colors.grey.1);
+        padding: 10px;
+        border-radius: theme(borderRadius.base);
+    }
+}

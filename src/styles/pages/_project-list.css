@@ -1,0 +1,77 @@
+.modal-header-input {
+  width: 35%;
+}
+.modal-header-input .s-input-wrapper {
+  border-radius: 50px;
+}
+.project-list-wrapper {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.project-list-wrapper .react-aria-TableHeader {
+  color: theme(colors.white);
+  font-feature-settings: "liga" off, "clig" off;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: 0.24px;
+}
+
+.project-list-wrapper .react-aria-TableHeader .react-aria-Column {
+  padding-inline: 16px;
+  padding-block: 12px;
+  text-align: start;
+  color: theme(colors.white);
+  font-feature-settings: "liga" off, "clig" off;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: 0.24px;
+}
+
+.project-list-wrapper .react-aria-Row {
+}
+
+.column-class {
+  text-align: start;
+  font-feature-settings: "liga" off, "clig" off;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 14px;
+}
+
+.project-list-header {
+  @apply flex items-center;
+  tr {
+    @apply grid grid-flow-col px-4 py-3 items-center gap-[1%] w-full grid-cols-[15%,20%,20%,15%,26%];
+  }
+}
+
+.project-list-body {
+  tr {
+    @apply grid grid-flow-col  items-center gap-[1%] grid-cols-[15%,20%,20%,15%,26%];
+  }
+  td {
+    @apply px-4 py-3;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .project-list-body {
+    td {
+      @apply text-center;
+    }
+  }
+  .project-list-header {
+    td {
+      @apply text-center;
+    }
+  }
+}

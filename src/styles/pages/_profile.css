@@ -1,0 +1,66 @@
+.left-menu-container {
+  width: 15vw;
+}
+.details-input-container {
+  width: 50vw;
+  overflow-y: scroll;
+}
+
+.input-wrapper .s-input-wrapper .s-input {
+  border: none;
+  background-color: #f5f5f5;
+}
+
+.input-wrapper .s-input-wrapper {
+  background-color: theme(colors.grey.2);
+}
+
+.input-wrapper .s-input-wrapper {
+  position: relative;
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.input-wrapper .s-input-wrapper:focus-within::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  background: linear-gradient(to left, #ed6a7d, #ea35fa) border-box;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.user-info-row {
+  border-radius: 5px;
+  background: var(
+    --grey-2-b-2-b-2-b,
+    linear-gradient(0deg, #2b2b2b 0%, #2b2b2b 100%),
+    rgba(43, 43, 43, 0.5)
+  );
+}
+
+.add-another-text {
+  background: var(
+    --Pink-gradient,
+    linear-gradient(137deg, #ed6a7d 1.9%, #ea35fa 98.1%)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.another-user-container .s-input-wrapper {
+  background-color: theme(colors.grey.2);
+}
+
+@media (min-width: 1450px) {
+  .details-input-container {
+    width: 50vw;
+  }
+
+  .left-menu-container {
+    width: 14vw;
+  }
+}

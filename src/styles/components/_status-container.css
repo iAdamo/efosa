@@ -1,0 +1,32 @@
+
+.statusWrapper {
+    padding: 20px;
+    border-radius: 10px;
+    @apply flex flex-col justify-between items-end;
+    gap: 28px;
+    @apply bg-[#111111];
+    width: 24%;
+    gap: 0px;
+}
+
+.statusText {
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.statusContent {
+    width: 100%;
+    @apply flex justify-end items-start;
+    gap: 26px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.itemValue {
+    font-size: 48px;
+    font-weight: 400;
+    align-self: flex-end;
+    line-height: 48px;
+}

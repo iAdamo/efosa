@@ -1,0 +1,22 @@
+
+.s-modal {
+    color: theme(colors.white);
+    background: #080808;
+    height: min-content;
+    border-radius: theme(borderRadius.base);
+    * {
+        font-family: theme(fontFamily.default);
+    }
+    .label-container {
+        padding: 20px;
+        border-bottom: 1px solid theme(colors.grey.3);
+        .label {
+            font-weight: theme(fontWeight.heading);
+            font-size: theme(fontSize.lg);
+            line-height: theme(lineHeight.heading);
+        }
+    }
+    .content {
+        padding: 20px;
+    }
+}

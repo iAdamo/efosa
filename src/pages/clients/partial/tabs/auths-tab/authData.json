@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "assignedId": 26,
+    "name": "Authentication name",
+    "apiKeyName": "Stripe",
+    "created_at": "2025-01-09T00:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "assignedId": 25,
+    "name": "Authentication name",
+    "apiKeyName": "Stripe",
+    "created_at": "2025-07-09T00:00:00.000Z"
+  },
+  {
+    "id": 3,
+    "assignedId": 26,
+    "name": "Authentication name",
+    "apiKeyName": "Stripe",
+    "created_at": "2024-08-05T00:00:00.000Z"
+  }
+]

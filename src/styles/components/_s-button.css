@@ -1,0 +1,125 @@
+.s-button {
+  border-radius: 50px;
+  display: inline-flex;
+  padding: 5px 10px;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  @apply z-default;
+  span {
+    color: theme(colors.white);
+    font-size: theme(fontSize.base);
+    font-weight: theme(fontWeight.bold);
+    letter-spacing: 0.24px;
+    line-height: theme(lineHeight.base);
+  }
+}
+
+.s-button-normal {
+  padding: 8px 15px;
+}
+
+.s-button-condensed {
+  padding: 5px 10px;
+}
+
+.s-button-secondary {
+  background: theme(colors.grey.2);
+  &:hover {
+    background: theme(colors.grey.3);
+  }
+  &:disabled {
+    background: theme(colors.grey.2);
+    span {
+      color: theme(colors.grey.4);
+    }
+  }
+  &:active {
+    background: theme(colors.grey.3);
+    span {
+      opacity: 0.8;
+    }
+  }
+}
+
+.s-button-build {
+  @apply bg-gradient-to-br from-gradient-pink-1 to-gradient-pink-2;
+  &:hover {
+    @apply from-gradient-pink-2 hover:to-gradient-pink-1;
+  }
+  &:active {
+    span {
+      opacity: 0.8;
+    }
+  }
+  &:disabled {
+    background: theme(colors.grey.2);
+    span {
+      color: theme(colors.grey.4);
+    }
+  }
+}
+
+.s-button-success {
+  /* @apply bg-gradient-to-br from-gradient-green-1 to-gradient-green-2; */
+  background: linear-gradient(57deg, #00df9c 25.14%, #009e6f 75.11%);
+  &:hover {
+    @apply from-gradient-green-2 hover:to-gradient-green-1;
+  }
+  &:active {
+    span {
+      opacity: 0.8;
+    }
+  }
+  &:disabled {
+    background: theme(colors.grey.2);
+    span {
+      color: theme(colors.grey.4);
+    }
+  }
+}
+
+.s-button-error {
+  /* @apply bg-gradient-to-br from-gradient-green-1 to-gradient-green-2; */
+  background: linear-gradient(57deg, #ff3737 25.14%, #bb1919 75.11%);
+  &:hover {
+    @apply from-gradient-green-2 hover:to-gradient-green-1;
+  }
+  &:active {
+    span {
+      opacity: 0.8;
+    }
+  }
+  &:disabled {
+    background: theme(colors.grey.2);
+    span {
+      color: theme(colors.grey.4);
+    }
+  }
+}
+
+.s-button-paused {
+  /* @apply bg-gradient-to-br from-gradient-green-1 to-gradient-green-2; */
+  background: linear-gradient(57deg, #ff9a33 25.14%, #cb6700 75.11%);
+  &:hover {
+    @apply from-gradient-green-2 hover:to-gradient-green-1;
+  }
+  &:active {
+    span {
+      opacity: 0.8;
+    }
+  }
+  &:disabled {
+    background: theme(colors.grey.2);
+    span {
+      color: theme(colors.grey.4);
+    }
+  }
+}
+
+.s-button-loading {
+  pointer-events: none;
+  span {
+    display: none;
+  }
+}

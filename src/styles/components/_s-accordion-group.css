@@ -1,0 +1,22 @@
+
+.s-accordion-group {
+    width: 100%;
+    @apply flex flex-col gap-[30px];
+}
+
+.accordion-item {
+    width: 100%;
+    .title-div {
+        @apply flex justify-between items-center gap-4;
+        .acc-icon {
+            height: 12px;
+            width: 12px;
+        }
+    }
+
+    .accordion-content {
+        box-sizing: border-box;
+        transition: max-height 0.5s ease;
+        overflow: auto;
+    }
+}

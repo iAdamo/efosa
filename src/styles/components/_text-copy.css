@@ -1,0 +1,15 @@
+
+.text-copy {
+    @apply flex gap-1;
+    .icon-interactive {
+        cursor: pointer;
+        display: none;
+    }
+    &:hover {
+        border-radius: theme(borderRadius.base);
+        background: #2b2b2b;
+        .icon-interactive {
+            display: flex;
+        }
+    }
+}

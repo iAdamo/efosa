@@ -1,0 +1,51 @@
+
+.test-badge {
+    background-color: rgba(theme(colors.custom.yellow), 0.5);
+    border: 1px solid theme(colors.custom.yellow);
+    cursor: pointer;
+    padding: 3px 5px;
+    border-radius: theme(borderRadius.base);
+    line-height: theme(lineHeight.base);
+    font-size: theme(fontSize.base);
+    font-weight: theme(fontWeight.bold);
+    color: theme(colors.white);
+    &:hover {
+        background-color: theme(colors.custom.yellow);
+        color: theme(colors.black);
+    }
+}
+.transfer-modal {
+    @apply flex flex-col gap-5 rounded;
+    width: 80vw;
+    max-height: 80vh;
+    min-height: 30vh;
+    overflow-y: scroll;
+    .header-text {
+        padding-block: 20px;
+        border-bottom: 1px solid theme(colors.grey.2);
+        @apply px-3;
+    }
+    .table-container {
+        overflow-x: scroll;
+        width: calc(100% - 25px);
+        @apply flex flex-col gap-4 mx-3;
+        background: theme(colors.grey.1);
+        border-radius: theme(borderRadius.base);
+        padding: 10px;
+        .code-view {
+            white-space: break-spaces;
+            line-break: anywhere;
+        }
+        .nested-data {
+            background: theme(colors.grey.2);
+            border-radius: theme(borderRadius.base);
+            padding: 10px;
+            padding-left: 50px;
+        }
+    }
+    .footer-button {
+        width: 100px;
+        align-self: flex-end;
+        @apply m-3;
+    }
+}

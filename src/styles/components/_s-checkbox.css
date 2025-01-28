@@ -1,0 +1,74 @@
+.s-checkbox-group {
+    @apply flex flex-col;
+    gap: 20px;
+}
+
+.s-checkbox,
+.s-checkbox-mint-green {
+    @apply flex items-center;
+    gap: 10px;
+    height: fit-content;
+    cursor: pointer;
+
+    .checkbox {
+        margin: 0;
+    }
+
+    svg {
+        width: 18px;
+        height: 18px;
+        border-radius: 2px;
+        stroke-width: 2px;
+        border: 2px solid;
+        transition: all 200ms;
+        fill: none;
+    }
+
+    &[data-selected="true"] svg {
+        background: theme(colors.black);
+        stroke: theme(colors.black);
+    }
+}
+
+.s-checkbox {
+    svg {
+        border-color: theme(colors.secondary.cerise);
+    }
+
+    &[data-selected="true"] svg {
+        background: theme(colors.secondary.cerise);
+    }
+}
+
+.s-checkbox-mint-green {
+    svg {
+        border-color: theme(colors.secondary.mint-green);
+    }
+
+    &[data-selected="true"] svg {
+        background: theme(colors.secondary.mint-green);
+    }
+}
+
+.s-checkbox-pink-6 {
+    @apply flex items-center;
+    gap: 10px;
+    height: fit-content;
+    .checkbox {
+        margin: 0;
+    }
+    svg {
+        width: 18px;
+        height: 18px;
+        border-radius: 2px;
+        border: 2px solid theme(colors.secondary.pink-light-1);
+        stroke-width: 2px;
+        fill: none;
+    }
+    &[data-selected="true"] {
+        svg {
+            background: theme(colors.secondary.pink-light-1);
+            stroke: #141619;
+        }
+    }
+}

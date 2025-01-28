@@ -1,0 +1,9 @@
+.sidebar-links {
+  @apply p-[10px] rounded-base flex gap-2;
+  &:hover {
+    @apply bg-grey-1;
+  }
+  &[data-is-disabled="true"] {
+    cursor: not-allowed;
+  }
+}

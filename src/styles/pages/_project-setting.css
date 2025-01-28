@@ -1,0 +1,241 @@
+@define-mixin drop-highlight {
+  &[data-is-drop-target="true"] {
+    background: rgba(theme(colors.custom.yellow), 0.05);
+    border: 1px solid theme(colors.custom.yellow);
+    cursor: cell;
+    .text-div {
+      span {
+        color: theme(colors.custom.yellow);
+      }
+    }
+  }
+}
+
+.project-settings-div {
+  @apply flex flex-grow flex-col px-[10px] h-full;
+  background: theme(colors.grey.1);
+  .project-settings-content {
+    @apply flex p-[20px] h-full;
+    .my-apis {
+      height: 100%;
+      overflow-y: scroll;
+      .add-api-options {
+        @apply flex flex-col;
+        color: theme(colors.white);
+        font-size: theme(fontSize.base);
+        width: max-content;
+        font-weight: theme(fontWeight.heading);
+        button {
+          @apply flex justify-start;
+          padding: 8px;
+          width: 100%;
+          border-radius: theme(borderRadius.base);
+          &:hover {
+            background: theme(colors.grey.3);
+          }
+        }
+      }
+    }
+    .add-apis {
+      @apply w-full h-full flex items-center justify-center;
+      background: theme(colors.grey.2);
+      border: 1px solid theme(colors.grey.3);
+      border-radius: theme(borderRadius.containers);
+      .add-span {
+        outline: none;
+        color: theme(colors.grey.4);
+        font-size: theme(fontSize.lg);
+        font-weight: theme(fontWeight.bold);
+        cursor: cell;
+      }
+      .add-api-options {
+        @apply flex flex-col;
+        color: theme(colors.white);
+        font-size: theme(fontSize.base);
+        width: max-content;
+        font-weight: theme(fontWeight.heading);
+        button {
+          @apply flex justify-start;
+          padding: 8px;
+          width: 100%;
+          border-radius: theme(borderRadius.base);
+          &:hover {
+            background: theme(colors.grey.3);
+          }
+        }
+      }
+
+      .add-img {
+        filter: invert(81%) sepia(7%) saturate(4%) hue-rotate(3deg)
+          brightness(86%) contrast(90%);
+      }
+      &:hover {
+        background: rgba(theme(colors.custom.yellow), 0.05);
+        border: 1px solid theme(colors.custom.yellow);
+        .add-span {
+          color: theme(colors.custom.yellow);
+          font-size: theme(fontSize.lg);
+          font-weight: theme(fontWeight.bold);
+        }
+        .add-img {
+          filter: invert(83%) sepia(52%) saturate(1866%) hue-rotate(347deg)
+            brightness(103%) contrast(93%);
+        }
+      }
+    }
+  }
+  .add-drop-api {
+    @apply flex flex-col justify-center items-center;
+    height: 110px;
+    width: 100%;
+    background: theme(colors.grey.2);
+    border-radius: theme(borderRadius.containers);
+    border: 1px solid theme(colors.grey.3);
+    @include drop-highlight;
+    .text-div {
+      @apply flex gap-[5px];
+      span {
+        color: theme(colors.grey.4);
+      }
+    }
+    img {
+    }
+    &:hover {
+      background: rgba(theme(colors.custom.yellow), 0.05);
+      border: 1px solid theme(colors.custom.yellow);
+      cursor: cell;
+      .text-div {
+        span {
+          color: theme(colors.custom.yellow);
+        }
+        img {
+          filter: invert(83%) sepia(52%) saturate(1866%) hue-rotate(347deg)
+            brightness(103%) contrast(93%);
+        }
+      }
+    }
+  }
+  .add-drop-api:has(.api-container) {
+    border: none;
+    @include drop-highlight;
+  }
+
+  .api-container {
+    @apply flex flex-col gap-[10px];
+    background: rgba(theme(colors.custom.yellow), 0.05);
+    border: 1px solid theme(colors.custom.yellow);
+    padding: 10px;
+    min-height: 110px;
+    height: fit-content;
+    width: 100%;
+    border-radius: theme(borderRadius.containers);
+    &[data-is-dragging="true"] {
+      background: rgba(theme(colors.custom.yellow), 0.05);
+    }
+  }
+  .api-container-dark {
+    background: #080808;
+    border: none;
+    padding: 10px;
+    height: fit-content;
+    width: 100%;
+  }
+
+  .api-loading-div {
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    background: theme(colors.grey.2);
+    border-radius: theme(borderRadius.containers);
+    border: 1px solid theme(colors.grey.3);
+  }
+}
+
+/* ----------------------NEW-------------------- */
+
+.project-settings-wrapper {
+}
+
+.project-settings-wrapper .react-aria-Tabs {
+  width: 100%;
+  padding-inline: 0px;
+  padding-top: 0px;
+}
+
+.project-settings-wrapper .react-aria-TabPanel {
+  width: 100%;
+  height: 100%;
+}
+
+.project-settings-wrapper .react-aria-TabList {
+  width: 30%;
+}
+
+.project-settings-wrapper .s-input {
+  border: none;
+  height: auto;
+  width: 20vw;
+}
+.project-settings-wrapper .s-input .s-input-wrapper {
+  border-radius: 50px;
+  background-color: theme(colors.grey.1);
+  height: auto;
+}
+
+.project-settings-wrapper .s-input .s-input-wrapper input {
+  line-height: 11px;
+}
+
+.api-upload-wrapper {
+}
+.api-upload-wrapper .react-aria-Tabs {
+  width: 100%;
+  padding-inline: 0px;
+  padding-top: 0px;
+}
+
+.api-upload-wrapper .react-aria-TabPanel {
+  width: 100%;
+  height: 100%;
+}
+
+.api-upload-wrapper .react-aria-TabList {
+  width: 30%;
+}
+
+.api-upload-wrapper .s-input {
+  border: none;
+  height: auto;
+  width: 20vw;
+}
+.api-upload-wrapper .s-input .s-input-wrapper {
+  border-radius: 50px;
+  background-color: theme(colors.grey.1);
+  height: auto;
+}
+
+.api-upload-wrapper .s-input .s-input-wrapper input {
+  line-height: 11px;
+}
+
+.settings-wrapper {
+  .s-checkbox {
+    padding: 10px;
+  }
+  .source-settings-wrapper .s-checkbox svg {
+    border: 2px solid theme(colors.secondary.cerise);
+  }
+  .source-settings-wrapper .s-checkbox[data-selected="true"] svg {
+    background: theme(colors.grey.5);
+    stroke: theme(colors.black);
+    border: 2px solid transparent;
+  }
+  .destination-settings-wrapper .s-checkbox svg {
+    border: 2px solid theme(colors.secondary.mint-green);
+  }
+  .destination-settings-wrapper .s-checkbox[data-selected="true"] svg {
+    background: theme(colors.grey.5);
+    stroke: theme(colors.black);
+    border: 2px solid transparent;
+  }
+}

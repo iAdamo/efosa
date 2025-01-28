@@ -1,0 +1,18 @@
+
+.s-form {
+    * {
+        font-family: theme(fontFamily.default);
+    }
+    .s-label {
+        font-size: theme(fontSize.base);
+        color: theme(colors.grey.5);
+        line-height: theme(lineHeight.base);
+        padding-inline-start: 12px;
+    }
+    .s-error {
+        font-size: theme(fontSize.base);
+        color: theme(colors.status.error);
+        line-height: theme(lineHeight.base);
+        padding-inline-start: 12px;
+    }
+}
