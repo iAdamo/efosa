@@ -1,0 +1,90 @@
+From f382dffab4836a75d0669cec464ebcf935d276ed Mon Sep 17 00:00:00 2001
+From: Adam_Babatunde_Sanusi <tundey520@gmail.com>
+Date: Tue, 28 Jan 2025 22:17:31 +0100
+Subject: [PATCH] Improved API search feature
+
+---
+ src/pages/my-apis/ApiCards.jsx |  2 +-
+ src/pages/my-apis/index.jsx    | 35 ++++++++++++++++++----------------
+ 2 files changed, 20 insertions(+), 17 deletions(-)
+
+diff --git a/src/pages/my-apis/ApiCards.jsx b/src/pages/my-apis/ApiCards.jsx
+index 7886e78..743dc1e 100644
+--- a/src/pages/my-apis/ApiCards.jsx
++++ b/src/pages/my-apis/ApiCards.jsx
+@@ -7,7 +7,7 @@ const ApiCards = ({
+   isPublic = false
+ }) => {
+   return (
+-    <div className="w-full flex flex-wrap -mx-2">
++    <div className="w-full flex flex-wrap">
+       {filteredAPIs.length > 0 ? (
+           filteredAPIs?.map((card, idx) => <ApiCard isPublic={isPublic} key={idx} card={card} />)) : <EmptyData
+             icon={<ZapIcon className="w-10 h-10" />}
+diff --git a/src/pages/my-apis/index.jsx b/src/pages/my-apis/index.jsx
+index 48db1dc..96b8da1 100644
+--- a/src/pages/my-apis/index.jsx
++++ b/src/pages/my-apis/index.jsx
+@@ -19,22 +19,25 @@ export default function MyApis() {
+     setSelectedTab(value);
+   };
+ 
+-  const filteredAPIs = useMemo(() => {
+-    let list = [];
+-    if (searchText === "") {
+-      list = [...myAPIs];
+-    } else {
+-      list = [
+-        ...myAPIs.filter((myApi) => {
+-          const { API = {} } = myApi;
+-          return API.name?.toLowerCase().includes(searchText.toLowerCase());
+-        }),
+-      ];
+-    }
++  const filterAPIs = (apis, searchText) => {
++    const searchLower = searchText.toLowerCase();
++    return apis.filter((api) => {
++      const { API = {} } = api;
++      return (
++        API.name?.toLowerCase().includes(searchLower) ||
++        API.customName?.toLowerCase().includes(searchLower)
++      );
++    });
++  };
+ 
+-    return list;
++  const filteredMyAPIs = useMemo(() => {
++    return searchText === "" ? myAPIs : filterAPIs(myAPIs, searchText);
+   }, [searchText, myAPIs]);
+ 
++  const filteredPublicAPIs = useMemo(() => {
++    return searchText === "" ? PublicApis : filterAPIs(PublicApis, searchText);
++  }, [searchText, PublicApis]);
++
+   return (
+     <div className="w-full h-screen flex flex-col pl-8 px-10 p-8">
+       <SBreadcrumbs />
+@@ -63,17 +66,17 @@ export default function MyApis() {
+           tabs={[
+             {
+               name: "My APIs",
+-              children: <ApiCards filteredAPIs={filteredAPIs} />,
++              children: <ApiCards filteredAPIs={filteredMyAPIs} />,
+             },
+             {
+               name: "Public APIs",
+-              children: <ApiCards isPublic filteredAPIs={PublicApis} />,
++              children: <ApiCards isPublic filteredAPIs={filteredPublicAPIs} />,
+             },
+           ]}
+         />
+       </div>
+       <div className="flex  justify-center items-center mt-auto">
+-        <div className="bg-grey-19 w-64 flex flex-row items-center px-2 rounded-2xl">
++        <div className="bg-grey-19 w-64 flex flex-row items-center px-2 rounded-3xl">
+           <CustomInput
+             variant="searchBox"
+             className="w-1/2"
+-- 
+2.43.0
+
