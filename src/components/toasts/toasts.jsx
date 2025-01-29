@@ -24,14 +24,20 @@ export const errorToast = (message) => {
 
 export const successToast = (message, position = "top-center") => {
 	toast.success(message, {
-		position,
-		autoClose: 5000,
-		hideProgressBar: false,
-		closeOnClick: true,
-		pauseOnHover: true,
-		draggable: true,
-		progress: undefined,
-		theme: "colored",
-		icon: <img src={toastSuccess} alt="success" />,
-	});
+    position,
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    icon: <img src={toastSuccess} alt="success" />,
+    style: {
+      backgroundColor: "rgba(255, 255, 255, 0.04)",
+      border: "1px solid rgba(171, 255, 173, 1)",
+	  borderRadius: "30px",
+	  width: "fit-content",
+    },
+  });
 };

@@ -15,18 +15,7 @@ const AvatarCard = ({name = [], customName = [], image, classN = ''}) => {
 
     return (
         <div
-            className={`h-10 min-h-10 min-w-10 w-10 rounded-full flex justify-center items-center ${classN} ${
-                alphabetId < 5
-                    ? "bg-secondary-mint-green"
-                    : alphabetId < 10
-                        ? "bg-main-purple-1"
-                        : alphabetId < 15
-                            ? "bg-main-peach-1"
-                            : alphabetId < 20
-                                ? "bg-secondary-blue-light"
-                                : "bg-main-pink-1"
-            }`}
-        >
+            className={`h-10 min-h-10 min-w-10 w-10 rounded-full flex justify-center items-center ${classN} bg-secondary-blue-light`}>
             {!image ? (
                 <div className="text-white text-[18px] lg:text-[22px] font-semibold font-['Inter'] leading-[14px] tracking-tight">
                     {name?.[0] || customName?.[0] || ""}

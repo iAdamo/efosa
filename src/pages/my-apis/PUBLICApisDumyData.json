@@ -33,7 +33,7 @@
       "uploadMethod": "URL",
       "uploadUrl": "https://tripletex.no/v2/swagger.json",
       "uploadFilename": null,
-      "authenticationType": null,
+      "authenticationType": "LOCK",
       "projectID": null
     },
     "projects_count": 0,
@@ -53,7 +53,7 @@
       "uploadMethod": "URL",
       "uploadUrl": "https://tripletex.no/v2/swagger.json",
       "uploadFilename": null,
-      "authenticationType": null,
+      "authenticationType": "AUTH_KEY",
       "projectID": null
     },
     "projects_count": 0,
@@ -73,7 +73,7 @@
       "uploadMethod": "URL",
       "uploadUrl": "https://tripletex.no/v2/swagger.json",
       "uploadFilename": null,
-      "authenticationType": null,
+      "authenticationType": "JWT",
       "projectID": null
     },
     "projects_count": 0,
@@ -93,7 +93,7 @@
       "uploadMethod": "URL",
       "uploadUrl": "https://tripletex.no/v2/swagger.json",
       "uploadFilename": null,
-      "authenticationType": null,
+      "authenticationType": "AUTH_KEY",
       "projectID": null
     },
     "projects_count": 0,

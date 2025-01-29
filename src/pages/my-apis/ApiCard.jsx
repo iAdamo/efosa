@@ -1,6 +1,5 @@
 import Button from "@/components/Button";
 import EditIcon from "@assets/icons/Edit.svg?react";
-import JwtIcon from "@assets/icons/auth-types/JwtIcon.svg?react";
 import CopyIcon from "@assets/icons/copy-icon-2.svg?react";
 import TrashIcon from "@assets/icons/vector.svg?react";
 import { deleteMyApi } from "@axios/apiCalls.js";
@@ -49,7 +48,7 @@ const ApiCard = ({ card, isPublic = false }) => {
     e.preventDefault();
     if (!myAPIs.some((api) => api.id === card.id)) {
       setMyAPIs([card, ...myAPIs]);
-      successToast(`${name} Api saved`);
+      successToast("Api added to your library");
       setIsAdded(!isAdded);
     }
   };
@@ -69,7 +68,7 @@ const ApiCard = ({ card, isPublic = false }) => {
   return (
     API && (
       <div
-        className={`p-2 m-2 rounded-lg cursor-pointer w-[23%] max-w-72 ${isAdded ? "border border-grey-1 !cursor-not-allowed" : "border border-grey-1 hover:bg-grey-0 hover:backdrop-blur"}`}
+        className={`p-2 m-2 rounded-lg cursor-pointer min-w-[23%] w-72 ${isAdded ? "border border-grey-1 !cursor-not-allowed" : "border border-grey-1 hover:bg-grey-0 hover:backdrop-blur"}`}
       >
         <Link to={!isPublic && `/my-apis/${card.id}`} className="flex flex-col">
           <div className="flex justify-between flex-col">
@@ -88,26 +87,15 @@ const ApiCard = ({ card, isPublic = false }) => {
                     <span className="max-w-full text-custom-ghostWhite font-normal text-lg">
                       {name ?? ""}
                     </span>
-                    <span className="text-grey-11 text-sm font-normal">
-                      {!isPublic && (
-                        <>
-                          <AuthTypeCard
-                            className="!text-white"
-                            type={
-                              authenticationType
-                                ? type
-                                : {
-                                    key: "Empty",
-                                    value: null,
-                                    icon: (isActive) => (
-                                      <JwtIcon isActive={isActive} />
-                                    ),
-                                  }
-                            }
-                          />
-                        </>
-                      )}
-                    </span>
+                    {/** Authentication Type Icon */}
+                    {!isPublic && (
+                      <span className="text-grey-11 text-sm font-normal">
+                        <AuthTypeCard
+                          className="!text-white"
+                          authenticationType={authenticationType}
+                        />
+                      </span>
+                    )}
                   </div>
                   <div>
                     <span className="text-grey-11 text-sm font-normal">
@@ -124,7 +112,7 @@ const ApiCard = ({ card, isPublic = false }) => {
                       >
                         <EditIcon className="text-grey-16 group-hover:text-grey-18" />
                       </Button>
-                      <Button onClick={null} className="flex gap-1.5 group">
+                      <Button onClick={() => {}} className="flex gap-1.5 group">
                         <CopyIcon className="text-grey-16 group-hover:text-grey-18" />
                       </Button>
                       <Button
@@ -161,8 +149,8 @@ const ApiCard = ({ card, isPublic = false }) => {
                   </Button>
                 </div>
               ) : (
-                <div className="">
-                  <Button className="p-2 bg-grey-15 rounded-lg">RestFul</Button>
+                <div className="mt-2">
+                  <Button className="p-2 bg-grey-15 rounded-lg">Rest API</Button>
                 </div>
               )}
             </div>

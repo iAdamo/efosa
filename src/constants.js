@@ -206,6 +206,12 @@ export const colors = {
   hover: {
     "grey-1": "#343A40",
   },
+  specc: {
+    bg: "#060606",
+    neutral1: "#161616",
+    neutral3: "#848484",
+    neutral4: "#D9D9D9",
+  },
 };
 
 export const gradientColors = {

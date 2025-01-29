@@ -38,7 +38,7 @@ export default function MyApis() {
   }, [searchText, PublicApis]);
 
   return (
-    <div className="w-full h-screen flex flex-col p-10 bg-[#060606]">
+    <div className="w-full h-screen flex flex-col p-10 bg-specc-bg">
       {/* <SBreadcrumbs /> */}
       <div className="w-full flex items-center mt-10">
         <STabs
