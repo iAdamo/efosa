@@ -1,43 +1,15 @@
 import React from "react";
 import Button from "@components/Button.jsx";
-import AuthKeyIcon from "@assets/icons/auth-types/AuthKeyIcon.svg?react";
 import JwtIcon from "@assets/icons/auth-types/JwtIcon.svg?react";
-import GlobeIcon from "@assets/icons/auth-types/GlobeIcon.svg?react";
-import LockIcon from "@assets/icons/auth-types/LockIcon.svg?react";
+import { authTypes } from "./auth-types.jsx";
 
 const getAuthType = (authenticationType) => {
-  switch (authenticationType) {
-    case "BASIC":
-      return {
-        key: "Basic",
-        value: null,
-        icon: (isActive) => <GlobeIcon isActive={isActive} />,
-      };
-    case "JWT":
-      return {
-        key: "JWT",
-        value: null,
-        icon: (isActive) => <JwtIcon isActive={isActive} />,
-      };
-    case "AUTH_KEY":
-      return {
-        key: "authKey",
-        value: null,
-        icon: (isActive) => <AuthKeyIcon isActive={isActive} />,
-      };
-    case "LOCK":
-      return {
-        key: "lock",
-        value: null,
-        icon: (isActive) => <LockIcon isActive={isActive} />,
-      };
-    default:
-      return {
-        key: "Empty",
-        value: null,
-        icon: (isActive) => <JwtIcon isActive={isActive} />,
-      };
-  }
+  const type = authTypes.find(auth => auth.value === authenticationType);
+  return type || {
+    key: "Empty",
+    value: null,
+    icon: (isActive) => <JwtIcon isActive={isActive} />,
+  };
 };
 
 export const AuthTypeCard = ({ authenticationType, isActive, onClick, className }) => {

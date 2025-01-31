@@ -7,7 +7,6 @@ import { errorToast, successToast } from "@components/toasts/toasts.jsx";
 import { GeneralContext } from "@contexts/GeneralContext.jsx";
 import DeleteAuthModal from "@pages/my-apis/partial/DeleteAuthModal.jsx";
 import { AuthTypeCard } from "@pages/my-auths/partial/auth-type/AuthTypeCard.jsx";
-import { authTypes } from "@pages/my-auths/partial/auth-type/auth-types.jsx";
 import moment from "moment";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,12 +20,12 @@ const ApiCard = ({ card, isPublic = false }) => {
     name = "",
     customName = "",
     id = "",
+    type= "",
     authenticationType = "",
     description = "Short description about the API, its functions etc etc etc etc this can be a longer description depending on the type of API, if longer than 3 lines, hide under a read more",
     logo_url = "",
   } = API || {};
   const formattedTime = moment(updated_at).format("DD-MM-YYYY");
-  const type = authTypes.find((type) => type.value === authenticationType);
   const [isAdded, setIsAdded] = useState(myAPIs.some((api) => api.id === id));
 
   const navigate = useNavigate();
@@ -68,7 +67,7 @@ const ApiCard = ({ card, isPublic = false }) => {
   return (
     API && (
       <div
-        className={`p-2 m-2 rounded-lg cursor-pointer min-w-[23%] w-72 ${isAdded ? "bg-specc-TW4 border border-specc-TW8 !cursor-not-allowed" : "border border-specc-TW8 hover:bg-specc-TW4 hover:border-specc-TW8"}`}
+        className={`p-2 m-2 rounded-lg cursor-pointer w-72 ${isAdded ? "bg-specc-TW4 border border-specc-TW8 !cursor-not-allowed" : "border border-specc-TW8 hover:bg-specc-TW4 hover:border-specc-TW8"}`}
       >
         <Link
           to={!isPublic && `/my-apis/${card.id}`}
@@ -132,7 +131,7 @@ const ApiCard = ({ card, isPublic = false }) => {
             ) : (
               <div className="mt-2">
                 <Button className="p-2 bg-specc-neutral2 text-white rounded-[4px]">
-                  Rest API
+                  {type || "Rest API"}
                 </Button>
               </div>
             )}
