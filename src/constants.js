@@ -207,10 +207,15 @@ export const colors = {
     "grey-1": "#343A40",
   },
   specc: {
-    bg: "#060606",
-    neutral1: "#161616",
+    neutral1: "#060606",
+    neutral2: "#161616",
     neutral3: "#848484",
     neutral4: "#D9D9D9",
+    TW4: "rgba(255, 255, 255, 0.04)",
+    TW8: "rgba(255, 255, 255, 0.08)",
+    cardbtn: "#0C0C0D",
+    cardbtnborder: "#1D1E1F",
+    txt: "#F8F9FA",
   },
 };
 

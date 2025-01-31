@@ -38,7 +38,7 @@ export default function MyApis() {
   }, [searchText, PublicApis]);
 
   return (
-    <div className="w-full h-screen flex flex-col p-10 bg-specc-bg">
+    <div className="w-full h-screen flex flex-col p-10 bg-specc-neutral1">
       {/* <SBreadcrumbs /> */}
       <div className="w-full flex items-center mt-10">
         <STabs
@@ -59,8 +59,9 @@ export default function MyApis() {
             tabContent: "!p-0 !w-full flex flex-col gap-6",
             tabChild: "justify-between items-center",
             tabListStyle:
-              "flex w-[200px] bg-grey-15 px-2 py-0 h-11 text-grey-17 rounded-3xl items-center",
-            activeTab: "!bg-grey-15 border !rounded-3xl",
+              "flex w-[200px] !bg-specc-neutral2 px-2 py-0 h-11 text-specc-neutral3 rounded-3xl items-center",
+            activeTab:
+              "!bg-TW4 border border-specc-neutral3 text-specc-neutral4 !rounded-3xl",
           }}
           tabs={[
             {
@@ -75,21 +76,21 @@ export default function MyApis() {
         />
       </div>
       <div className="flex justify-center items-center mt-auto">
-        <div className="bg-grey-15 w-64 border border-grey-3 flex flex-row items-center px-1 rounded-3xl">
+        <div className="bg-specc-neutral2 border border-specc-TW4 w-64 flex flex-row items-center px-1 rounded-3xl">
           <CustomInput
             variant="searchBox"
             className="w-1/2"
-            inputClassName="w-full !bg-grey-15 !rounded-3xl border-0"
+            inputClassName="w-full bg-transparent !rounded-3xl border-0"
             placeholder="Search"
             onChange={(e) => setSearchText(e.target.value)}
           />
           <Button
-            className="gap-2 !bg-grey-15"
+            className="gap-2 !bg-transparent"
             variant="addAuth"
             onClick={() => navigate(`/my-apis/add-api`)}
           >
-            <PlusIcon />
-            <span className="text-md">New API</span>
+            <PlusIcon className="" />
+            <span className="text-md text-specc-neutral4">New API</span>
           </Button>
         </div>
       </div>

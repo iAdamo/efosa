@@ -68,93 +68,96 @@ const ApiCard = ({ card, isPublic = false }) => {
   return (
     API && (
       <div
-        className={`p-2 m-2 rounded-lg cursor-pointer min-w-[23%] w-72 ${isAdded ? "border border-grey-1 !cursor-not-allowed" : "border border-grey-1 hover:bg-grey-0 hover:backdrop-blur"}`}
+        className={`p-2 m-2 rounded-lg cursor-pointer min-w-[23%] w-72 ${isAdded ? "bg-specc-TW4 border border-specc-TW8 !cursor-not-allowed" : "border border-specc-TW8 hover:bg-specc-TW4 hover:border-specc-TW8"}`}
       >
-        <Link to={!isPublic && `/my-apis/${card.id}`} className="flex flex-col">
-          <div className="flex justify-between flex-col">
-            <div className="flex flex-col gap-2">
-              <div
-                className={`flex gap-3 w-full ${isPublic ? "items-center" : ""}`}
-              >
-                <AvatarCard
-                  name={name}
-                  customName={customName}
-                  image={logo_url}
-                  classN="!rounded h-8 min-h-8 min-w-8 w-8"
-                />
-                <div className="flex flex-col justify-bettween w-full">
-                  <div className="flex gap-2 flex-row">
-                    <span className="max-w-full text-custom-ghostWhite font-normal text-lg">
-                      {name ?? ""}
-                    </span>
-                    {/** Authentication Type Icon */}
-                    {!isPublic && (
-                      <span className="text-grey-11 text-sm font-normal">
-                        <AuthTypeCard
-                          className="!text-white"
-                          authenticationType={authenticationType}
-                        />
-                      </span>
-                    )}
-                  </div>
-                  <div>
+        <Link
+          to={!isPublic && `/my-apis/${card.id}`}
+          className="flex flex-row"
+        >
+          <div className="flex flex-col gap-2">
+            <div
+              className={`flex gap-3 w-full ${isPublic ? "items-center" : ""}`}
+            >
+              <AvatarCard
+                name={name}
+                customName={customName}
+                image={logo_url}
+                classN="!rounded h-8 min-h-8 min-w-8 w-8"
+              />
+              <div className="flex flex-col justify-bettween w-full">
+                <div className="flex gap-2 flex-row">
+                  <span className="max-w-full text-custom-ghostWhite font-normal text-lg">
+                    {customName ?? ""}
+                  </span>
+                  {/** Authentication Type Icon */}
+                  {!isPublic && (
                     <span className="text-grey-11 text-sm font-normal">
-                      {!isPublic ? customName : ""}
+                      <AuthTypeCard
+                        className="!text-white"
+                        authenticationType={authenticationType}
+                      />
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <span className="text-grey-11 text-sm font-normal">
+                    {!isPublic ? name : ""}
+                  </span>
+                </div>
+              </div>
+            </div>
+            {isPublic && (
+              <div>
+                <div className="flex flex-col items-start gap-1 overflow-hidden">
+                  <div className="flex h-12 max-h-16 items-center">
+                    <span
+                      className={`${isAdded ? "text-grey-16" : "text-grey-11"} text-sm font-normal`}
+                    >
+                      {isPublic && description}
                     </span>
                   </div>
                 </div>
-                {!isPublic && (
-                  <div className="ml-auto">
-                    <div className="flex gap-3 justify-end">
-                      <Button
-                        onClick={handleEditEvent}
-                        className="flex gap-1.5 group"
-                      >
-                        <EditIcon className="text-grey-16 group-hover:text-grey-18" />
-                      </Button>
-                      <Button onClick={() => {}} className="flex gap-1.5 group">
-                        <CopyIcon className="text-grey-16 group-hover:text-grey-18" />
-                      </Button>
-                      <Button
-                        onClick={handleDeleteEvent}
-                        className="flex gap-1.5 group"
-                      >
-                        <TrashIcon className="text-grey-16 group-hover:text-grey-18" />
-                      </Button>
-                    </div>
-                  </div>
-                )}
               </div>
-              {isPublic && (
-                <div>
-                  <div className="flex flex-col items-start gap-1 overflow-hidden">
-                    <div className="flex h-12 max-h-16 items-center">
-                      <span
-                        className={`${isAdded ? "text-grey-16" : "text-grey-11"} text-sm font-normal`}
-                      >
-                        {isPublic && description}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              )}
+            )}
 
-              {isPublic ? (
-                <div className="">
-                  <Button
-                    className={`py-2 px-6 bg-grey-15 border border-grey-2 rounded-3xl ${isAdded ? "border-0 text-white/2 cursor-not-allowed" : "hover:bg-grey-14 hover:border-grey-18"}`}
-                    onClick={handleAddToMyApis}
-                  >
-                    {isAdded ? "Added" : "Add"}
-                  </Button>
-                </div>
-              ) : (
-                <div className="mt-2">
-                  <Button className="p-2 bg-grey-15 rounded-lg">Rest API</Button>
-                </div>
-              )}
-            </div>
+            {isPublic ? (
+              <div className="">
+                <Button
+                  className={`py-2 px-6 bg-specc-cardbtn border border-specc-cardbtnborder rounded-3xl ${isAdded ? "border-0 text-white/2 cursor-not-allowed" : "hover:bg-specc-TW8 hover:border-specc-neutral4"}`}
+                  onClick={handleAddToMyApis}
+                >
+                  {isAdded ? "Added" : "Add"}
+                </Button>
+              </div>
+            ) : (
+              <div className="mt-2">
+                <Button className="p-2 bg-specc-neutral2 text-white rounded-[4px]">
+                  Rest API
+                </Button>
+              </div>
+            )}
           </div>
+          {!isPublic && (
+            <div className="ml-auto">
+              <div className="flex gap-3 justify-end">
+                <Button
+                  onClick={handleEditEvent}
+                  className="flex gap-1.5 group"
+                >
+                  <EditIcon className="text-grey-16 group-hover:text-grey-18" />
+                </Button>
+                <Button onClick={() => {}} className="flex gap-1.5 group">
+                  <CopyIcon className="text-grey-16 group-hover:text-grey-18" />
+                </Button>
+                <Button
+                  onClick={handleDeleteEvent}
+                  className="flex gap-1.5 group"
+                >
+                  <TrashIcon className="text-grey-16 group-hover:text-grey-18" />
+                </Button>
+              </div>
+            </div>
+          )}
         </Link>
         {openDeleteModal && (
           <DeleteAuthModal

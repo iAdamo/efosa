@@ -1,0 +1,1117 @@
+From 042062b8714b40134b2e1aa79153368347e82120 Mon Sep 17 00:00:00 2001
+From: Adam_Babatunde_Sanusi <tundey520@gmail.com>
+Date: Wed, 29 Jan 2025 15:58:42 +0100
+Subject: [PATCH] AuthTypeCard, AvatarCard and Icon enhancement
+
+---
+ ...0001-myapi-and-public-api-ui-enhance.patch | 761 ++++++++++++++++++
+ src/assets/icons/copy-icon-2.svg              |   4 +-
+ src/assets/icons/vector.svg                   |   2 +-
+ src/components/toasts/toasts.jsx              |  26 +-
+ src/constants.js                              |   6 +
+ src/pages/clients/partial/AvatarCard.jsx      |  13 +-
+ src/pages/my-apis/ApiCard.jsx                 |  40 +-
+ src/pages/my-apis/ApiCards.jsx                |   2 +-
+ src/pages/my-apis/PUBLICApisDumyData.json     |   8 +-
+ src/pages/my-apis/index.jsx                   |   2 +-
+ .../partial/auth-type/AuthTypeCard.jsx        |  67 +-
+ 11 files changed, 860 insertions(+), 71 deletions(-)
+ create mode 100644 patches/0001-myapi-and-public-api-ui-enhance.patch
+
+diff --git a/patches/0001-myapi-and-public-api-ui-enhance.patch b/patches/0001-myapi-and-public-api-ui-enhance.patch
+new file mode 100644
+index 0000000..a4a7195
+--- /dev/null
++++ b/patches/0001-myapi-and-public-api-ui-enhance.patch
+@@ -0,0 +1,761 @@
++From 141259f3ab56cc5982059ee088aaa749eb819e38 Mon Sep 17 00:00:00 2001
++From: Adam_Babatunde_Sanusi <tundey520@gmail.com>
++Date: Wed, 29 Jan 2025 10:03:40 +0100
++Subject: [PATCH] myapi and public api ui enhance
++
++---
++ patches/0001-Change-my-api-index-view.patch   | 219 ++++++++++++++
++ .../0001-Improved-API-search-feature.patch    |  90 ++++++
++ src/pages/my-apis/ApiCard.jsx                 | 286 ++++++++++--------
++ src/pages/my-apis/ApiCards.jsx                |   2 +-
++ src/pages/my-apis/index.jsx                   |  23 +-
++ .../partial/auth-type/AuthTypeCard.jsx        |   3 +-
++ 6 files changed, 485 insertions(+), 138 deletions(-)
++ create mode 100644 patches/0001-Change-my-api-index-view.patch
++ create mode 100644 patches/0001-Improved-API-search-feature.patch
++
++diff --git a/patches/0001-Change-my-api-index-view.patch b/patches/0001-Change-my-api-index-view.patch
++new file mode 100644
++index 0000000..6c59595
++--- /dev/null
+++++ b/patches/0001-Change-my-api-index-view.patch
++@@ -0,0 +1,219 @@
+++From 715e7205b226a8fc3cd8e0a61709aab69fd58206 Mon Sep 17 00:00:00 2001
+++From: Adam_Babatunde_Sanusi <tundey520@gmail.com>
+++Date: Tue, 28 Jan 2025 18:32:30 +0100
+++Subject: [PATCH] Change my-api index view
+++
+++---
+++ src/components/STabs.jsx    |   2 +-
+++ src/pages/my-apis/index.jsx | 172 +++++++++++++++++-------------------
+++ 2 files changed, 80 insertions(+), 94 deletions(-)
+++
+++diff --git a/src/components/STabs.jsx b/src/components/STabs.jsx
+++index 1a3477d..e6b7924 100644
+++--- a/src/components/STabs.jsx
++++++ b/src/components/STabs.jsx
+++@@ -63,7 +63,7 @@ export default function STabs({ ...props }) {
+++ 				}
+++ 			}}
+++ 		>
+++-			<div className={`flex flex-col gap-[12px] flex-none w-full ${props.tabStyles?.tabChild || ''}`}>
++++			<div className={`flex flex-row-reverse gap-3 flex-none w-full ${props.tabStyles?.tabChild || ''}`}>
+++ 				<TabList
+++ 					aria-label="Dynamic tabs"
+++ 					items={props.tabs}
+++diff --git a/src/pages/my-apis/index.jsx b/src/pages/my-apis/index.jsx
+++index bf26dbd..48db1dc 100644
+++--- a/src/pages/my-apis/index.jsx
++++++ b/src/pages/my-apis/index.jsx
+++@@ -2,9 +2,7 @@ import Button from "@/components/Button";
+++ import CustomInput from "@/components/CustomInput";
+++ import SBreadcrumbs from "@/components/SBreadcrumbs";
+++ import STabs from "@/components/STabs";
+++-import ApiCubes from "@assets/icons/api-cubes.svg?react";
+++ import PlusIcon from "@assets/icons/plusIcon.svg?react";
+++-import SButton from "@components/SButton";
+++ import { GeneralContext } from "@contexts/GeneralContext.jsx";
+++ import { useContext, useMemo, useState } from "react";
+++ import { useNavigate } from "react-router-dom";
+++@@ -12,99 +10,87 @@ import ApiCards from "./ApiCards";
+++ import PublicApis from "./PUBLICApisDumyData.json";
+++ 
+++ export default function MyApis() {
+++-	const {myAPIs} = useContext(GeneralContext);
++++  const { myAPIs } = useContext(GeneralContext);
+++ 
+++-	const navigate = useNavigate();
+++-	const [searchText, setSearchText] = useState('');
+++-	const [selectedTab, setSelectedTab] = useState("My APIs");
+++-	const getSelectedtab = (value) => {
+++-		setSelectedTab(value);
+++-	};
++++  const navigate = useNavigate();
++++  const [searchText, setSearchText] = useState("");
++++  const [selectedTab, setSelectedTab] = useState("My APIs");
++++  const getSelectedtab = (value) => {
++++    setSelectedTab(value);
++++  };
+++ 
+++-	const filteredAPIs = useMemo(() => {
+++-		let list = [];
+++-		if (searchText === "") {
+++-			list = [...myAPIs];
+++-		} else {
+++-			list = [...myAPIs.filter(myApi => {
+++-				const {API = {}} = myApi;
+++-				return API.name?.toLowerCase().includes(searchText.toLowerCase())
+++-			})]
+++-		}
++++  const filteredAPIs = useMemo(() => {
++++    let list = [];
++++    if (searchText === "") {
++++      list = [...myAPIs];
++++    } else {
++++      list = [
++++        ...myAPIs.filter((myApi) => {
++++          const { API = {} } = myApi;
++++          return API.name?.toLowerCase().includes(searchText.toLowerCase());
++++        }),
++++      ];
++++    }
+++ 
+++-		return list;
+++-	}, [searchText, myAPIs]);
++++    return list;
++++  }, [searchText, myAPIs]);
+++ 
+++-	return (
+++-		<div className="w-full h-screen flex flex-col gap-10 pl-8 p-10">
+++-			<SBreadcrumbs />
+++-			<div className="w-full flex items-center">
+++-				<STabs
+++-					getSelectedTab={getSelectedtab}
+++-					childWithSibling="flex"
+++-					tabListBSibling={
+++-						<div className="w-1/2 flex flex-col gap-2">
+++-							<span className="text-[28px] font-medium leading-larger">
+++-								{selectedTab}
+++-							</span>
+++-							<span
+++-								className="w-full max-w-[585px] text-base font-normal text-grey-17 font-['Inter'] tracking-wide">
+++-								Here you can see all the APIs you've integrated into your projects. Feel free to upload any new API you'd like to use.
+++-							</span>
+++-						</div>
+++-					}
+++-					tabListSibling={
+++-						<div className="flex gap-5 items-center">
+++-							<CustomInput
+++-								variant="searchBox"
+++-								className="max-w-[365px] w-full"
+++-								inputClassName="w-full"
+++-								placeholder="Search"
+++-								onChange={(e) => setSearchText(e.target.value)}
+++-							/>
+++-							<div className="flex items-center">
+++-								<Button
+++-									className="gap-2 w-max"
+++-									variant="primary"
+++-									onClick={() => navigate(`/my-apis/add-api`)}
+++-								>
+++-									<PlusIcon />
+++-									<span className="text-lg font-bold">New API</span>
+++-								</Button>
+++-
+++-								<div className="flex gap-5">
+++-									<SButton
+++-										sType="button"
+++-										onClick={() => { }}
+++-										className=" px-[15px] !h-10 ml-4 py-2 bg-grey-2 rounded-[50px] shadow justify-center items-center gap-0.5 inline-flex w-max"
+++-									>
+++-										<div className="flex gap-[5px] grow shrink basis-0 text-center !text-white text-xs font-semibold font-['Inter'] leading-[14px] tracking-normal items-center">
+++-											<ApiCubes className="icon-grey-5 h-[14px]" />
+++-											API Builder
+++-										</div>
+++-									</SButton>
+++-								</div>
+++-							</div>
+++-						</div>
+++-					}
+++-					tabStyles={{
+++-						tabContent: "!p-0 !w-full flex flex-col gap-6",
+++-						tabChild: "justify-between items-center",
+++-						tabListStyle: "flex w-[200px] bg-grey-15 px-2 py-0 h-11 text-grey-17 rounded items-center mr-5",
+++-						activeTab: "!bg-grey-13"
+++-					}}
+++-					tabs={[
+++-						{
+++-							name: "My APIs",
+++-							children: <ApiCards filteredAPIs={filteredAPIs} />
+++-						},
+++-						{
+++-							name: "Public APIs",
+++-							children: <ApiCards isPublic filteredAPIs={PublicApis} />
+++-						},
+++-					]}
+++-				/>
+++-			</div>
+++-		</div>
+++-	);
++++  return (
++++    <div className="w-full h-screen flex flex-col pl-8 px-10 p-8">
++++      <SBreadcrumbs />
++++      <div className="w-full flex items-center mt-10">
++++        <STabs
++++          getSelectedTab={getSelectedtab}
++++          childWithSibling="flex"
++++          tabListSibling={
++++            <div className="w-1/2 flex flex-col gap-2">
++++              <span className="text-[28px] font-medium leading-larger">
++++                {selectedTab}
++++              </span>
++++              <span className="w-full max-w-[585px] text-base font-normal text-grey-17 font-['Inter'] tracking-wide">
++++                Here you can see all the APIs you've integrated into your
++++                projects. Feel free to upload any new API you'd like to use.
++++              </span>
++++            </div>
++++          }
++++          tabStyles={{
++++            tabContent: "!p-0 !w-full flex flex-col gap-6",
++++            tabChild: "justify-between items-center",
++++            tabListStyle:
++++              "flex w-[200px] bg-grey-15 px-2 py-0 h-11 text-grey-17 rounded-3xl items-center mr-5",
++++            activeTab: "!bg-grey-15 border !rounded-3xl",
++++          }}
++++          tabs={[
++++            {
++++              name: "My APIs",
++++              children: <ApiCards filteredAPIs={filteredAPIs} />,
++++            },
++++            {
++++              name: "Public APIs",
++++              children: <ApiCards isPublic filteredAPIs={PublicApis} />,
++++            },
++++          ]}
++++        />
++++      </div>
++++      <div className="flex  justify-center items-center mt-auto">
++++        <div className="bg-grey-19 w-64 flex flex-row items-center px-2 rounded-2xl">
++++          <CustomInput
++++            variant="searchBox"
++++            className="w-1/2"
++++            inputClassName="w-full border-0"
++++            placeholder="Search"
++++            onChange={(e) => setSearchText(e.target.value)}
++++          />
++++          <Button
++++            className="w-1/2 gap-2 bg-grey-19"
++++            variant="addAuth"
++++            onClick={() => navigate(`/my-apis/add-api`)}
++++          >
++++            <PlusIcon />
++++            <span className="text-md">New API</span>
++++          </Button>
++++        </div>
++++      </div>
++++    </div>
++++  );
+++ }
+++-- 
+++2.43.0
+++
++diff --git a/patches/0001-Improved-API-search-feature.patch b/patches/0001-Improved-API-search-feature.patch
++new file mode 100644
++index 0000000..4ea3ee8
++--- /dev/null
+++++ b/patches/0001-Improved-API-search-feature.patch
++@@ -0,0 +1,90 @@
+++From f382dffab4836a75d0669cec464ebcf935d276ed Mon Sep 17 00:00:00 2001
+++From: Adam_Babatunde_Sanusi <tundey520@gmail.com>
+++Date: Tue, 28 Jan 2025 22:17:31 +0100
+++Subject: [PATCH] Improved API search feature
+++
+++---
+++ src/pages/my-apis/ApiCards.jsx |  2 +-
+++ src/pages/my-apis/index.jsx    | 35 ++++++++++++++++++----------------
+++ 2 files changed, 20 insertions(+), 17 deletions(-)
+++
+++diff --git a/src/pages/my-apis/ApiCards.jsx b/src/pages/my-apis/ApiCards.jsx
+++index 7886e78..743dc1e 100644
+++--- a/src/pages/my-apis/ApiCards.jsx
++++++ b/src/pages/my-apis/ApiCards.jsx
+++@@ -7,7 +7,7 @@ const ApiCards = ({
+++   isPublic = false
+++ }) => {
+++   return (
+++-    <div className="w-full flex flex-wrap -mx-2">
++++    <div className="w-full flex flex-wrap">
+++       {filteredAPIs.length > 0 ? (
+++           filteredAPIs?.map((card, idx) => <ApiCard isPublic={isPublic} key={idx} card={card} />)) : <EmptyData
+++             icon={<ZapIcon className="w-10 h-10" />}
+++diff --git a/src/pages/my-apis/index.jsx b/src/pages/my-apis/index.jsx
+++index 48db1dc..96b8da1 100644
+++--- a/src/pages/my-apis/index.jsx
++++++ b/src/pages/my-apis/index.jsx
+++@@ -19,22 +19,25 @@ export default function MyApis() {
+++     setSelectedTab(value);
+++   };
+++ 
+++-  const filteredAPIs = useMemo(() => {
+++-    let list = [];
+++-    if (searchText === "") {
+++-      list = [...myAPIs];
+++-    } else {
+++-      list = [
+++-        ...myAPIs.filter((myApi) => {
+++-          const { API = {} } = myApi;
+++-          return API.name?.toLowerCase().includes(searchText.toLowerCase());
+++-        }),
+++-      ];
+++-    }
++++  const filterAPIs = (apis, searchText) => {
++++    const searchLower = searchText.toLowerCase();
++++    return apis.filter((api) => {
++++      const { API = {} } = api;
++++      return (
++++        API.name?.toLowerCase().includes(searchLower) ||
++++        API.customName?.toLowerCase().includes(searchLower)
++++      );
++++    });
++++  };
+++ 
+++-    return list;
++++  const filteredMyAPIs = useMemo(() => {
++++    return searchText === "" ? myAPIs : filterAPIs(myAPIs, searchText);
+++   }, [searchText, myAPIs]);
+++ 
++++  const filteredPublicAPIs = useMemo(() => {
++++    return searchText === "" ? PublicApis : filterAPIs(PublicApis, searchText);
++++  }, [searchText, PublicApis]);
++++
+++   return (
+++     <div className="w-full h-screen flex flex-col pl-8 px-10 p-8">
+++       <SBreadcrumbs />
+++@@ -63,17 +66,17 @@ export default function MyApis() {
+++           tabs={[
+++             {
+++               name: "My APIs",
+++-              children: <ApiCards filteredAPIs={filteredAPIs} />,
++++              children: <ApiCards filteredAPIs={filteredMyAPIs} />,
+++             },
+++             {
+++               name: "Public APIs",
+++-              children: <ApiCards isPublic filteredAPIs={PublicApis} />,
++++              children: <ApiCards isPublic filteredAPIs={filteredPublicAPIs} />,
+++             },
+++           ]}
+++         />
+++       </div>
+++       <div className="flex  justify-center items-center mt-auto">
+++-        <div className="bg-grey-19 w-64 flex flex-row items-center px-2 rounded-2xl">
++++        <div className="bg-grey-19 w-64 flex flex-row items-center px-2 rounded-3xl">
+++           <CustomInput
+++             variant="searchBox"
+++             className="w-1/2"
+++-- 
+++2.43.0
+++
++diff --git a/src/pages/my-apis/ApiCard.jsx b/src/pages/my-apis/ApiCard.jsx
++index be35a26..75c9cf0 100644
++--- a/src/pages/my-apis/ApiCard.jsx
+++++ b/src/pages/my-apis/ApiCard.jsx
++@@ -1,144 +1,184 @@
++-import { useContext, useState } from "react";
++ import Button from "@/components/Button";
++-import AvatarCard from "../clients/partial/AvatarCard";
++ import EditIcon from "@assets/icons/Edit.svg?react";
+++import JwtIcon from "@assets/icons/auth-types/JwtIcon.svg?react";
++ import CopyIcon from "@assets/icons/copy-icon-2.svg?react";
++ import TrashIcon from "@assets/icons/vector.svg?react";
++-import { Link, useNavigate } from "react-router-dom";
++-import moment from "moment";
++-import DeleteAuthModal from "@pages/my-apis/partial/DeleteAuthModal.jsx";
++-import { errorToast, successToast } from "@components/toasts/toasts.jsx";
++ import { deleteMyApi } from "@axios/apiCalls.js";
+++import { errorToast, successToast } from "@components/toasts/toasts.jsx";
+++import { GeneralContext } from "@contexts/GeneralContext.jsx";
+++import DeleteAuthModal from "@pages/my-apis/partial/DeleteAuthModal.jsx";
++ import { AuthTypeCard } from "@pages/my-auths/partial/auth-type/AuthTypeCard.jsx";
++ import { authTypes } from "@pages/my-auths/partial/auth-type/auth-types.jsx";
++-import JwtIcon from "@assets/icons/auth-types/JwtIcon.svg?react";
++-import { GeneralContext } from "@contexts/GeneralContext.jsx";
+++import moment from "moment";
+++import { useContext, useState } from "react";
+++import { Link, useNavigate } from "react-router-dom";
+++import AvatarCard from "../clients/partial/AvatarCard";
++ 
++-const ApiCard = ({
++-    card,
++-    isPublic = false
++-}) => {
++-    const { myAPIs, setMyAPIs } = useContext(GeneralContext);
++-    const [openDeleteModal, setOpenDeleteModal] = useState(false);
++-    const { API = {}, updated_at = '' } = card || {};
++-    const { name = '', customName = '', id = '', authenticationType = '', description = 'Short description about the API, its functions etc etc etc etc this can be a longer description depending on the type of API, if longer than 3 lines, hide under a read more', logo_url = '' } = API || {};
++-    const formattedTime = moment(updated_at).format("DD-MM-YYYY");
++-    const type = authTypes.find((type) => type.value === authenticationType)
++-    const [isAdded, setIsAdded] = useState(myAPIs.some(api => api.id === id));
++-    
++-    const navigate = useNavigate();
+++const ApiCard = ({ card, isPublic = false }) => {
+++  const { myAPIs, setMyAPIs } = useContext(GeneralContext);
+++  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+++  const { API = {}, updated_at = "" } = card || {};
+++  const {
+++    name = "",
+++    customName = "",
+++    id = "",
+++    authenticationType = "",
+++    description = "Short description about the API, its functions etc etc etc etc this can be a longer description depending on the type of API, if longer than 3 lines, hide under a read more",
+++    logo_url = "",
+++  } = API || {};
+++  const formattedTime = moment(updated_at).format("DD-MM-YYYY");
+++  const type = authTypes.find((type) => type.value === authenticationType);
+++  const [isAdded, setIsAdded] = useState(myAPIs.some((api) => api.id === id));
++ 
++-    const handleDelete = async () => {
++-        await deleteMyApi(card?.id)
++-            .then(() => {
++-                setMyAPIs(myAPIs.filter(api => api.id !== card.id))
++-                successToast(`${name} deleted from MyAPIs`)
++-                setOpenDeleteModal(false);
++-            })
++-            .catch(() => {
++-                errorToast("Delete API failed")
++-            })
++-    };
+++  const navigate = useNavigate();
++ 
++-    const handleAddToMyApis = (e) => {
++-        e.stopPropagation();
++-        e.preventDefault()
++-        if (!myAPIs.some(api => api.id === card.id)) {
++-            setMyAPIs([card, ...myAPIs]);
++-            successToast(`${name} Api saved`);
++-            setIsAdded(!isAdded);
++-        }
++-    };
+++  const handleDelete = async () => {
+++    await deleteMyApi(card?.id)
+++      .then(() => {
+++        setMyAPIs(myAPIs.filter((api) => api.id !== card.id));
+++        successToast(`${name} deleted from MyAPIs`);
+++        setOpenDeleteModal(false);
+++      })
+++      .catch(() => {
+++        errorToast("Delete API failed");
+++      });
+++  };
++ 
++-    const handleDeleteEvent = (e) => {
++-        e.stopPropagation()
++-        e.preventDefault()
++-        setOpenDeleteModal(true)
+++  const handleAddToMyApis = (e) => {
+++    e.stopPropagation();
+++    e.preventDefault();
+++    if (!myAPIs.some((api) => api.id === card.id)) {
+++      setMyAPIs([card, ...myAPIs]);
+++      successToast(`${name} Api saved`);
+++      setIsAdded(!isAdded);
++     }
+++  };
++ 
++-    const handleEditEvent = (e) => {
++-        e.stopPropagation()
++-        e.preventDefault()
++-        navigate(`${card.id}/edit`)
++-    }
+++  const handleDeleteEvent = (e) => {
+++    e.stopPropagation();
+++    e.preventDefault();
+++    setOpenDeleteModal(true);
+++  };
++ 
++-    return API && (
++-        <div 
++-            className={`p-4 m-2 rounded-lg cursor-pointer group w-[calc(33.333%-16px)] ${isAdded ? "border-[#454C54] !cursor-not-allowed" : "bg-grey-15 hover:bg-project-card-gradient hover:backdrop-blur"}`}
++-            style={isAdded ? { background: "linear-gradient(65.38deg, #343A40 -5.16%, rgba(52, 58, 64, 0) 119.64%)" } : {}}
++-        >
++-            <Link to={!isPublic && `/my-apis/${card.id}`} className='flex flex-col gap-5'>
++-                <div className='flex justify-between flex-col'>
++-                    <div className="flex w-full items-start">
++-                        <div className={`flex gap-3 ${isPublic ? 'w-full mr-9' : 'w-1/2'} items-start`}>
++-                            <AvatarCard name={name} customName={customName} image={logo_url} classN="!rounded h-8 min-h-8 min-w-8 w-8" />
++-                            <div className="flex flex-col items-start gap-1 overflow-hidden">
++-                                <div>
++-                                    <span
++-                                        className='max-w-full text-custom-ghostWhite font-normal text-lg leading-[14px] whitespace-nowrap overflow-hidden text-ellipsis [-webkit-line-clamp:1] [-webkit-box-orient:vertical]'>
++-                                        {name ?? ''}
++-                                    </span>
++-                                </div>
++-                                <div className="flex items-center gap-6">
++-                                    <span
++-                                        className={`${isAdded ? 'text-grey-16' : "text-grey-11"} text-sm font-normal`}>{isPublic ? description : `Last updated ${formattedTime}`}</span>
++-                                </div>
++-                            </div>
++-                        </div>
+++  const handleEditEvent = (e) => {
+++    e.stopPropagation();
+++    e.preventDefault();
+++    navigate(`${card.id}/edit`);
+++  };
++ 
++-                        {!isPublic && <div className='flex w-1/2 items-center gap-5 justify-end'>
++-                            <Button
++-                                onClick={handleEditEvent}
++-                                className='flex gap-1.5 items-center group'
++-                            >
++-                                <span className='text-grey-16 group-hover:text-grey-18 mt-0.5'> Edit </span>
++-                                <EditIcon className='text-grey-16 group-hover:text-grey-18' />
++-                            </Button>
++-                            <Button
++-                                onClick={() => {
++-                                }}
++-                                className='flex gap-1.5 items-center group'
++-                            >
++-                                <CopyIcon className='text-grey-16 group-hover:text-grey-18' />
++-                            </Button>
++-                            <Button
++-                                onClick={handleDeleteEvent}
++-                                className='flex gap-1.5 items-center group p-2'
++-                            >
++-                                <TrashIcon className='text-grey-16 group-hover:text-grey-18' />
++-                            </Button>
++-                        </div>}
+++  return (
+++    API && (
+++      <div
+++        className={`p-2 m-2 rounded-lg cursor-pointer w-[23%] max-w-72 ${isAdded ? "border border-grey-1 !cursor-not-allowed" : "border border-grey-1 hover:bg-grey-0 hover:backdrop-blur"}`}
+++      >
+++        <Link to={!isPublic && `/my-apis/${card.id}`} className="flex flex-col">
+++          <div className="flex justify-between flex-col">
+++            <div className="flex flex-col gap-2">
+++              <div
+++                className={`flex gap-3 w-full ${isPublic ? "items-center" : ""}`}
+++              >
+++                <AvatarCard
+++                  name={name}
+++                  customName={customName}
+++                  image={logo_url}
+++                  classN="!rounded h-8 min-h-8 min-w-8 w-8"
+++                />
+++                <div className="flex flex-col justify-bettween w-full">
+++                  <div className="flex gap-2 flex-row">
+++                    <span className="max-w-full text-custom-ghostWhite font-normal text-lg">
+++                      {name ?? ""}
+++                    </span>
+++                    <span className="text-grey-11 text-sm font-normal">
+++                      {!isPublic && (
+++                        <>
+++                          <AuthTypeCard
+++                            className="!text-white"
+++                            type={
+++                              authenticationType
+++                                ? type
+++                                : {
+++                                    key: "Empty",
+++                                    value: null,
+++                                    icon: (isActive) => (
+++                                      <JwtIcon isActive={isActive} />
+++                                    ),
+++                                  }
+++                            }
+++                          />
+++                        </>
+++                      )}
+++                    </span>
+++                  </div>
+++                  <div>
+++                    <span className="text-grey-11 text-sm font-normal">
+++                      {!isPublic ? customName : ""}
+++                    </span>
+++                  </div>
+++                </div>
+++                {!isPublic && (
+++                  <div className="ml-auto">
+++                    <div className="flex gap-3 justify-end">
+++                      <Button
+++                        onClick={handleEditEvent}
+++                        className="flex gap-1.5 group"
+++                      >
+++                        <EditIcon className="text-grey-16 group-hover:text-grey-18" />
+++                      </Button>
+++                      <Button onClick={null} className="flex gap-1.5 group">
+++                        <CopyIcon className="text-grey-16 group-hover:text-grey-18" />
+++                      </Button>
+++                      <Button
+++                        onClick={handleDeleteEvent}
+++                        className="flex gap-1.5 group"
+++                      >
+++                        <TrashIcon className="text-grey-16 group-hover:text-grey-18" />
+++                      </Button>
++                     </div>
++-                    <div className={`flex items-center mt-6 gap-3`}>
++-                        {!isPublic && <>
++-                            {customName && <Button
++-                                className='py-2 px-3 border border-grey-13 rounded-[60px] hover:bg-gradient-pink-4 hover:border-main-pink-5'
++-                                onClick={() => {
++-                                }}
++-                            >{customName}</Button>}
++-                            <AuthTypeCard className="!px-3 !py-2 !text-white" type={authenticationType ? type : {
++-                                key: "Empty",
++-                                value: null,
++-                                icon: (isActive) => <JwtIcon isActive={isActive} />
++-                            }} />
++-                        </>}
++-                        {isPublic && <Button
++-                            className={`py-2.5 px-3 ml-10 border border-grey-13 rounded-[10px] ${isAdded ? 'bg-none text-grey-16 cursor-not-allowed' : 'hover:bg-gradient-pink-4 hover:border-main-pink-5'}`}
++-                            onClick={handleAddToMyApis}
++-                        >{isAdded ? "API Added" : "Add to my APIs"}</Button>}
+++                  </div>
+++                )}
+++              </div>
+++              {isPublic && (
+++                <div>
+++                  <div className="flex flex-col items-start gap-1 overflow-hidden">
+++                    <div className="flex h-12 max-h-16 items-center">
+++                      <span
+++                        className={`${isAdded ? "text-grey-16" : "text-grey-11"} text-sm font-normal`}
+++                      >
+++                        {isPublic && description}
+++                      </span>
++                     </div>
+++                  </div>
+++                </div>
+++              )}
++ 
+++              {isPublic ? (
+++                <div className="">
+++                  <Button
+++                    className={`py-2 px-6 bg-grey-15 border border-grey-2 rounded-3xl ${isAdded ? "border-0 text-white/2 cursor-not-allowed" : "hover:bg-grey-14 hover:border-grey-18"}`}
+++                    onClick={handleAddToMyApis}
+++                  >
+++                    {isAdded ? "Added" : "Add"}
+++                  </Button>
+++                </div>
+++              ) : (
+++                <div className="">
+++                  <Button className="p-2 bg-grey-15 rounded-lg">RestFul</Button>
++                 </div>
++-            </Link>
++-            {openDeleteModal &&
++-                <DeleteAuthModal
++-                    open={openDeleteModal}
++-                    setOpen={setOpenDeleteModal}
++-                    handler={handleDelete}
++-                    apiInfo={card}
++-                />}
++-        </div>
++-    );
+++              )}
+++            </div>
+++          </div>
+++        </Link>
+++        {openDeleteModal && (
+++          <DeleteAuthModal
+++            open={openDeleteModal}
+++            setOpen={setOpenDeleteModal}
+++            handler={handleDelete}
+++            apiInfo={card}
+++          />
+++        )}
+++      </div>
+++    )
+++  );
++ };
++ 
++-export default ApiCard;
++\ No newline at end of file
+++export default ApiCard;
++diff --git a/src/pages/my-apis/ApiCards.jsx b/src/pages/my-apis/ApiCards.jsx
++index 743dc1e..5116766 100644
++--- a/src/pages/my-apis/ApiCards.jsx
+++++ b/src/pages/my-apis/ApiCards.jsx
++@@ -7,7 +7,7 @@ const ApiCards = ({
++   isPublic = false
++ }) => {
++   return (
++-    <div className="w-full flex flex-wrap">
+++    <div className="w-full flex flex-wrap justify-between">
++       {filteredAPIs.length > 0 ? (
++           filteredAPIs?.map((card, idx) => <ApiCard isPublic={isPublic} key={idx} card={card} />)) : <EmptyData
++             icon={<ZapIcon className="w-10 h-10" />}
++diff --git a/src/pages/my-apis/index.jsx b/src/pages/my-apis/index.jsx
++index 96b8da1..2422480 100644
++--- a/src/pages/my-apis/index.jsx
+++++ b/src/pages/my-apis/index.jsx
++@@ -1,6 +1,5 @@
++ import Button from "@/components/Button";
++ import CustomInput from "@/components/CustomInput";
++-import SBreadcrumbs from "@/components/SBreadcrumbs";
++ import STabs from "@/components/STabs";
++ import PlusIcon from "@assets/icons/plusIcon.svg?react";
++ import { GeneralContext } from "@contexts/GeneralContext.jsx";
++@@ -39,18 +38,18 @@ export default function MyApis() {
++   }, [searchText, PublicApis]);
++ 
++   return (
++-    <div className="w-full h-screen flex flex-col pl-8 px-10 p-8">
++-      <SBreadcrumbs />
+++    <div className="w-full h-screen flex flex-col p-10 bg-[#060606]">
+++      {/* <SBreadcrumbs /> */}
++       <div className="w-full flex items-center mt-10">
++         <STabs
++           getSelectedTab={getSelectedtab}
++           childWithSibling="flex"
++           tabListSibling={
++-            <div className="w-1/2 flex flex-col gap-2">
+++            <div className="flex flex-col gap-2">
++               <span className="text-[28px] font-medium leading-larger">
++                 {selectedTab}
++               </span>
++-              <span className="w-full max-w-[585px] text-base font-normal text-grey-17 font-['Inter'] tracking-wide">
+++              <span className="w-full text-base font-normal text-grey-17 font-['Inter'] tracking-wide">
++                 Here you can see all the APIs you've integrated into your
++                 projects. Feel free to upload any new API you'd like to use.
++               </span>
++@@ -60,32 +59,32 @@ export default function MyApis() {
++             tabContent: "!p-0 !w-full flex flex-col gap-6",
++             tabChild: "justify-between items-center",
++             tabListStyle:
++-              "flex w-[200px] bg-grey-15 px-2 py-0 h-11 text-grey-17 rounded-3xl items-center mr-5",
+++              "flex w-[200px] bg-grey-15 px-2 py-0 h-11 text-grey-17 rounded-3xl items-center",
++             activeTab: "!bg-grey-15 border !rounded-3xl",
++           }}
++           tabs={[
++             {
++-              name: "My APIs",
+++              name: "MyAPIs",
++               children: <ApiCards filteredAPIs={filteredMyAPIs} />,
++             },
++             {
++-              name: "Public APIs",
+++              name: "Public library",
++               children: <ApiCards isPublic filteredAPIs={filteredPublicAPIs} />,
++             },
++           ]}
++         />
++       </div>
++-      <div className="flex  justify-center items-center mt-auto">
++-        <div className="bg-grey-19 w-64 flex flex-row items-center px-2 rounded-3xl">
+++      <div className="flex justify-center items-center mt-auto">
+++        <div className="bg-grey-15 w-64 border border-grey-3 flex flex-row items-center px-1 rounded-3xl">
++           <CustomInput
++             variant="searchBox"
++             className="w-1/2"
++-            inputClassName="w-full border-0"
+++            inputClassName="w-full !bg-grey-15 !rounded-3xl border-0"
++             placeholder="Search"
++             onChange={(e) => setSearchText(e.target.value)}
++           />
++           <Button
++-            className="w-1/2 gap-2 bg-grey-19"
+++            className="gap-2 !bg-grey-15"
++             variant="addAuth"
++             onClick={() => navigate(`/my-apis/add-api`)}
++           >
++diff --git a/src/pages/my-auths/partial/auth-type/AuthTypeCard.jsx b/src/pages/my-auths/partial/auth-type/AuthTypeCard.jsx
++index d10ccd1..c8422b5 100644
++--- a/src/pages/my-auths/partial/auth-type/AuthTypeCard.jsx
+++++ b/src/pages/my-auths/partial/auth-type/AuthTypeCard.jsx
++@@ -6,14 +6,13 @@ export const AuthTypeCard = ({ type, isActive, onClick, className }) => {
++ 
++     return (
++         <Button
++-            className={`flex items-center justify-center px-4 py-3 gap-2 border rounded-full transition-colors font-medium text-xs 
+++            className={`flex font-medium text-xs
++                 ${isActive ? 'bg-grey-13 text-white border-transparent' : 'text-grey-17 border-gray-600 border-opacity-40'} ${className || ""}`}
++             onClick={onClick}
++         >
++             <div className={isActive && "icon-pink-1"}>
++                 {icon && typeof icon === 'function' && icon(isActive)}
++             </div>
++-            {typeName}
++         </Button>
++     );
++ }
++\ No newline at end of file
++-- 
++2.43.0
++
+diff --git a/src/assets/icons/copy-icon-2.svg b/src/assets/icons/copy-icon-2.svg
+index d0cd918..ca6e809 100644
+--- a/src/assets/icons/copy-icon-2.svg
++++ b/src/assets/icons/copy-icon-2.svg
+@@ -1,7 +1,7 @@
+ <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <g clip-path="url(#clip0_5185_112894)">
+-<path fill-rule="evenodd" clip-rule="evenodd" d="M6.875 6.125C6.46079 6.125 6.125 6.46079 6.125 6.875V12.5C6.125 12.9142 6.46079 13.25 6.875 13.25H12.5C12.9142 13.25 13.25 12.9142 13.25 12.5V6.875C13.25 6.46079 12.9142 6.125 12.5 6.125H6.875ZM5.125 6.875C5.125 5.9085 5.9085 5.125 6.875 5.125H12.5C13.4665 5.125 14.25 5.9085 14.25 6.875V12.5C14.25 13.4665 13.4665 14.25 12.5 14.25H6.875C5.9085 14.25 5.125 13.4665 5.125 12.5V6.875Z" fill="#AEAEAE"/>
+-<path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 1.75C2.30109 1.75 2.11032 1.82902 1.96967 1.96967C1.82902 2.11032 1.75 2.30109 1.75 2.5V8.125C1.75 8.32391 1.82902 8.51468 1.96967 8.65533C2.11032 8.79598 2.30109 8.875 2.5 8.875H3.125C3.40114 8.875 3.625 9.09886 3.625 9.375C3.625 9.65114 3.40114 9.875 3.125 9.875H2.5C2.03587 9.875 1.59075 9.69063 1.26256 9.36244C0.934374 9.03425 0.75 8.58913 0.75 8.125V2.5C0.75 2.03587 0.934374 1.59075 1.26256 1.26256C1.59075 0.934374 2.03587 0.75 2.5 0.75H8.125C8.58913 0.75 9.03425 0.934374 9.36244 1.26256C9.69063 1.59075 9.875 2.03587 9.875 2.5V3.125C9.875 3.40114 9.65114 3.625 9.375 3.625C9.09886 3.625 8.875 3.40114 8.875 3.125V2.5C8.875 2.30109 8.79598 2.11032 8.65533 1.96967C8.51468 1.82902 8.32391 1.75 8.125 1.75H2.5Z" fill="#AEAEAE"/>
++<path fill-rule="evenodd" clip-rule="evenodd" d="M6.875 6.125C6.46079 6.125 6.125 6.46079 6.125 6.875V12.5C6.125 12.9142 6.46079 13.25 6.875 13.25H12.5C12.9142 13.25 13.25 12.9142 13.25 12.5V6.875C13.25 6.46079 12.9142 6.125 12.5 6.125H6.875ZM5.125 6.875C5.125 5.9085 5.9085 5.125 6.875 5.125H12.5C13.4665 5.125 14.25 5.9085 14.25 6.875V12.5C14.25 13.4665 13.4665 14.25 12.5 14.25H6.875C5.9085 14.25 5.125 13.4665 5.125 12.5V6.875Z" fill="currentColor"/>
++<path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 1.75C2.30109 1.75 2.11032 1.82902 1.96967 1.96967C1.82902 2.11032 1.75 2.30109 1.75 2.5V8.125C1.75 8.32391 1.82902 8.51468 1.96967 8.65533C2.11032 8.79598 2.30109 8.875 2.5 8.875H3.125C3.40114 8.875 3.625 9.09886 3.625 9.375C3.625 9.65114 3.40114 9.875 3.125 9.875H2.5C2.03587 9.875 1.59075 9.69063 1.26256 9.36244C0.934374 9.03425 0.75 8.58913 0.75 8.125V2.5C0.75 2.03587 0.934374 1.59075 1.26256 1.26256C1.59075 0.934374 2.03587 0.75 2.5 0.75H8.125C8.58913 0.75 9.03425 0.934374 9.36244 1.26256C9.69063 1.59075 9.875 2.03587 9.875 2.5V3.125C9.875 3.40114 9.65114 3.625 9.375 3.625C9.09886 3.625 8.875 3.40114 8.875 3.125V2.5C8.875 2.30109 8.79598 2.11032 8.65533 1.96967C8.51468 1.82902 8.32391 1.75 8.125 1.75H2.5Z" fill="currentColor"/>
+ </g>
+ <defs>
+ <clipPath id="clip0_5185_112894">
+diff --git a/src/assets/icons/vector.svg b/src/assets/icons/vector.svg
+index 9f75210..2c80d8d 100644
+--- a/src/assets/icons/vector.svg
++++ b/src/assets/icons/vector.svg
+@@ -1,3 +1,3 @@
+ <svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+-<path d="M4.18638 1.31016L3.71987 2.03125H7.28013L6.81362 1.31016C6.77679 1.2543 6.7154 1.21875 6.64911 1.21875H4.34844C4.28214 1.21875 4.22076 1.25176 4.18393 1.31016H4.18638ZM7.79576 0.634766L8.69688 2.03125H9.03571H10.2143H10.4107C10.7373 2.03125 11 2.30293 11 2.64062C11 2.97832 10.7373 3.25 10.4107 3.25H10.2143V10.9688C10.2143 12.091 9.33527 13 8.25 13H2.75C1.66473 13 0.785714 12.091 0.785714 10.9688V3.25H0.589286C0.262723 3.25 0 2.97832 0 2.64062C0 2.30293 0.262723 2.03125 0.589286 2.03125H0.785714H1.96429H2.30313L3.20424 0.632227C3.4596 0.238672 3.88929 0 4.34844 0H6.64911C7.10826 0 7.53795 0.238672 7.7933 0.632227L7.79576 0.634766ZM1.96429 3.25V10.9688C1.96429 11.4182 2.3154 11.7812 2.75 11.7812H8.25C8.6846 11.7812 9.03571 11.4182 9.03571 10.9688V3.25H1.96429ZM3.92857 4.875V10.1562C3.92857 10.3797 3.75179 10.5625 3.53571 10.5625C3.31964 10.5625 3.14286 10.3797 3.14286 10.1562V4.875C3.14286 4.65156 3.31964 4.46875 3.53571 4.46875C3.75179 4.46875 3.92857 4.65156 3.92857 4.875ZM5.89286 4.875V10.1562C5.89286 10.3797 5.71607 10.5625 5.5 10.5625C5.28393 10.5625 5.10714 10.3797 5.10714 10.1562V4.875C5.10714 4.65156 5.28393 4.46875 5.5 4.46875C5.71607 4.46875 5.89286 4.65156 5.89286 4.875ZM7.85714 4.875V10.1562C7.85714 10.3797 7.68036 10.5625 7.46429 10.5625C7.24821 10.5625 7.07143 10.3797 7.07143 10.1562V4.875C7.07143 4.65156 7.24821 4.46875 7.46429 4.46875C7.68036 4.46875 7.85714 4.65156 7.85714 4.875Z" fill="#AEAEAE"/>
++<path d="M4.18638 1.31016L3.71987 2.03125H7.28013L6.81362 1.31016C6.77679 1.2543 6.7154 1.21875 6.64911 1.21875H4.34844C4.28214 1.21875 4.22076 1.25176 4.18393 1.31016H4.18638ZM7.79576 0.634766L8.69688 2.03125H9.03571H10.2143H10.4107C10.7373 2.03125 11 2.30293 11 2.64062C11 2.97832 10.7373 3.25 10.4107 3.25H10.2143V10.9688C10.2143 12.091 9.33527 13 8.25 13H2.75C1.66473 13 0.785714 12.091 0.785714 10.9688V3.25H0.589286C0.262723 3.25 0 2.97832 0 2.64062C0 2.30293 0.262723 2.03125 0.589286 2.03125H0.785714H1.96429H2.30313L3.20424 0.632227C3.4596 0.238672 3.88929 0 4.34844 0H6.64911C7.10826 0 7.53795 0.238672 7.7933 0.632227L7.79576 0.634766ZM1.96429 3.25V10.9688C1.96429 11.4182 2.3154 11.7812 2.75 11.7812H8.25C8.6846 11.7812 9.03571 11.4182 9.03571 10.9688V3.25H1.96429ZM3.92857 4.875V10.1562C3.92857 10.3797 3.75179 10.5625 3.53571 10.5625C3.31964 10.5625 3.14286 10.3797 3.14286 10.1562V4.875C3.14286 4.65156 3.31964 4.46875 3.53571 4.46875C3.75179 4.46875 3.92857 4.65156 3.92857 4.875ZM5.89286 4.875V10.1562C5.89286 10.3797 5.71607 10.5625 5.5 10.5625C5.28393 10.5625 5.10714 10.3797 5.10714 10.1562V4.875C5.10714 4.65156 5.28393 4.46875 5.5 4.46875C5.71607 4.46875 5.89286 4.65156 5.89286 4.875ZM7.85714 4.875V10.1562C7.85714 10.3797 7.68036 10.5625 7.46429 10.5625C7.24821 10.5625 7.07143 10.3797 7.07143 10.1562V4.875C7.07143 4.65156 7.24821 4.46875 7.46429 4.46875C7.68036 4.46875 7.85714 4.65156 7.85714 4.875Z" fill="currentColor"/>
+ </svg>
+diff --git a/src/components/toasts/toasts.jsx b/src/components/toasts/toasts.jsx
+index 3ea1c38..d5c1595 100644
+--- a/src/components/toasts/toasts.jsx
++++ b/src/components/toasts/toasts.jsx
+@@ -24,14 +24,20 @@ export const errorToast = (message) => {
+ 
+ export const successToast = (message, position = "top-center") => {
+ 	toast.success(message, {
+-		position,
+-		autoClose: 5000,
+-		hideProgressBar: false,
+-		closeOnClick: true,
+-		pauseOnHover: true,
+-		draggable: true,
+-		progress: undefined,
+-		theme: "colored",
+-		icon: <img src={toastSuccess} alt="success" />,
+-	});
++    position,
++    autoClose: 5000,
++    hideProgressBar: false,
++    closeOnClick: true,
++    pauseOnHover: true,
++    draggable: true,
++    progress: undefined,
++    theme: "colored",
++    icon: <img src={toastSuccess} alt="success" />,
++    style: {
++      backgroundColor: "rgba(255, 255, 255, 0.04)",
++      border: "1px solid rgba(171, 255, 173, 1)",
++	  borderRadius: "30px",
++	  width: "fit-content",
++    },
++  });
+ };
+diff --git a/src/constants.js b/src/constants.js
+index 84ae410..6dfae3a 100644
+--- a/src/constants.js
++++ b/src/constants.js
+@@ -206,6 +206,12 @@ export const colors = {
+   hover: {
+     "grey-1": "#343A40",
+   },
++  specc: {
++    bg: "#060606",
++    neutral1: "#161616",
++    neutral3: "#848484",
++    neutral4: "#D9D9D9",
++  },
+ };
+ 
+ export const gradientColors = {
+diff --git a/src/pages/clients/partial/AvatarCard.jsx b/src/pages/clients/partial/AvatarCard.jsx
+index 1ed9fa1..bfd427f 100644
+--- a/src/pages/clients/partial/AvatarCard.jsx
++++ b/src/pages/clients/partial/AvatarCard.jsx
+@@ -15,18 +15,7 @@ const AvatarCard = ({name = [], customName = [], image, classN = ''}) => {
+ 
+     return (
+         <div
+-            className={`h-10 min-h-10 min-w-10 w-10 rounded-full flex justify-center items-center ${classN} ${
+-                alphabetId < 5
+-                    ? "bg-secondary-mint-green"
+-                    : alphabetId < 10
+-                        ? "bg-main-purple-1"
+-                        : alphabetId < 15
+-                            ? "bg-main-peach-1"
+-                            : alphabetId < 20
+-                                ? "bg-secondary-blue-light"
+-                                : "bg-main-pink-1"
+-            }`}
+-        >
++            className={`h-10 min-h-10 min-w-10 w-10 rounded-full flex justify-center items-center ${classN} bg-secondary-blue-light`}>
+             {!image ? (
+                 <div className="text-white text-[18px] lg:text-[22px] font-semibold font-['Inter'] leading-[14px] tracking-tight">
+                     {name?.[0] || customName?.[0] || ""}
+diff --git a/src/pages/my-apis/ApiCard.jsx b/src/pages/my-apis/ApiCard.jsx
+index 75c9cf0..a76ada2 100644
+--- a/src/pages/my-apis/ApiCard.jsx
++++ b/src/pages/my-apis/ApiCard.jsx
+@@ -1,6 +1,5 @@
+ import Button from "@/components/Button";
+ import EditIcon from "@assets/icons/Edit.svg?react";
+-import JwtIcon from "@assets/icons/auth-types/JwtIcon.svg?react";
+ import CopyIcon from "@assets/icons/copy-icon-2.svg?react";
+ import TrashIcon from "@assets/icons/vector.svg?react";
+ import { deleteMyApi } from "@axios/apiCalls.js";
+@@ -49,7 +48,7 @@ const ApiCard = ({ card, isPublic = false }) => {
+     e.preventDefault();
+     if (!myAPIs.some((api) => api.id === card.id)) {
+       setMyAPIs([card, ...myAPIs]);
+-      successToast(`${name} Api saved`);
++      successToast("Api added to your library");
+       setIsAdded(!isAdded);
+     }
+   };
+@@ -69,7 +68,7 @@ const ApiCard = ({ card, isPublic = false }) => {
+   return (
+     API && (
+       <div
+-        className={`p-2 m-2 rounded-lg cursor-pointer w-[23%] max-w-72 ${isAdded ? "border border-grey-1 !cursor-not-allowed" : "border border-grey-1 hover:bg-grey-0 hover:backdrop-blur"}`}
++        className={`p-2 m-2 rounded-lg cursor-pointer min-w-[23%] w-72 ${isAdded ? "border border-grey-1 !cursor-not-allowed" : "border border-grey-1 hover:bg-grey-0 hover:backdrop-blur"}`}
+       >
+         <Link to={!isPublic && `/my-apis/${card.id}`} className="flex flex-col">
+           <div className="flex justify-between flex-col">
+@@ -88,26 +87,15 @@ const ApiCard = ({ card, isPublic = false }) => {
+                     <span className="max-w-full text-custom-ghostWhite font-normal text-lg">
+                       {name ?? ""}
+                     </span>
+-                    <span className="text-grey-11 text-sm font-normal">
+-                      {!isPublic && (
+-                        <>
+-                          <AuthTypeCard
+-                            className="!text-white"
+-                            type={
+-                              authenticationType
+-                                ? type
+-                                : {
+-                                    key: "Empty",
+-                                    value: null,
+-                                    icon: (isActive) => (
+-                                      <JwtIcon isActive={isActive} />
+-                                    ),
+-                                  }
+-                            }
+-                          />
+-                        </>
+-                      )}
+-                    </span>
++                    {/** Authentication Type Icon */}
++                    {!isPublic && (
++                      <span className="text-grey-11 text-sm font-normal">
++                        <AuthTypeCard
++                          className="!text-white"
++                          authenticationType={authenticationType}
++                        />
++                      </span>
++                    )}
+                   </div>
+                   <div>
+                     <span className="text-grey-11 text-sm font-normal">
+@@ -124,7 +112,7 @@ const ApiCard = ({ card, isPublic = false }) => {
+                       >
+                         <EditIcon className="text-grey-16 group-hover:text-grey-18" />
+                       </Button>
+-                      <Button onClick={null} className="flex gap-1.5 group">
++                      <Button onClick={() => {}} className="flex gap-1.5 group">
+                         <CopyIcon className="text-grey-16 group-hover:text-grey-18" />
+                       </Button>
+                       <Button
+@@ -161,8 +149,8 @@ const ApiCard = ({ card, isPublic = false }) => {
+                   </Button>
+                 </div>
+               ) : (
+-                <div className="">
+-                  <Button className="p-2 bg-grey-15 rounded-lg">RestFul</Button>
++                <div className="mt-2">
++                  <Button className="p-2 bg-grey-15 rounded-lg">Rest API</Button>
+                 </div>
+               )}
+             </div>
+diff --git a/src/pages/my-apis/ApiCards.jsx b/src/pages/my-apis/ApiCards.jsx
+index 5116766..7a534dc 100644
+--- a/src/pages/my-apis/ApiCards.jsx
++++ b/src/pages/my-apis/ApiCards.jsx
+@@ -7,7 +7,7 @@ const ApiCards = ({
+   isPublic = false
+ }) => {
+   return (
+-    <div className="w-full flex flex-wrap justify-between">
++    <div className="w-full flex flex-wrap justify-start -gap-1">
+       {filteredAPIs.length > 0 ? (
+           filteredAPIs?.map((card, idx) => <ApiCard isPublic={isPublic} key={idx} card={card} />)) : <EmptyData
+             icon={<ZapIcon className="w-10 h-10" />}
+diff --git a/src/pages/my-apis/PUBLICApisDumyData.json b/src/pages/my-apis/PUBLICApisDumyData.json
+index 7ece380..b7f79bb 100644
+--- a/src/pages/my-apis/PUBLICApisDumyData.json
++++ b/src/pages/my-apis/PUBLICApisDumyData.json
+@@ -33,7 +33,7 @@
+       "uploadMethod": "URL",
+       "uploadUrl": "https://tripletex.no/v2/swagger.json",
+       "uploadFilename": null,
+-      "authenticationType": null,
++      "authenticationType": "LOCK",
+       "projectID": null
+     },
+     "projects_count": 0,
+@@ -53,7 +53,7 @@
+       "uploadMethod": "URL",
+       "uploadUrl": "https://tripletex.no/v2/swagger.json",
+       "uploadFilename": null,
+-      "authenticationType": null,
++      "authenticationType": "AUTH_KEY",
+       "projectID": null
+     },
+     "projects_count": 0,
+@@ -73,7 +73,7 @@
+       "uploadMethod": "URL",
+       "uploadUrl": "https://tripletex.no/v2/swagger.json",
+       "uploadFilename": null,
+-      "authenticationType": null,
++      "authenticationType": "JWT",
+       "projectID": null
+     },
+     "projects_count": 0,
+@@ -93,7 +93,7 @@
+       "uploadMethod": "URL",
+       "uploadUrl": "https://tripletex.no/v2/swagger.json",
+       "uploadFilename": null,
+-      "authenticationType": null,
++      "authenticationType": "AUTH_KEY",
+       "projectID": null
+     },
+     "projects_count": 0,
+diff --git a/src/pages/my-apis/index.jsx b/src/pages/my-apis/index.jsx
+index 2422480..d8f9753 100644
+--- a/src/pages/my-apis/index.jsx
++++ b/src/pages/my-apis/index.jsx
+@@ -38,7 +38,7 @@ export default function MyApis() {
+   }, [searchText, PublicApis]);
+ 
+   return (
+-    <div className="w-full h-screen flex flex-col p-10 bg-[#060606]">
++    <div className="w-full h-screen flex flex-col p-10 bg-specc-bg">
+       {/* <SBreadcrumbs /> */}
+       <div className="w-full flex items-center mt-10">
+         <STabs
+diff --git a/src/pages/my-auths/partial/auth-type/AuthTypeCard.jsx b/src/pages/my-auths/partial/auth-type/AuthTypeCard.jsx
+index c8422b5..7a3cd40 100644
+--- a/src/pages/my-auths/partial/auth-type/AuthTypeCard.jsx
++++ b/src/pages/my-auths/partial/auth-type/AuthTypeCard.jsx
+@@ -1,18 +1,57 @@
+ import React from "react";
+ import Button from "@components/Button.jsx";
++import AuthKeyIcon from "@assets/icons/auth-types/AuthKeyIcon.svg?react";
++import JwtIcon from "@assets/icons/auth-types/JwtIcon.svg?react";
++import GlobeIcon from "@assets/icons/auth-types/GlobeIcon.svg?react";
++import LockIcon from "@assets/icons/auth-types/LockIcon.svg?react";
+ 
+-export const AuthTypeCard = ({ type, isActive, onClick, className }) => {
+-    const { key: typeName = '', icon = null } = type || {}
++const getAuthType = (authenticationType) => {
++  switch (authenticationType) {
++    case "BASIC":
++      return {
++        key: "Basic",
++        value: null,
++        icon: (isActive) => <GlobeIcon isActive={isActive} />,
++      };
++    case "JWT":
++      return {
++        key: "JWT",
++        value: null,
++        icon: (isActive) => <JwtIcon isActive={isActive} />,
++      };
++    case "AUTH_KEY":
++      return {
++        key: "authKey",
++        value: null,
++        icon: (isActive) => <AuthKeyIcon isActive={isActive} />,
++      };
++    case "LOCK":
++      return {
++        key: "lock",
++        value: null,
++        icon: (isActive) => <LockIcon isActive={isActive} />,
++      };
++    default:
++      return {
++        key: "Empty",
++        value: null,
++        icon: (isActive) => <JwtIcon isActive={isActive} />,
++      };
++  }
++};
+ 
+-    return (
+-        <Button
+-            className={`flex font-medium text-xs
+-                ${isActive ? 'bg-grey-13 text-white border-transparent' : 'text-grey-17 border-gray-600 border-opacity-40'} ${className || ""}`}
+-            onClick={onClick}
+-        >
+-            <div className={isActive && "icon-pink-1"}>
+-                {icon && typeof icon === 'function' && icon(isActive)}
+-            </div>
+-        </Button>
+-    );
+-}
+\ No newline at end of file
++export const AuthTypeCard = ({ authenticationType, isActive, onClick, className }) => {
++  const type = getAuthType(authenticationType);
++
++  return (
++    <Button
++      className={`flex font-medium text-xs
++        ${isActive ? 'bg-grey-13 text-white border-transparent' : 'text-grey-17 border-gray-600 border-opacity-40'} ${className || ""}`}
++      onClick={onClick}
++    >
++      <div className={isActive && "icon-pink-1"}>
++        {type.icon && typeof type.icon === 'function' && type.icon(isActive)}
++      </div>
++    </Button>
++  );
++};
+-- 
+2.43.0
+
