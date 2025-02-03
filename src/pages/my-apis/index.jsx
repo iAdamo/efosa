@@ -38,9 +38,9 @@ export default function MyApis() {
   }, [searchText, PublicApis]);
 
   return (
-    <div className="w-full h-screen flex flex-col p-10 bg-specc-neutral1">
+    <div className="w-full min-h-screen flex flex-col p-10 bg-specc-neutral1">
       {/* <SBreadcrumbs /> */}
-      <div className="w-full flex items-center mt-10">
+      <div className="w-full flex items-center justify-between mt-10">
         <STabs
           getSelectedTab={getSelectedtab}
           childWithSibling="flex"
@@ -75,7 +75,7 @@ export default function MyApis() {
           ]}
         />
       </div>
-      <div className="flex justify-center items-center mt-auto">
+      <div className="fixed bottom-0 left-16 w-full flex justify-center items-center p-8 ">
         <div className="bg-specc-neutral2 border border-specc-TW4 w-64 flex flex-row items-center px-1 rounded-3xl">
           <CustomInput
             variant="searchBox"
