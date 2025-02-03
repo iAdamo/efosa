@@ -67,11 +67,11 @@ const ApiCard = ({ card, isPublic = false }) => {
   return (
     API && (
       <div
-        className={`p-2 m-2 rounded-lg cursor-pointer w-72 ${isAdded ? "bg-specc-TW4 border border-specc-TW8 !cursor-not-allowed" : "border border-specc-TW8 hover:bg-specc-TW4 hover:border-specc-TW8"}`}
+        className={`p-2 m-2 rounded-lg cursor-pointer w-[23%] ${isAdded ? "bg-specc-TW4 border border-specc-TW8 !cursor-not-allowed" : "border border-specc-TW8 hover:bg-specc-TW4 hover:border-specc-TW8"}`}
       >
         <Link
           to={!isPublic && `/my-apis/${card.id}`}
-          className="flex flex-row"
+          className="flex flex-row justify-between"
         >
           <div className="flex flex-col gap-2">
             <div
@@ -84,8 +84,8 @@ const ApiCard = ({ card, isPublic = false }) => {
                 classN="!rounded h-8 min-h-8 min-w-8 w-8"
               />
               <div className="flex flex-col justify-bettween w-full">
-                <div className="flex gap-2 flex-row">
-                  <span className="max-w-full text-custom-ghostWhite font-normal text-lg">
+                <div className="flex gap-2 flex-row pr-2">
+                  <span className="text-custom-ghostWhite font-normal text-lg leading-5">
                     {customName ?? ""}
                   </span>
                   {/** Authentication Type Icon */}

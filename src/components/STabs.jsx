@@ -63,7 +63,7 @@ export default function STabs({ ...props }) {
 				}
 			}}
 		>
-			<div className={`flex flex-row-reverse gap-3 flex-none w-full ${props.tabStyles?.tabChild || ''}`}>
+			<div className={`flex flex-row gap-3 flex-none w-full ${props.tabStyles?.tabChild || ''}`}>
 				<TabList
 					aria-label="Dynamic tabs"
 					items={props.tabs}

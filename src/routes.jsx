@@ -173,7 +173,7 @@ export const routes = [
               {
                 path: "/my-apis",
                 element: (
-                  <RouteAnimWrapper>
+                  <RouteAnimWrapper className="flex-none w-full h-full">
                     <MyApis />
                   </RouteAnimWrapper>
                 ),

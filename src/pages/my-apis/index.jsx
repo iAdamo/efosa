@@ -57,7 +57,7 @@ export default function MyApis() {
           }
           tabStyles={{
             tabContent: "!p-0 !w-full flex flex-col gap-6",
-            tabChild: "justify-between items-center",
+            tabChild: "justify-between items-center flex-row-reverse",
             tabListStyle:
               "flex w-[200px] !bg-specc-neutral2 px-2 py-0 h-11 text-specc-neutral3 rounded-3xl items-center",
             activeTab:
@@ -75,7 +75,7 @@ export default function MyApis() {
           ]}
         />
       </div>
-      <div className="fixed bottom-0 left-16 w-full flex justify-center items-center p-8 ">
+      <div className="fixed bottom-0 left-0 w-full flex justify-center items-center p-8 ">
         <div className="bg-specc-neutral2 border border-specc-TW4 w-64 flex flex-row items-center px-1 rounded-3xl">
           <CustomInput
             variant="searchBox"
