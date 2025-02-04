@@ -1,4 +1,3 @@
-import React from "react";
 import { routeAnim } from "../animations";
 import { motion } from "framer-motion";
 

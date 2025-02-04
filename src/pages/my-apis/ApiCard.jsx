@@ -20,7 +20,7 @@ const ApiCard = ({ card, isPublic = false }) => {
     name = "",
     customName = "",
     id = "",
-    type= "",
+    type = "",
     authenticationType = "",
     description = "Short description about the API, its functions etc etc etc etc this can be a longer description depending on the type of API, if longer than 3 lines, hide under a read more",
     logo_url = "",
@@ -67,7 +67,7 @@ const ApiCard = ({ card, isPublic = false }) => {
   return (
     API && (
       <div
-        className={`p-2 m-2 rounded-lg cursor-pointer w-[23%] ${isAdded ? "bg-specc-TW4 border border-specc-TW8 !cursor-not-allowed" : "border border-specc-TW8 hover:bg-specc-TW4 hover:border-specc-TW8"}`}
+        className={`p-2 rounded-lg cursor-pointer min-w-full ${isAdded ? "bg-specc-TW4 border border-specc-TW8 !cursor-not-allowed" : "border border-specc-TW8 hover:bg-specc-TW4 hover:border-specc-TW8"}`}
       >
         <Link
           to={!isPublic && `/my-apis/${card.id}`}
