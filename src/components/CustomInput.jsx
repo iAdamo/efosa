@@ -44,6 +44,7 @@ const CustomInput = forwardRef(
     const containerBaseStyles = "relative h-max";
 
     const variantStyles = {
+      outline: "bg-transparent text-custom-ghostWhite p-5 rounded-[5px] max-h-12 border border-primary-button-gradient w-full leading-none",
       primary:
         "bg-transparent text-custom-ghostWhite p-5 rounded-[5px] max-h-12 border border-gradient-grey-4 w-full leading-none",
       searchBox:

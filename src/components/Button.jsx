@@ -15,6 +15,7 @@ const Button = ({
     const baseStyles = 'p-2';
 
     const variantStyles = {
+        outline: 'flex items-center shadow-outline-button bg-transparent border border-primary-button-gradient py-3 px-6 rounded-containers w-fit',
         custom: 'flex items-center shadow-primary-button bg-[#454C54] py-3 px-6 rounded-containers w-fit',
         primary: 'flex items-center shadow-primary-button bg-primary-button-gradient py-[13px] px-2 rounded-containers max-h-10',
         stripe: 'bg-stripe-button-gradient w-full h-full rounded-lg font-semibold leading-4 shadow-stripe-button max-w-[260px] py-3',

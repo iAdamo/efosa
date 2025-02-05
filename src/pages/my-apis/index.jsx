@@ -36,8 +36,8 @@ export default function MyApis() {
     return searchText === "" ? PublicApis : filterAPIs(PublicApis, searchText);
   }, [searchText, PublicApis]);
 
-  const handleSearchChange = (e) => {
-    setSearchText(e.target.value);
+  const handleSearchChange = (value) => {
+    setSearchText(value);
   };
 
   return (
@@ -79,19 +79,22 @@ export default function MyApis() {
         />
       </div>
       <BottomToolBar
-        extended={false}
+        extended={true}
         placeholder="Search"
         onSearchChange={handleSearchChange}
+        searchResults={[...filteredMyAPIs, ...filteredPublicAPIs].map(
+          (api) => api.API.name
+        )}
         className="w-64 items-center bg-specc-neutral2 border border-specc-TW4 rounded-full"
-        inputClassName="w-full bg-specc-neutral3 !rounded-3xl "
+        inputClassName="w-full !bg-specc-neutral3 justify-center items-center border-0 !rounded-3xl "
         buttons={[
           {
             label: "New API",
             icon: PlusIcon,
             onClick: () => navigate("/my-apis/add-api"),
-            btnClassName: "gap-2 !bg-transparent",
+            btnClassName: "gap-2 border-0",
             textClassName: "text-md text-specc-neutral4",
-            variant: "addAuth",
+            variant: "outline",
           },
         ]}
       />
