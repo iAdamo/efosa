@@ -1,5 +1,4 @@
-import Button from "@/components/Button";
-import CustomInput from "@/components/CustomInput";
+import BottomToolBar from "@/components/BottomToolBar";
 import STabs from "@/components/STabs";
 import PlusIcon from "@assets/icons/plusIcon.svg?react";
 import { GeneralContext } from "@contexts/GeneralContext.jsx";
@@ -36,6 +35,10 @@ export default function MyApis() {
   const filteredPublicAPIs = useMemo(() => {
     return searchText === "" ? PublicApis : filterAPIs(PublicApis, searchText);
   }, [searchText, PublicApis]);
+
+  const handleSearchChange = (e) => {
+    setSearchText(e.target.value);
+  };
 
   return (
     <div className="w-full min-h-screen flex flex-col p-10 bg-specc-neutral1">
@@ -75,25 +78,23 @@ export default function MyApis() {
           ]}
         />
       </div>
-      <div className="fixed bottom-0 left-0 w-full flex justify-center items-center p-8 ">
-        <div className="bg-specc-neutral2 border border-specc-TW4 w-64 flex flex-row items-center px-1 rounded-3xl">
-          <CustomInput
-            variant="searchBox"
-            className="w-1/2"
-            inputClassName="w-full bg-transparent !rounded-3xl border-0"
-            placeholder="Search"
-            onChange={(e) => setSearchText(e.target.value)}
-          />
-          <Button
-            className="gap-2 !bg-transparent"
-            variant="addAuth"
-            onClick={() => navigate(`/my-apis/add-api`)}
-          >
-            <PlusIcon className="" />
-            <span className="text-md text-specc-neutral4">New API</span>
-          </Button>
-        </div>
-      </div>
+      <BottomToolBar
+        extended={false}
+        placeholder="Search"
+        onSearchChange={handleSearchChange}
+        className="w-64 items-center bg-specc-neutral2 border border-specc-TW4 rounded-full"
+        inputClassName="w-full bg-specc-neutral3 !rounded-3xl "
+        buttons={[
+          {
+            label: "New API",
+            icon: PlusIcon,
+            onClick: () => navigate("/my-apis/add-api"),
+            btnClassName: "gap-2 !bg-transparent",
+            textClassName: "text-md text-specc-neutral4",
+            variant: "addAuth",
+          },
+        ]}
+      />
     </div>
   );
 }

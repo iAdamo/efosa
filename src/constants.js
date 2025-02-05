@@ -213,6 +213,7 @@ export const colors = {
     neutral4: "#D9D9D9",
     TW4: "rgba(255, 255, 255, 0.04)",
     TW8: "rgba(255, 255, 255, 0.08)",
+    TB75: "rgba(0, 0, 0, 0.75)",
     cardbtn: "#0C0C0D",
     cardbtnborder: "#1D1E1F",
     txt: "#F8F9FA",
