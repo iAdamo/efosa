@@ -103,7 +103,7 @@ const BottomToolBar = ({
                             </div>
                           ))
                         ) : (
-                          <div className="text-specc-neutral4">
+                          <div className="text-specc-neutral4 text-center p-6">
                             No results found
                           </div>
                         )
