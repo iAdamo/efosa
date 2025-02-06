@@ -1,7 +1,7 @@
 import SearchIcon from "@assets/icons/search.svg?react";
 import XIcon from "@assets/icons/x-icon.svg?react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Button from "./Button";
 import CustomInput from "./CustomInput";
 
@@ -18,6 +18,8 @@ const BottomToolBar = ({
   const [searchText, setSearchText] = useState("");
   const [recentSearches, setRecentSearches] = useState([]);
 
+  const inputRef = useRef(null);
+
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearchText(value);
@@ -32,6 +34,12 @@ const BottomToolBar = ({
       });
     }
   };
+
+  useEffect(() => {
+    if (isExtended && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isExtended]);
 
   return (
     <div className="fixed z-[15000] bottom-0 left-0 w-full flex justify-center items-center p-8 ">
@@ -74,6 +82,7 @@ const BottomToolBar = ({
                         onKeyDown={(e) =>
                           e.key === "Enter" && handleSearchSubmit()
                         }
+                        ref={inputRef}
                       />
                       <XIcon
                         className="icon-white cursor-pointer"
