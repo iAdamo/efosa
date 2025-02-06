@@ -17,14 +17,29 @@ export default function MyApis() {
     setSelectedTab(value);
   };
 
-  const filterAPIs = (apis, searchText) => {
+   const filterAPIs = (apis, searchText) => {
+
     const searchLower = searchText.toLowerCase();
+
     return apis.filter((api) => {
       const { API = {} } = api;
-      return (
-        API.name?.toLowerCase().includes(searchLower) ||
-        API.customName?.toLowerCase().includes(searchLower)
-      );
+      const name = API.name?.toLowerCase() || "";
+      const customName = API.customName?.toLowerCase() || "";
+
+      const nameWords = name.split(/\s+/);
+      const customNameWords = customName.split(/\s+/);
+
+      const startsWithSearch = (words) =>
+        words.some((word) => word.startsWith(searchLower));
+
+      if (name.startsWith(searchLower) || customName.startsWith(searchLower)) {
+        return true;
+      }
+
+      if (startsWithSearch(nameWords) || startsWithSearch(customNameWords)) {
+        return true;
+      }
+      return name.includes(searchLower) || customName.includes(searchLower);
     });
   };
 

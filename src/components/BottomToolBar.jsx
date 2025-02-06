@@ -1,4 +1,5 @@
 import SearchIcon from "@assets/icons/search.svg?react";
+import XIcon from "@assets/icons/x-icon.svg?react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import Button from "./Button";
@@ -15,6 +16,7 @@ const BottomToolBar = ({
 }) => {
   const [isExtended, setIsExtended] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [recentSearches, setRecentSearches] = useState([]);
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
@@ -22,10 +24,19 @@ const BottomToolBar = ({
     onSearchChange(value);
   };
 
+  const handleSearchSubmit = () => {
+    if (searchText.trim() && !recentSearches.includes(searchText)) {
+      setRecentSearches((prev) => {
+        const updated = [searchText, ...prev].slice(0, 5); // Limit to 5 recent searches
+        return updated;
+      });
+    }
+  };
+
   return (
-    <div className="fixed z-50 bottom-0 left-0 w-full flex justify-center items-center p-8 ">
+    <div className="fixed z-[15000] bottom-0 left-0 w-full flex justify-center items-center p-8 ">
       {isExtended && extended && (
-        <div className="fixed inset-0 bg-opacity-50 backdrop-blur-sm"></div>
+        <div className="fixed inset-0 bg-[#06060640] backdrop-blur-sm"></div>
       )}
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
@@ -46,44 +57,68 @@ const BottomToolBar = ({
             <AnimatePresence>
               {isExtended && (
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="fixed inset-0 bg-[#000000BF] backdrop-blur-sm flex justify-center items-center"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="absolute bottom-14 -left-36 -translate-x-1/2 flex justify-center"
                 >
-                  <div className="bg-specc-neutral2 border border-specc-TW4 w-11/12 max-w-lg rounded-2xl">
-                    <CustomInput
-                      variant="searchBox"
-                      className="w-full mb-4"
-                      inputClassName="w-full !bg-transparent border-b rounded-t"
-                      placeholder={placeholder}
-                      value={searchText}
-                      onChange={handleSearchChange}
-                    />
-                    <div className="max-h-60 overflow-y-auto">
-                      {searchText && searchResults.length > 0 ? (
-                        searchResults.map((result, index) => (
-                          <div
-                            key={index}
-                            className="px-4 py-2 hover:bg-specc-neutral3 cursor-pointer text-specc-neutral4"
-                            onClick={() => console.log(`Selected: ${result}`)}
-                          >
-                            {result}
-                          </div>
-                        ))
-                      ) : searchText ? (
-                        <div className="text-specc-neutral4">
-                          No results found
-                        </div>
-                      ) : null}
+                  <div className="bg-specc-neutral2 border border-specc-TW4 w-[34rem] rounded-2xl">
+                    <div className="flex flex-row justify-between px-2 items-center rounded-t-2xl border-b border-specc-TW4">
+                      <CustomInput
+                        variant="searchBox"
+                        className="w-full"
+                        inputClassName="w-full !bg-transparent border-0 rounded-none"
+                        placeholder={placeholder}
+                        value={searchText}
+                        onChange={handleSearchChange}
+                        onKeyDown={(e) =>
+                          e.key === "Enter" && handleSearchSubmit()
+                        }
+                      />
+                      <XIcon
+                        className="icon-white cursor-pointer"
+                        onClick={() => setIsExtended(false)}
+                      />
                     </div>
-                    <Button
-                      variant="outline"
-                      onClick={() => setIsExtended(false)}
-                      className="mt-4"
-                    >
-                      Close
-                    </Button>
+
+                    <div className="overflow-y-auto max-h-60 p-2 space-y-2 flex-shrink-0">
+                      {searchText ? (
+                        searchResults.length > 0 ? (
+                          searchResults.map((result, index) => (
+                            <div
+                              key={index}
+                              className="bg-specc-TW4 border border-specc-neutral2 p-4 hover:bg-specc-TW4 hover:border-specc-neutral4 cursor-pointer text-specc-neutral4 rounded-md"
+                              onClick={() => handleSelectSearch(result)}
+                            >
+                              {result}
+                            </div>
+                          ))
+                        ) : (
+                          <div className="text-specc-neutral4">
+                            No results found
+                          </div>
+                        )
+                      ) : recentSearches.length > 0 ? (
+                        <>
+                          <div className="text-specc-neutral4 font-medium px-4 py-2">
+                            Recent Searches
+                          </div>
+                          {recentSearches.map((search, index) => (
+                            <div
+                              key={index}
+                              className="px-4 py-2 hover:bg-specc-neutral3 cursor-pointer text-specc-neutral4"
+                              onClick={() => handleSelectSearch(search)}
+                            >
+                              {search}
+                            </div>
+                          ))}
+                        </>
+                      ) : (
+                        <div className="text-specc-neutral4 text-center p-6">
+                          No recent searches
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </motion.div>
               )}
@@ -95,7 +130,7 @@ const BottomToolBar = ({
             className="w-1/2 rounded-3xl"
             inputClassName={`${inputClassName}`}
             placeholder={placeholder}
-            onChange={onSearchChange}
+            onChange={handleSearchChange}
           />
         )}
         {buttons.map((btn, index) => (
