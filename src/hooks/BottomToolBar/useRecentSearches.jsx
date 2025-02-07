@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useRecentSearches = (key = "recentSearches", maxItems = 5) => {
+const useRecentSearches = (key = "recentSearches", maxItems = 3) => {
   const [recentSearches, setRecentSearches] = useState([]);
 
   useEffect(() => {

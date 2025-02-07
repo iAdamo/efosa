@@ -1,12 +1,12 @@
-import SearchIcon from "@assets/icons/search.svg?react";
 import XIcon from "@assets/icons/cross.svg?react";
+import SearchIcon from "@assets/icons/search.svg?react";
+import SearchResults from "@components/SearchResults";
+import useRecentSearches from "@hooks/BottomToolBar/useRecentSearches";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
 import CustomInput from "../CustomInput";
-import useRecentSearches from "@hooks/BottomToolBar/useRecentSearches";
-import SearchResults from "@components/SearchResults";
 
 const BottomToolBar = ({
   extended = false,
@@ -112,17 +112,10 @@ const BottomToolBar = ({
             onChange={handleSearchChange}
           />
         )}
-        {buttons.map((btn, index) => (
-          <Button
-            key={index}
-            onClick={btn.onClick}
-            className={`w-1/2 ${btn.btnClassName}`}
-            variant={btn.variant}
-          >
-            {btn.icon && <btn.icon />}
-            {btn.label && (
-              <span className={btn.textClassName}>{btn.label}</span>
-            )}
+        {buttons.map(({ label, icon: Icon, ...btnProps }, index) => (
+          <Button key={index} {...btnProps}>
+            {Icon && <Icon />}
+            {label && <span>{label}</span>}
           </Button>
         ))}
       </motion.div>
