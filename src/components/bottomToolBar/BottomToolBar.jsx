@@ -112,11 +112,8 @@ const BottomToolBar = ({
             onChange={handleSearchChange}
           />
         )}
-        {buttons.map(({ label, icon: Icon, ...btnProps }, index) => (
-          <Button key={index} {...btnProps}>
-            {Icon && <Icon />}
-            {label && <span>{label}</span>}
-          </Button>
+        {buttons.map((ButtonComponent, index) => (
+          <ButtonComponent key={index} />
         ))}
       </motion.div>
     </div>
