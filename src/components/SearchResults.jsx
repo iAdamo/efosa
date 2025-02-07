@@ -4,7 +4,7 @@ const SearchResults = ({ results, onSelect, recentSearches, searchText }) => {
   const renderResult = (item, index) => (
     <div
       key={index}
-      className="flex flex-row gap-2 items-center bg-specc-TW4 border border-specc-neutral2 p-2 hover:bg-specc-TW4 hover:border-specc-neutral4 cursor-pointer text-specc-neutral4 rounded-md"
+      className="flex flex-row gap-2 items-center bg-specc-TW4 border border-specc-neutral2 px-4 py-2 mx-4 hover:bg-specc-TW4 hover:border-specc-neutral4 cursor-pointer text-specc-neutral4 rounded-md"
       onClick={() => onSelect(item)}
     >
       {item.logo ? (
@@ -37,13 +37,13 @@ const SearchResults = ({ results, onSelect, recentSearches, searchText }) => {
 
   return recentSearches.length > 0 ? (
     <>
-      <div className="text-specc-neutral4 font-medium text-center p-4">
+      <div className="text-specc-neutral4 font-medium text-center">
         Recent Searches
       </div>
       {recentSearches.map(renderResult)}
     </>
   ) : (
-    <div className="text-specc-neutral4 text-center p-6">
+    <div className="text-specc-neutral4 text-center">
       No recent searches
     </div>
   );

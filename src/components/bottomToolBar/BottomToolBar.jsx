@@ -76,7 +76,7 @@ const BottomToolBar = ({
                   exit={{ opacity: 0, y: 10 }}
                   className="absolute bottom-14 -left-36 -translate-x-1/2 flex justify-center"
                 >
-                  <div className="bg-specc-neutral2 border border-specc-TW4 w-[34rem] rounded-2xl">
+                  <div className="flex flex-col gap-1 pb-1 bg-specc-neutral2 border border-specc-TW4 w-[34rem] rounded-2xl">
                     <div className="flex flex-row justify-between px-2 items-center rounded-t-2xl border-b border-specc-TW4">
                       <CustomInput
                         variant="searchBox"
