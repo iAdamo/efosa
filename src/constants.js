@@ -211,6 +211,7 @@ export const colors = {
     neutral2: "#161616",
     neutral3: "#848484",
     neutral4: "#D9D9D9",
+    neutral5: "#CACDD1",
     TW4: "rgba(255, 255, 255, 0.04)",
     TW8: "rgba(255, 255, 255, 0.08)",
     TB75: "rgba(0, 0, 0, 0.75)",

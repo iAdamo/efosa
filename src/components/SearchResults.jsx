@@ -1,6 +1,21 @@
 import AvatarCard from "@pages/clients/partial/AvatarCard";
 
 const SearchResults = ({ results, onSelect, recentSearches, searchText }) => {
+  const highlightText = (text, highlight) => {
+    if (!highlight) return text;
+
+    const parts = text.split(new RegExp(`(${highlight})`, "gi"));
+    return parts.map((part, index) =>
+      part.toLowerCase() === highlight.toLowerCase() ? (
+        <span key={index} className="text-specc-neutral5 font-bold">
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
+
   const renderResult = (item, index) => (
     <div
       key={index}
@@ -8,11 +23,7 @@ const SearchResults = ({ results, onSelect, recentSearches, searchText }) => {
       onClick={() => onSelect(item)}
     >
       {item.logo ? (
-        <img
-          src={item.logo}
-          alt="logo"
-          className="h-8 w-8 inline-block mr-2"
-        />
+        <img src={item.logo} alt="logo" className="h-8 w-8 inline-block mr-2" />
       ) : (
         <AvatarCard
           name={item.name}
@@ -21,7 +32,9 @@ const SearchResults = ({ results, onSelect, recentSearches, searchText }) => {
           classN="!rounded h-8 min-h-8 min-w-8 w-8"
         />
       )}
-      <div>{item?.customName}</div>
+      <div className="text-specc-neutral3">
+        {highlightText(item?.customName, searchText)}
+      </div>
     </div>
   );
 
@@ -43,9 +56,7 @@ const SearchResults = ({ results, onSelect, recentSearches, searchText }) => {
       {recentSearches.map(renderResult)}
     </>
   ) : (
-    <div className="text-specc-neutral4 text-center">
-      No recent searches
-    </div>
+    <div className="text-specc-neutral4 text-center">No recent searches</div>
   );
 };
 
