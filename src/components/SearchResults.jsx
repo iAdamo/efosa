@@ -4,21 +4,21 @@ const SearchResults = ({ results, onSelect, recentSearches, searchText }) => {
   const renderResult = (item, index) => (
     <div
       key={index}
-      className="flex flex-row gap-2 items-center bg-specc-TW4 border border-specc-neutral2 p-4 hover:bg-specc-TW4 hover:border-specc-neutral4 cursor-pointer text-specc-neutral4 rounded-md"
+      className="flex flex-row gap-2 items-center bg-specc-TW4 border border-specc-neutral2 p-2 hover:bg-specc-TW4 hover:border-specc-neutral4 cursor-pointer text-specc-neutral4 rounded-md"
       onClick={() => onSelect(item)}
     >
       {item.logo ? (
         <img
           src={item.logo}
           alt="logo"
-          className="h-6 w-6 inline-block mr-2"
+          className="h-8 w-8 inline-block mr-2"
         />
       ) : (
         <AvatarCard
           name={item.name}
           customName={item.customName}
           image={item.logo}
-          classN="!rounded h-6 min-h-6 min-w-6 w-6"
+          classN="!rounded h-8 min-h-8 min-w-8 w-8"
         />
       )}
       <div>{item?.customName}</div>

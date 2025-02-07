@@ -88,7 +88,7 @@ const BottomToolBar = ({
                         ref={inputRef}
                       />
                       <XIcon
-                        className="icon-white cursor-pointer"
+                        className="cursor-pointer"
                         onClick={() => setIsExtended(false)}
                       />
                     </div>
