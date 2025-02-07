@@ -1,38 +1,44 @@
 import SearchIcon from "@assets/icons/search.svg?react";
 import XIcon from "@assets/icons/x-icon.svg?react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState, useRef } from "react";
-import Button from "./Button";
-import CustomInput from "./CustomInput";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "../Button";
+import CustomInput from "../CustomInput";
+import useRecentSearches from "@hooks/BottomToolBar/useRecentSearches";
+import SearchResults from "@components/SearchResults";
 
 const BottomToolBar = ({
   extended = false,
   onSearchChange,
   placeholder = "Search",
-  buttons = [], // Array of additional buttons
+  buttons = [],
   className = "",
   inputClassName = "",
   searchResults = [],
 }) => {
   const [isExtended, setIsExtended] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const [recentSearches, setRecentSearches] = useState([]);
-
+  const { recentSearches, addRecentSearch } = useRecentSearches();
   const inputRef = useRef(null);
+  const navigate = useNavigate();
+
+  const handleSelectSearch = (result) => {
+    const { uploadUrl, name } = result;
+    if (uploadUrl) {
+      setIsExtended(false);
+      navigate(uploadUrl);
+    }
+
+    if (result && !recentSearches.includes(result)) {
+      addRecentSearch(result);
+    }
+  };
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearchText(value);
     onSearchChange(value);
-  };
-
-  const handleSearchSubmit = () => {
-    if (searchText.trim() && !recentSearches.includes(searchText)) {
-      setRecentSearches((prev) => {
-        const updated = [searchText, ...prev].slice(0, 5); // Limit to 5 recent searches
-        return updated;
-      });
-    }
   };
 
   useEffect(() => {
@@ -42,7 +48,7 @@ const BottomToolBar = ({
   }, [isExtended]);
 
   return (
-    <div className="fixed z-[15000] bottom-0 left-0 w-full flex justify-center items-center p-8 ">
+    <div className="fixed z-[15000] bottom-0 left-0 w-full flex justify-center items-center p-8">
       {isExtended && extended && (
         <div className="fixed inset-0 bg-[#06060640] backdrop-blur-sm"></div>
       )}
@@ -57,9 +63,9 @@ const BottomToolBar = ({
             <Button
               variant="outline"
               onClick={() => setIsExtended(!isExtended)}
-              className={`flex flex-row !w-1/2 gap-2 justify-center items-center ${inputClassName}`}
+              className={`!w-1/2 gap-2 ${inputClassName}`}
             >
-              <SearchIcon className="icon-white " />
+              <SearchIcon className="icon-white" />
               <span className="text-[16px] text-specc-neutral4">Search</span>
             </Button>
             <AnimatePresence>
@@ -79,9 +85,6 @@ const BottomToolBar = ({
                         placeholder={placeholder}
                         value={searchText}
                         onChange={handleSearchChange}
-                        onKeyDown={(e) =>
-                          e.key === "Enter" && handleSearchSubmit()
-                        }
                         ref={inputRef}
                       />
                       <XIcon
@@ -89,45 +92,12 @@ const BottomToolBar = ({
                         onClick={() => setIsExtended(false)}
                       />
                     </div>
-
-                    <div className="overflow-y-auto max-h-60 p-2 space-y-2 flex-shrink-0">
-                      {searchText ? (
-                        searchResults.length > 0 ? (
-                          searchResults.map((result, index) => (
-                            <div
-                              key={index}
-                              className="bg-specc-TW4 border border-specc-neutral2 p-4 hover:bg-specc-TW4 hover:border-specc-neutral4 cursor-pointer text-specc-neutral4 rounded-md"
-                              onClick={() => handleSelectSearch(result)}
-                            >
-                              {result}
-                            </div>
-                          ))
-                        ) : (
-                          <div className="text-specc-neutral4 text-center p-6">
-                            No results found
-                          </div>
-                        )
-                      ) : recentSearches.length > 0 ? (
-                        <>
-                          <div className="text-specc-neutral4 font-medium px-4 py-2">
-                            Recent Searches
-                          </div>
-                          {recentSearches.map((search, index) => (
-                            <div
-                              key={index}
-                              className="px-4 py-2 hover:bg-specc-neutral3 cursor-pointer text-specc-neutral4"
-                              onClick={() => handleSelectSearch(search)}
-                            >
-                              {search}
-                            </div>
-                          ))}
-                        </>
-                      ) : (
-                        <div className="text-specc-neutral4 text-center p-6">
-                          No recent searches
-                        </div>
-                      )}
-                    </div>
+                    <SearchResults
+                      results={searchResults}
+                      onSelect={handleSelectSearch}
+                      recentSearches={recentSearches}
+                      searchText={searchText}
+                    />
                   </div>
                 </motion.div>
               )}
@@ -137,7 +107,7 @@ const BottomToolBar = ({
           <CustomInput
             variant="searchBox"
             className="w-1/2 rounded-3xl"
-            inputClassName={`${inputClassName}`}
+            inputClassName={inputClassName}
             placeholder={placeholder}
             onChange={handleSearchChange}
           />

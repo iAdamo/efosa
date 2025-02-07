@@ -1,5 +1,5 @@
-import BottomToolBar from "@/components/BottomToolBar";
 import STabs from "@/components/STabs";
+import BottomToolBar from "@/components/bottomToolBar/BottomToolBar";
 import PlusIcon from "@assets/icons/plusIcon.svg?react";
 import { GeneralContext } from "@contexts/GeneralContext.jsx";
 import { useContext, useMemo, useState } from "react";
@@ -86,10 +86,10 @@ export default function MyApis() {
         placeholder="Search"
         onSearchChange={handleSearchChange}
         searchResults={[...filteredMyAPIs, ...filteredPublicAPIs].map(
-          (api) => api.API.name
+          (api) => api.API
         )}
         className="w-64 items-center bg-specc-neutral2 border border-specc-TW4 rounded-full"
-        inputClassName="w-full !bg-specc-neutral3 justify-center items-center border-0 !rounded-3xl "
+        inputClassName="w-full !bg-[#212121] justify-center items-center border-0 !rounded-3xl "
         buttons={[
           {
             label: "New API",
