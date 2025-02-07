@@ -33,7 +33,7 @@ const SearchResults = ({ results, onSelect, recentSearches, searchText }) => {
         />
       )}
       <div className="text-specc-neutral3">
-        {highlightText(item?.customName, searchText)}
+        {highlightText(item.customName || item.name, searchText)}
       </div>
     </div>
   );
