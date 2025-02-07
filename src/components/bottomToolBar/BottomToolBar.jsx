@@ -1,5 +1,5 @@
 import SearchIcon from "@assets/icons/search.svg?react";
-import XIcon from "@assets/icons/x-icon.svg?react";
+import XIcon from "@assets/icons/cross.svg?react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -77,7 +77,7 @@ const BottomToolBar = ({
                   className="absolute bottom-14 -left-36 -translate-x-1/2 flex justify-center"
                 >
                   <div className="flex flex-col gap-1 pb-1 bg-specc-neutral2 border border-specc-TW4 w-[34rem] rounded-2xl">
-                    <div className="flex flex-row justify-between px-2 items-center rounded-t-2xl border-b border-specc-TW4">
+                    <div className="flex flex-row justify-between px-4 items-center rounded-t-2xl border-b border-specc-TW4">
                       <CustomInput
                         variant="searchBox"
                         className="w-full"
@@ -88,7 +88,7 @@ const BottomToolBar = ({
                         ref={inputRef}
                       />
                       <XIcon
-                        className="cursor-pointer"
+                        className="icon-white cursor-pointer"
                         onClick={() => setIsExtended(false)}
                       />
                     </div>
