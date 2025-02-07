@@ -95,7 +95,7 @@ export default function MyApis() {
             label: "New API",
             icon: PlusIcon,
             onClick: () => navigate("/my-apis/add-api"),
-            className: "gap-2 border-0",
+            className: "w-full gap-2 border-0",
             variant: "outline",
           },
         ]}

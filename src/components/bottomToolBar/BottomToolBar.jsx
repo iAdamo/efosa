@@ -56,14 +56,14 @@ const BottomToolBar = ({
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: "spring", stiffness: 200 }}
-        className={`relative flex flex-row p-1 ${className}`}
+        className={`relative flex flex-row p-1 w-auto ${className}`}
       >
         {extended ? (
           <>
             <Button
               variant="outline"
               onClick={() => setIsExtended(!isExtended)}
-              className={`!w-1/2 gap-2 ${inputClassName}`}
+              className={`gap-2 ${inputClassName}`}
             >
               <SearchIcon className="icon-white" />
               <span className="text-[16px] text-specc-neutral4">Search</span>
@@ -106,7 +106,7 @@ const BottomToolBar = ({
         ) : (
           <CustomInput
             variant="searchBox"
-            className="w-1/2 rounded-3xl"
+            className="rounded-3xl"
             inputClassName={inputClassName}
             placeholder={placeholder}
             onChange={handleSearchChange}
