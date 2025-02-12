@@ -51,8 +51,20 @@ export const spacing = {
   s120: "120px",
 };
 
-export const fromKeys = ["fromArray", "fromBoolean", "fromDecimal", "fromInteger", "fromString"];
-export const toKeys = ["toArray", "toBoolean", "toDecimal", "toInteger", "toString"];
+export const fromKeys = [
+  "fromArray",
+  "fromBoolean",
+  "fromDecimal",
+  "fromInteger",
+  "fromString",
+];
+export const toKeys = [
+  "toArray",
+  "toBoolean",
+  "toDecimal",
+  "toInteger",
+  "toString",
+];
 
 export const typeColors = {
   STRING: "#ee6b7e",
@@ -199,7 +211,7 @@ export const colors = {
     destinationTextColor: "#00efd9",
     sourceSelectionColor: "#D32DCA80",
     destinationSelectionColor: "#00EFD933",
-    blackPearl: "#141619",
+    blackPearl: "#060606",
     patternGrey: "#DEE2E6",
     ghostWhite: "#F8F9FA",
   },
@@ -222,28 +234,49 @@ export const colors = {
 };
 
 export const gradientColors = {
-  "wizard-controls-gradient": "linear-gradient(0deg, #383D43 -151.52%, #1C1F23 165.86%)",
-  "landing-sidebar-gradient": "linear-gradient(180deg, rgba(18, 20, 23, 0) 56.89%, #2F3139 113.4%)",
-  "purple-menu-gradient": "linear-gradient(134.34deg, rgba(134, 98, 227, 0.2) -7.93%, rgba(134, 98, 227, 0.9) 118.96%)",
-  "pink-menu-gradient": "linear-gradient(134.34deg, rgba(230, 113, 156, 0.2) -7.93%, rgba(224, 79, 217, 0.9) 118.96%)",
-  "blue-menu-gradient": "linear-gradient(134.34deg, rgba(103, 187, 249, 0.2) -7.93%, rgba(103, 187, 249, 0.9) 118.96%)",
-  "sidebar-option-gradient": "linear-gradient(23.5deg, #343A40 -79.3%, rgba(52, 58, 64, 0) 234.04%)",
+  "wizard-controls-gradient":
+    "linear-gradient(0deg, #383D43 -151.52%, #1C1F23 165.86%)",
+  "landing-sidebar-gradient":
+    "linear-gradient(180deg, rgba(18, 20, 23, 0) 56.89%, #2F3139 113.4%)",
+  "purple-menu-gradient":
+    "linear-gradient(134.34deg, rgba(134, 98, 227, 0.2) -7.93%, rgba(134, 98, 227, 0.9) 118.96%)",
+  "pink-menu-gradient":
+    "linear-gradient(134.34deg, rgba(230, 113, 156, 0.2) -7.93%, rgba(224, 79, 217, 0.9) 118.96%)",
+  "blue-menu-gradient":
+    "linear-gradient(134.34deg, rgba(103, 187, 249, 0.2) -7.93%, rgba(103, 187, 249, 0.9) 118.96%)",
+  "sidebar-option-gradient":
+    "linear-gradient(23.5deg, #343A40 -79.3%, rgba(52, 58, 64, 0) 234.04%)",
   "primary-button-gradient": "linear-gradient(90deg, #E04FD9 0%, #E6719C 100%)",
-  "stripe-button-gradient": "linear-gradient(92.88deg, rgba(30, 33, 37, 0.2) -32.82%, rgba(69, 76, 84, 0.8) 95.65%)",
-  "project-card-gradient": "linear-gradient(24.77deg, #343A40 26.75%, rgba(52, 58, 64, 0) 126.94%)",
-  "custom-modal-gradient": "linear-gradient(170.33deg, #202427 1.59%, #353B40 100.79%)",
-  "modal-bg-gradient": "linear-gradient(170.33deg, #202427 1.59%, #353B40 100.79%)",
-  "modal-buttons-gradient": "linear-gradient(78.18deg, rgba(30, 33, 37, 0.2) -68.21%, rgba(69, 76, 84, 0.8) 101.36%)",
-  "add-api-btn-gradient": "linear-gradient(24.38deg, #343A40 0.87%, rgba(52, 58, 64, 0) 120.34%)",
-  "source-gradient": "linear-gradient(168.53deg, #F8F9FA -13.99%, rgba(248, 249, 250, 0) 135.32%)",
-  "repeat-btn-gradient": "linear-gradient(3.16deg, #454C54 -33.24%, rgba(69, 76, 84, 0) 156.36%)",
-  "inner-select-gradient": "linear-gradient(325.24deg, #343A40 6.92%, rgba(52, 58, 64, 0) 105.71%)",
-  "exit-match-gradient": "linear-gradient(90deg, #E3FF12 -30.42%, #C0FF12 125.52%)",
-  "example-data-gradient": "linear-gradient(24deg, #343A40 0.87%, rgba(52, 58, 64, 0.00) 120.34%)",
-  "popover-gradient": "linear-gradient(180deg, rgba(18, 20, 23, 0) -32.26%, #2F3139 113.4%)",
-  "start-new-project-button-gradient": "linear-gradient(95.58deg, rgba(224, 79, 217, 0) -43.5%, #E6719C 129.65%)",
-  "choose-from-template-button-gradient": "linear-gradient(134.34deg, rgba(134, 98, 227, 0.2) -7.93%, rgba(134, 98, 227, 0.9) 118.96%)",
-  "topBar-gradient": "linear-gradient(0.37deg, #383D43 -151.52%, #1C1F23 165.86%)",
+  "stripe-button-gradient":
+    "linear-gradient(92.88deg, rgba(30, 33, 37, 0.2) -32.82%, rgba(69, 76, 84, 0.8) 95.65%)",
+  "project-card-gradient":
+    "linear-gradient(24.77deg, #343A40 26.75%, rgba(52, 58, 64, 0) 126.94%)",
+  "custom-modal-gradient":
+    "linear-gradient(170.33deg, #202427 1.59%, #353B40 100.79%)",
+  "modal-bg-gradient":
+    "linear-gradient(170.33deg, #202427 1.59%, #353B40 100.79%)",
+  "modal-buttons-gradient":
+    "linear-gradient(78.18deg, rgba(30, 33, 37, 0.2) -68.21%, rgba(69, 76, 84, 0.8) 101.36%)",
+  "add-api-btn-gradient":
+    "linear-gradient(24.38deg, #343A40 0.87%, rgba(52, 58, 64, 0) 120.34%)",
+  "source-gradient":
+    "linear-gradient(168.53deg, #F8F9FA -13.99%, rgba(248, 249, 250, 0) 135.32%)",
+  "repeat-btn-gradient":
+    "linear-gradient(3.16deg, #454C54 -33.24%, rgba(69, 76, 84, 0) 156.36%)",
+  "inner-select-gradient":
+    "linear-gradient(325.24deg, #343A40 6.92%, rgba(52, 58, 64, 0) 105.71%)",
+  "exit-match-gradient":
+    "linear-gradient(90deg, #E3FF12 -30.42%, #C0FF12 125.52%)",
+  "example-data-gradient":
+    "linear-gradient(24deg, #343A40 0.87%, rgba(52, 58, 64, 0.00) 120.34%)",
+  "popover-gradient":
+    "linear-gradient(180deg, rgba(18, 20, 23, 0) -32.26%, #2F3139 113.4%)",
+  "start-new-project-button-gradient":
+    "linear-gradient(95.58deg, rgba(224, 79, 217, 0) -43.5%, #E6719C 129.65%)",
+  "choose-from-template-button-gradient":
+    "linear-gradient(134.34deg, rgba(134, 98, 227, 0.2) -7.93%, rgba(134, 98, 227, 0.9) 118.96%)",
+  "topBar-gradient":
+    "linear-gradient(0.37deg, #383D43 -151.52%, #1C1F23 165.86%)",
 };
 
 export const boxShadow = {

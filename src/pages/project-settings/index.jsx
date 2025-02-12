@@ -195,21 +195,21 @@ export default function ProjectSettings() {
 						setAnchorEl(e.currentTarget)
 					}}
 					aria-describedby={id}
-					className={`w-[60px] h-[60px] group rounded-full flex items-center justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-grey-15 border-custom-blackPearl 
-						hover:bg-source-gradient 
-						hover:border-[0px] 
-						hover:border-custom-blackPearl 
-						hover:p-0.5 
-						${open ? "bg-source-gradient border-custom-blackPearl p-0.5 border-0" : "bg-grey-15 border-[6px] border-custom-blackPearl"} 
+					className={`w-[60px] h-[60px] group rounded-full flex items-center justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-grey-15 border-custom-blackPearl
+						hover:bg-source-gradient
+						hover:border-[0px]
+						hover:border-custom-blackPearl
+						hover:p-0.5
+						${open ? "bg-source-gradient border-custom-blackPearl p-0.5 border-0" : "bg-grey-15 border-[6px] border-custom-blackPearl"}
 						`}
 				>
 					<div className={`
-						group-hover:bg-grey-13 
-						group-hover:rounded-full 
-						group-hover:flex 
-						group-hover:h-full 
-						group-hover:w-full 
-						group-hover:items-center 
+						group-hover:bg-grey-13
+						group-hover:rounded-full
+						group-hover:flex
+						group-hover:h-full
+						group-hover:w-full
+						group-hover:items-center
 						group-hover:justify-center
 						${open ? " bg-grey-13 rounded-full flex h-full w-full items-center justify-center" : ""}
 						`}>
