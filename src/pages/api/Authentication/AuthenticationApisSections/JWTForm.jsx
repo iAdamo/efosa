@@ -5,13 +5,7 @@ import { CustomSelect } from '@/components/CustomSelect';
 
 function JWTForm({ value, setValue, options, MuiInputBaseStyles, handleAuthClick, authData }) {
   return (
-    <div className="flex flex-col gap-6 w-72 bg-transparent">
-      <div className="gap-4">
-        <h3 className="text-zinc-400 pb-4 text-lg font-normal font-['Inter'] leading-[14px]">
-          AUTHENTICATION
-        </h3>
-        <h1 className="text-[22px] py-2 mb-0">Add your JWT token</h1>
-      </div>
+    <div className="flex flex-col gap-6 w-96 bg-transparent">
       {/* TODO: UI design implemented as per new figma */}
       <CustomSelect
         options={options}
@@ -47,7 +41,7 @@ function JWTForm({ value, setValue, options, MuiInputBaseStyles, handleAuthClick
         />
       </div>
 
-      <div className="flex flex-row h-10 gap-3 justify-between">
+      <div className="flex flex-row w-72 h-10 gap-3 justify-between">
         <Button
           onClick={handleAuthClick}
           className="w-1/2 h-full bg-specc-neutral2 text-specc-neutral3 py-3 px-6 rounded-full font-bold"
