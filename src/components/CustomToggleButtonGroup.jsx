@@ -25,22 +25,23 @@ const ToggleButtonGroupCustom = ({
   };
 
   const defaultButtonStyles = {
-    color: '#A8A9ABCC',
-    padding: '10px',
-    borderRadius: '2px !important',
-    fontSize: '12px',
+    color: "#A8A9ABCC",
+    padding: "10px",
+    borderRadius: "2px !important",
+    fontSize: "12px",
     fontWeight: 400,
-    border: '1px solid transparent !important',
-    alignItems: 'center',
-    display: 'flex',
-    lineHeight: '12px',
-    height: '100%',
-    textTransform: 'none',
-    fontFamily: 'Inter',
-    '&.Mui-selected': {
-      boxShadow: '0px 4px 4px 0px #14161914',
-      background: '#454C54',
-      color: '#F8F9FA',
+    border: "1px solid transparent !important",
+    alignItems: "center",
+    display: "flex",
+    lineHeight: "12px",
+    height: "100%",
+    textTransform: "none",
+    fontFamily: "Inter",
+    "&.Mui-selected": {
+      boxShadow: "0px 4px 4px 0px #14161914",
+      background: "transparent",
+      border: "1px solid #FFFFFF40 !important",
+      color: "#F8F9FA",
     },
   };
 

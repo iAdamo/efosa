@@ -265,7 +265,7 @@ function ApiAuthentication() {
             authType === "APIKEY" ||
             authType === "BASIC"
           ) {
-            showToast(`API added`, "success");
+            showToast(`Auth added for this API`, "dark");
           } else if (authType === "OAUTH") {
             showToast(`API validated`, "success");
           }
@@ -321,64 +321,51 @@ function ApiAuthentication() {
                 <span className="text-white font-medium">Close</span>
               </Button>
             </div>
-            <div className="flex flex-col gap-6">
-              <span className="text-specc-neutral3 text-[14px] font-['Inter']">
-                AUTHENTICATION
-              </span>
+            <div>
               {activeTabAPI1 === "APIKEY" && (
-                <div className="flex flex-col gap-4">
-                  <span className="text-[22px] ">Add your API Key</span>
-                  <APIKeyForm
-                    handleAuthClick={() => handleAuthClick("api1")}
-                    authData={sourceAuthentication}
-                    value={value}
-                    setValue={setValue}
-                    options={options}
-                    MuiInputBaseStyles={MuiInputBaseStyles}
-                  />
-                </div>
+                <APIKeyForm
+                  handleAuthClick={() => handleAuthClick("api1")}
+                  authData={sourceAuthentication}
+                  value={value}
+                  setValue={setValue}
+                  options={options}
+                  MuiInputBaseStyles={MuiInputBaseStyles}
+                  isLoading={isLoading?.api1}
+                />
               )}
 
               {activeTabAPI1 === "JWT" && (
-                <div className="flex flex-col gap-4">
-                  <span className="text-[22px] ">Add your JWT token</span>
-                  <JWTForm
-                    handleAuthClick={() => handleAuthClick("api1")}
-                    authData={sourceAuthentication}
-                    value={value}
-                    setValue={setValue}
-                    options={options}
-                    MuiInputBaseStyles={MuiInputBaseStyles}
-                  />
-                </div>
+                <JWTForm
+                  handleAuthClick={() => handleAuthClick("api1")}
+                  authData={sourceAuthentication}
+                  value={value}
+                  setValue={setValue}
+                  options={options}
+                  MuiInputBaseStyles={MuiInputBaseStyles}
+                  isLoading={isLoading?.api1}
+                />
               )}
               {activeTabAPI1 === "BASIC" && (
-                <div className="flex flex-col gap-4">
-                  <span className="text-[22px] ">Add your Basic Auth</span>
-                  <BasicForm
-                    handleAuthClick={() => handleAuthClick("api1")}
-                    authData={sourceAuthentication}
-                    value={value}
-                    setValue={setValue}
-                    options={options}
-                    MuiInputBaseStyles={MuiInputBaseStyles}
-                  />
-                </div>
+                <BasicForm
+                  handleAuthClick={() => handleAuthClick("api1")}
+                  authData={sourceAuthentication}
+                  value={value}
+                  setValue={setValue}
+                  options={options}
+                  MuiInputBaseStyles={MuiInputBaseStyles}
+                  isLoading={isLoading?.api1}
+                />
               )}
               {activeTabAPI1 === "OAUTH" && (
-                <div className="flex flex-col gap-4">
-                  <span className="text-[22px] ">Add your API Oauth</span>
-                  <OAuthForm
-                    handleAuthClick={() => handleAuthClick("api1")}
-                    authData={sourceAuthentication}
-                    setAuthData={setSourceAuthentication}
-                    handleBasicAuthCheck={(e) =>
-                      handleBasicAuthCheck(e, "api1")
-                    }
-                    isLoading={isLoading?.api1}
-                    validationIssues={validationIssues?.api1}
-                  />
-                </div>
+                <OAuthForm
+                  handleAuthClick={() => handleAuthClick("api1")}
+                  authData={sourceAuthentication}
+                  setAuthData={setSourceAuthentication}
+                  handleBasicAuthCheck={(e) => handleBasicAuthCheck(e, "api1")}
+                  isLoading={isLoading?.api1}
+                  authSuccess={authSuccess}
+                  validationIssues={validationIssues?.api1}
+                />
               )}
             </div>
           </div>
@@ -394,75 +381,50 @@ function ApiAuthentication() {
                 <span className="text-white font-medium">Close</span>
               </Button>
             </div>
-            <div className="flex flex-col gap-6">
-              <span className="text-specc-neutral3 text-[14px] font-['Inter']">
-                AUTHENTICATION
-              </span>
+            <div>
               {activeTabAPI2 === "APIKEY" && (
-                <div className="flex flex-col gap-4">
-                  <span className="text-[22px] ">Add your API Key</span>
-                  <APIKeyForm
-                    handleAuthClick={() => handleAuthClick("api2")}
-                    authData={destinationAuthentication}
-                    value={value}
-                    setValue={setValue}
-                    options={options}
-                    MuiInputBaseStyles={MuiInputBaseStyles}
-                  />
-                  <Button onClick={() => handleCloseEditMode("editApi2")}>
-                    Close
-                  </Button>
-                </div>
+                <APIKeyForm
+                  handleAuthClick={() => handleAuthClick("api2")}
+                  authData={destinationAuthentication}
+                  value={value}
+                  setValue={setValue}
+                  options={options}
+                  MuiInputBaseStyles={MuiInputBaseStyles}
+                  isLoading={isLoading?.api2}
+                />
               )}
               {activeTabAPI2 === "JWT" && (
-                <div className="flex flex-col gap-4">
-                  <span className="text-[22px] ">Add your JWT token</span>
-                  <JWTForm
-                    handleAuthClick={() => handleAuthClick("api2")}
-                    authData={destinationAuthentication}
-                    value={value}
-                    options={options}
-                    setValue={setValue}
-                    MuiInputBaseStyles={MuiInputBaseStyles}
-                  />
-                  <Button onClick={() => handleCloseEditMode("editApi2")}>
-                    Close
-                  </Button>
-                </div>
+                <JWTForm
+                  handleAuthClick={() => handleAuthClick("api2")}
+                  authData={destinationAuthentication}
+                  value={value}
+                  options={options}
+                  setValue={setValue}
+                  MuiInputBaseStyles={MuiInputBaseStyles}
+                  isLoading={isLoading?.api2}
+                />
               )}
               {activeTabAPI2 === "BASIC" && (
-                <div className="flex flex-col gap-4">
-                  <span className="text-[22px] ">Add your Basic Auth</span>
-                  <BasicForm
-                    handleAuthClick={() => handleAuthClick("api2")}
-                    authData={destinationAuthentication}
-                    value={value}
-                    setValue={setValue}
-                    options={options}
-                    MuiInputBaseStyles={MuiInputBaseStyles}
-                  />
-                  <Button onClick={() => handleCloseEditMode("editApi2")}>
-                    Close
-                  </Button>
-                </div>
+                <BasicForm
+                  handleAuthClick={() => handleAuthClick("api2")}
+                  authData={destinationAuthentication}
+                  value={value}
+                  setValue={setValue}
+                  options={options}
+                  MuiInputBaseStyles={MuiInputBaseStyles}
+                  isLoading={isLoading?.api2}
+                />
               )}
               {activeTabAPI2 === "OAUTH" && (
-                <div className="flex flex-col gap-4">
-                  <span className="text-[22px] ">Add your Oauth</span>
-                  <OAuthForm
-                    handleAuthClick={() => handleAuthClick("api2")}
-                    authData={destinationAuthentication}
-                    setAuthData={setDestinationAuthentication}
-                    handleBasicAuthCheck={(e) =>
-                      handleBasicAuthCheck(e, "api2")
-                    }
-                    isLoading={isLoading?.api2}
-                    validationIssues={validationIssues?.api2}
-                  />
-                  <Button onClick={() => handleCloseEditMode("editApi2")}>
-                    Close
-                  </Button>
-                </div>
+                <OAuthForm
+                  handleAuthClick={() => handleAuthClick("api2")}
+                  authData={destinationAuthentication}
+                  setAuthData={setDestinationAuthentication}
+                  handleBasicAuthCheck={(e) => handleBasicAuthCheck(e, "api2")}
+                  isLoading={isLoading?.api2}
+                  authSuccess={authSuccess}
+                  validationIssues={validationIssues?.api2}
+                />
               )}
             </div>
           </div>

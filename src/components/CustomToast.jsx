@@ -18,34 +18,46 @@ const COMMON_STYLE = {
 };
 
 const VARIANT_STYLES = {
-    success: {
-        background: 'linear-gradient(90deg, rgba(133, 249, 150, 0.2) 0%, rgba(10, 92, 22, 0.2) 103.15%)',
-        border: '1px solid #85F996',
-        color: '#85F996',
-        icon: <CheckCircle />,
-    },
-    error: {
-        background: 'linear-gradient(90deg, rgba(114, 28, 36, 0.2) 0%, rgba(42, 6, 12, 0.2) 103.15%)',
-        border: '1px solid red',
-        color: 'red',
-    },
-    info: {
-        background: 'linear-gradient(90deg, rgba(12, 84, 96, 0.2) 0%, rgba(3, 33, 38, 0.2) 103.15%)',
-        border: '1px solid white',
-        color: 'white',
-    },
-    warning: {
-        background: 'linear-gradient(90deg, rgba(133, 100, 4, 0.2) 0%, rgba(59, 45, 4, 0.2) 103.15%)',
-        border: '1px solid yellow',
-        color: 'yellow',
-    },
+  success: {
+    background:
+      "linear-gradient(90deg, rgba(133, 249, 150, 0.2) 0%, rgba(10, 92, 22, 0.2) 103.15%)",
+    border: "1px solid #85F996",
+    color: "#85F996",
+    icon: <CheckCircle />,
+  },
+  error: {
+    background:
+      "linear-gradient(90deg, rgba(114, 28, 36, 0.2) 0%, rgba(42, 6, 12, 0.2) 103.15%)",
+    border: "1px solid red",
+    color: "red",
+  },
+  info: {
+    background:
+      "linear-gradient(90deg, rgba(12, 84, 96, 0.2) 0%, rgba(3, 33, 38, 0.2) 103.15%)",
+    border: "1px solid white",
+    color: "white",
+  },
+  warning: {
+    background:
+      "linear-gradient(90deg, rgba(133, 100, 4, 0.2) 0%, rgba(59, 45, 4, 0.2) 103.15%)",
+    border: "1px solid yellow",
+    color: "yellow",
+  },
+  dark: {
+    background: "#161616",
+    width: "auto",
+    borderRadius: "30px",
+    padding: "4px 0",
+    border: "1px solid #FFFFFF40",
+    color: "white",
+  },
 };
 
 
 const Toast = () => {
     return (
         <ToastContainer
-            position="top-center"
+            position="bottom-center"
             autoClose={3000}
             hideProgressBar
             closeOnClick
