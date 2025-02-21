@@ -178,6 +178,7 @@ function OAuthForm({
     setIsEditSave(true);
   };
 
+  //mere saving logic just for testing - change if necessary - by Tunde
   const saveAuth = async () => {
     try {
       await postGenericCRUDWithID("Authentication_OAuth", authData?.oauth?.id, {
@@ -191,7 +192,7 @@ function OAuthForm({
 
   return (
     <>
-      {isEditSave ? (
+      {!isEditSave ? (
         <div className="flex flex-col gap-14">
           <div className="flex flex-col gap-4">
             <span className="text-specc-neutral3 text-[14px] font-['Inter']">
@@ -205,6 +206,7 @@ function OAuthForm({
             <CustomInput
               variant={"primary"}
               placeholder={"Type your Auth name"}
+              inputClassName="rounded-full"
             />
             <Button
               onClick={saveAuth}
