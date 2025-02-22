@@ -192,7 +192,7 @@ function OAuthForm({
 
   return (
     <>
-      {!isEditSave ? (
+      {isEditSave ? (
         <div className="flex flex-col gap-14">
           <div className="flex flex-col gap-4">
             <span className="text-specc-neutral3 text-[14px] font-['Inter']">
@@ -613,7 +613,6 @@ function OAuthForm({
                     </Button>
 
                     <Button
-                      isDisabled={authSuccess ? false : true}
                       onClick={handleAuthContinue}
                       className="w-1/2 h-full bg-[#0C0C0D] border border-[#1D1E1F] py-3 px-6 rounded-full font-bold"
                     >
