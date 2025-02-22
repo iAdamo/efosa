@@ -194,7 +194,7 @@ function OAuthForm({
     <>
       {isEditSave ? (
         <div className="flex flex-col gap-14">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-6">
             <span className="text-specc-neutral3 text-[14px] font-['Inter']">
               SAVE AUTHENTICATION
             </span>
@@ -202,7 +202,7 @@ function OAuthForm({
               What do you want to name your Auth
             </span>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-4">
             <CustomInput
               variant={"primary"}
               placeholder={"Type your Auth name"}
@@ -614,7 +614,7 @@ function OAuthForm({
 
                     <Button
                       onClick={handleAuthContinue}
-                      className="w-1/2 h-full bg-[#0C0C0D] border border-[#1D1E1F] py-3 px-6 rounded-full font-bold"
+                      className="w-1/2 h-full bg-[#0C0C0D] border border-[#1D1E1F] hover:border-specc-neutral4 py-3 px-6 rounded-full font-bold"
                     >
                       Save this Auth
                     </Button>

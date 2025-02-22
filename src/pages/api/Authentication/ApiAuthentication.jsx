@@ -315,7 +315,7 @@ function ApiAuthentication() {
               <Button
                 variant="outline"
                 onClick={() => handleCloseEditMode("editApi1")}
-                className="!py-2 !px-4 bg-specc-cardbtn border border-specc-cardbtnborder rounded-full hover:bg-specc-neutral3 hover:border-specc-neutral4"
+                className="bg-specc-neutral2 border-none rounded-full hover:bg-specc-neutral3 hover:border-specc-neutral4"
               >
                 <BackIcon className="text-white hover:text-specc-neutral4 mr-2" />
                 <span className="text-white font-medium">Close</span>
@@ -375,7 +375,7 @@ function ApiAuthentication() {
               <Button
                 variant="outline"
                 onClick={() => handleCloseEditMode("editApi2")}
-                className="!py-2 !px-4 bg-specc-cardbtn border border-specc-cardbtnborder rounded-full hover:bg-specc-neutral3 hover:border-specc-neutral4"
+                className="bg-specc-neutral2 border-none rounded-full hover:bg-specc-neutral3 hover:border-specc-neutral4"
               >
                 <BackIcon className="text-white hover:text-specc-neutral4 mr-2" />
                 <span className="text-white font-medium">Close</span>
@@ -434,7 +434,7 @@ function ApiAuthentication() {
               <Button
                 variant="outline"
                 onClick={() => handleCloseAuthMethod("editApi1")}
-                className="!py-2 !px-4 bg-specc-cardbtn border border-specc-cardbtnborder rounded-full hover:bg-specc-neutral3 hover:border-specc-neutral4"
+                className="bg-specc-neutral2 border-none rounded-full hover:bg-specc-neutral3 hover:border-specc-neutral4"
               >
                 <BackIcon className="text-white hover:text-specc-neutral4 mr-2" />
                 <span className="text-white font-medium">Close</span>
@@ -477,7 +477,7 @@ function ApiAuthentication() {
               <Button
                 variant="outline"
                 onClick={() => handleCloseAuthMethod("editApi2")}
-                className="!py-2 !px-4 bg-specc-cardbtn border border-specc-cardbtnborder rounded-full hover:bg-specc-neutral3 hover:border-specc-neutral4"
+                className="bg-specc-neutral2 border-none rounded-full hover:bg-specc-neutral3 hover:border-specc-neutral4"
               >
                 <BackIcon className="text-white hover:text-specc-neutral4 mr-2" />
                 <span className="text-white font-medium">Close</span>
