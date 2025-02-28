@@ -57,7 +57,7 @@ export default function PersonalDetails({ ...props }) {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 w-[477px]">
       <SForm
         onSubmit={(e) => {
           saveprofile(e);
@@ -70,7 +70,7 @@ export default function PersonalDetails({ ...props }) {
           onChange={handleFileChange}
           disabled
         />
-        <div className=" rounded-[5px] mx-auto details-input-container !w-[36rem] ">
+        <div className=" rounded-[5px] mx-auto details-input-container !w-[477px] ">
           <div className="flex flex-col gap-4 mb-6">
             <div class="text-white text-[22px] font-medium font-sans leading-none tracking-tight">
               My Profile
@@ -156,7 +156,7 @@ export default function PersonalDetails({ ...props }) {
                   <div className="border-r-[1px] border-grey-2 mx-4" />
                   {/* Vertical line */}
                   <div className="flex flex-col w-3/5 gap-2 justify-center">
-                    <span className="text-black/60 text-[12px]">
+                    <span className="text-specc-neutral3 text-[12px]">
                       Email
                     </span>
                     <span className="text-[14px] text-specc-neutral3">

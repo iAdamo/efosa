@@ -31,7 +31,7 @@ export default function ChangePassword({ backCallback, ...props }) {
 
   return (
     <SForm onSubmit={() => {}}>
-      <div className="rounded-xl bg-[#171717] details-input-container !w-[36rem]">
+      <div className="rounded-lg bg-gradient-to-t from-[#060606] to-[#1C1C1C] details-input-container !w-[477px]">
         <div className="flex">
           <div className="p-5 pb-0 flex w-full">
             <div className="flex flex-col gap-1 w-full">
