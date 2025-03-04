@@ -193,12 +193,12 @@ function OAuthForm({
   return (
     <>
       {isEditSave ? (
-        <div className="flex flex-col gap-14">
-          <div className="flex flex-col gap-6">
-            <span className="text-specc-neutral3 text-[14px] font-['Inter']">
+        <div className="flex flex-col gap-6 w-96">
+          <div className="flex flex-col gap-2">
+            <span className="text-sp-neutral-3 text-sm font-normal font-['Inter'] leading-[18px]">
               SAVE AUTHENTICATION
             </span>
-            <span className="text-[22px]">
+            <span className="text-[#f6f6f6] text-lg font-medium font-['Inter'] leading-snug">
               What do you want to name your Auth
             </span>
           </div>
@@ -206,31 +206,33 @@ function OAuthForm({
             <CustomInput
               variant={"primary"}
               placeholder={"Type your Auth name"}
-              inputClassName="rounded-full"
+              inputClassName="border border-sp-neutral-2 rounded-lg h-9"
             />
             <Button
               onClick={saveAuth}
-              className="px-8 py-3 w-1/3 bg-specc-neutral2 text-specc-neutral3 hover:bg-white hover:text-specc-neutral1 rounded-full font-bold"
+              className="h-8 w-1/3 bg-sp-neutral-2 text-sp-neutral-3 hover:bg-white hover:text-specc-neutral1 rounded-full font-semibold"
             >
               Continue
             </Button>
           </div>
         </div>
       ) : (
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-col gap-8">
-            <span className="text-specc-neutral3 text-[14px] font-['Inter']">
+        <div className="flex flex-col gap-4 w-96 bg-transparent">
+          <div className="flex flex-col gap-2">
+            <span className="text-sp-neutral-3 text-sm font-normal font-['Inter'] leading-[18px]">
               AUTHENTICATION
             </span>
-            <span className="text-[22px] ">Add your API Oauth</span>
+            <span className="text-[#f6f6f6] text-sp-l font-medium font-['Inter'] leading-snug  ">
+              Add your API OAuth
+            </span>
           </div>
-          <div className="w-96">
+          <div className="flex flex-col w-96 h-9 bg-transparent">
             <div className="relative" ref={blockRef}>
               {/* TODO: UI design implemented as per new figma */}
               <CustomInput
                 variant={"primary"}
-                placeholder={"Choose from saved OAuth"}
-                inputClassName={`${selectedValue?.label === "" ? "" : "!bg-grey-13 border-transparent"} text-[16px] font-normal leading-11 cursor-pointer caret-transparent`}
+                placeholder={"Search from Saved OAuth"}
+                inputClassName={`${selectedValue?.label === "" ? "" : "!bg-grey-13 border-transparent"} h-9 text-[16px] font-normal leading-11 cursor-pointer caret-transparent`}
                 suffix={
                   selectedValue?.label === "" ? (
                     <span>
@@ -291,7 +293,7 @@ function OAuthForm({
               )}
             </div>
             <div className="flex flex-col gap-6 mb-6">
-              <div className="flex gap-2 items-center text-lg font-medium leading-26">
+              <div className="flex flex-row gap-2 items-center text-lg font-medium leading-26">
                 <Checkbox
                   inputProps={{ "aria-label": "controlled" }}
                   defaultChecked
@@ -299,7 +301,7 @@ function OAuthForm({
                     color: "#E9C2F0",
                     borderRadius: "4px",
                     "&.Mui-checked": {
-                      color: "#E9C2F0",
+                      color: "#FFFFFF",
                     },
                   }}
                 />
@@ -309,6 +311,8 @@ function OAuthForm({
                 label={"URL"}
                 variant={"primary"}
                 placeholder={"Add url"}
+                labelClassName="text-[#d9d9d9] text-xs font-normal font-['Inter'] capitalize leading-[11px]"
+                inputClassName="border border-sp-neutral-2 rounded-lg !h-9"
                 endLabelClassName="underline"
                 defaultValue={authData?.oauth?.tokenURL}
                 suffix={
@@ -323,7 +327,7 @@ function OAuthForm({
                       { value: "get", label: "GET" },
                       { value: "post", label: "POST" },
                     ]}
-                    buttonStyles={{ height: "32px" }}
+                    buttonStyles={{ height: "28px" }}
                   />
                 }
                 onBlur={async (e) => {
@@ -398,6 +402,8 @@ function OAuthForm({
                   <CustomInput
                     variant={"primary"}
                     placeholder={"Client Label"}
+                    labelClassName="text-[#d9d9d9] text-xs font-normal font-['Inter'] capitalize leading-[11px]"
+                    inputClassName="border border-sp-neutral-2 rounded-lg h-9"
                     endLabelClassName="underline"
                     defaultValue={authData.oauth.clientIDFieldName}
                     value={newClientIDFieldName}
@@ -415,7 +421,7 @@ function OAuthForm({
                           { value: "body", label: "Body" },
                           { value: "header", label: "Header" },
                         ]}
-                        buttonStyles={{ height: "32px" }}
+                        buttonStyles={{ height: "28px" }}
                       />
                     }
                   />
@@ -423,6 +429,8 @@ function OAuthForm({
                   <CustomInput
                     variant={"primary"}
                     placeholder={"Client ID"}
+                    labelClassName="text-[#d9d9d9] text-xs font-normal font-['Inter'] capitalize leading-[11px]"
+                    inputClassName="border border-sp-neutral-2 rounded-lg !h-9"
                     value={inputClientIDFieldValue}
                     onChange={(e) => setInputClientIDFieldValue(e.target.value)}
                     endLabelClassName="underline"
@@ -439,7 +447,7 @@ function OAuthForm({
                           { value: "body", label: "Body" },
                           { value: "header", label: "Header" },
                         ]}
-                        buttonStyles={{ height: "32px" }}
+                        buttonStyles={{ height: "28px" }}
                       />
                     }
                     onBlur={async (e) => {
@@ -516,6 +524,8 @@ function OAuthForm({
                   <CustomInput
                     variant={"primary"}
                     placeholder={"Client Label"}
+                    labelClassName="text-[#d9d9d9] text-xs font-normal font-['Inter'] capitalize leading-[11px]"
+                    inputClassName="border border-sp-neutral-2 rounded-lg h-9"
                     endLabelClassName="underline"
                     defaultValue={authData.oauth.clientSecretFieldName}
                     onChange={(e) => {
@@ -533,7 +543,7 @@ function OAuthForm({
                           { value: "body", label: "Body" },
                           { value: "header", label: "Header" },
                         ]}
-                        buttonStyles={{ height: "32px" }}
+                        buttonStyles={{ height: "28px" }}
                       />
                     }
                   />
@@ -541,6 +551,8 @@ function OAuthForm({
                   <CustomInput
                     variant={"primary"}
                     placeholder={"Client Secret"}
+                    labelClassName="text-[#d9d9d9] text-xs font-normal font-['Inter'] capitalize leading-[11px]"
+                    inputClassName="border border-sp-neutral-2 rounded-lg !h-9"
                     endLabelClassName="underline"
                     value={inputClientSecretFieldValue}
                     onChange={(e) =>
@@ -558,7 +570,7 @@ function OAuthForm({
                           { id: 1, value: "body", label: "Body" },
                           { id: 2, value: "header", label: "Header" },
                         ]}
-                        buttonStyles={{ height: "32px" }}
+                        buttonStyles={{ height: "28px" }}
                       />
                     }
                     onBlur={async (e) => {
@@ -604,17 +616,17 @@ function OAuthForm({
                     label="Authenticating..."
                   />
                 ) : (
-                  <div className="flex flex-row w-72 h-10 gap-3 justify-between">
+                  <div className="flex flex-row w-72 items-center gap-3 justify-between">
                     <Button
                       onClick={handleAuthClick}
-                      className="w-1/2 h-full bg-specc-neutral2 text-specc-neutral3 hover:bg-white hover:text-specc-neutral1 py-3 px-6 rounded-full font-bold"
+                      className="w-1/2 h-8 bg-sp-neutral-2 text-sp-neutral-3 hover:bg-white hover:text-sp-neutral-1 rounded-full font-bold"
                     >
                       {authSuccess ? "Continue" : "Authenticate"}
                     </Button>
 
                     <Button
                       onClick={handleAuthContinue}
-                      className="w-1/2 h-full bg-[#0C0C0D] border border-[#1D1E1F] hover:border-specc-neutral4 py-3 px-6 rounded-full font-bold"
+                      className="w-1/2 h-8 bg-[#0C0C0D] border border-[#1D1E1F] hover:border-sp-neutral-4 rounded-full font-bold"
                     >
                       Save this Auth
                     </Button>

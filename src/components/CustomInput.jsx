@@ -82,7 +82,7 @@ const CustomInput = forwardRef(
           )}
           {!isTextArea ? (
             <input
-              className={`placeholder:text-[16px] ${placeholderColor ? `placeholder:text-${placeholderColor}` : "placeholder:text-specc-neutral4"} ${props.disabled && "cursor-not-allowed"} ${inputStyles} ${inputClassName}`}
+              className={`placeholder:text-[12px] ${placeholderColor ? `placeholder:text-${placeholderColor}` : "placeholder:text-sp-neutral-3"} ${props.disabled && "cursor-not-allowed"} ${inputStyles} ${inputClassName}`}
               style={{
                 paddingLeft: `${variant === "searchBox" ? 36 : prefix ? prefixWidth + 20 : ""}px`,
                 paddingRight: `${`${suffix ? suffixWidth + 20 : ""}`}px`,

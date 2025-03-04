@@ -310,15 +310,17 @@ function ApiAuthentication() {
       <GridIcon className="fixed top-0 left-0" />
       <div className="absolute inset-0 overflow-auto p-6">
         {!isEditMode?.editApi1 && authMethodKey?.api1 && activeTabAPI1 ? (
-          <div className="flex flex-row mt-36 ml-48 gap-8 ">
+          <div className="flex flex-row mt-28 ml-20 gap-8 ">
             <div className="flex items-start">
               <Button
-                variant="outline"
+                variant="addAuth"
                 onClick={() => handleCloseEditMode("editApi1")}
-                className="bg-specc-neutral2 border-none rounded-full hover:bg-specc-neutral3 hover:border-specc-neutral4"
+                className="h-7 px-2 py-1.5 bg-specc-neutral2 rounded-full justify-center items-center gap-1 inline-flex"
               >
-                <BackIcon className="text-white hover:text-specc-neutral4 mr-2" />
-                <span className="text-white font-medium">Close</span>
+                <BackIcon className="text-white hover:text-specc-neutral4" />
+                <span className="text-center text-white text-xs font-normal font-['Inter'] leading-none">
+                  Close
+                </span>
               </Button>
             </div>
             <div>
@@ -370,15 +372,17 @@ function ApiAuthentication() {
             </div>
           </div>
         ) : !isEditMode?.editApi2 && authMethodKey?.api2 && activeTabAPI2 ? (
-          <div className="flex flex-row mt-36 ml-48 gap-8 ">
+          <div className="flex flex-row mt-28 ml-20 gap-8 ">
             <div className="flex items-start">
               <Button
-                variant="outline"
+                variant="addAuth"
                 onClick={() => handleCloseEditMode("editApi2")}
-                className="bg-specc-neutral2 border-none rounded-full hover:bg-specc-neutral3 hover:border-specc-neutral4"
+                className="h-7 px-2 py-1.5 bg-specc-neutral2 rounded-full justify-center items-center gap-1 inline-flex"
               >
-                <BackIcon className="text-white hover:text-specc-neutral4 mr-2" />
-                <span className="text-white font-medium">Close</span>
+                <BackIcon className="text-white hover:text-specc-neutral4" />
+                <span className="text-center text-white text-xs font-normal font-['Inter'] leading-none">
+                  Close
+                </span>
               </Button>
             </div>
             <div>
@@ -429,86 +433,94 @@ function ApiAuthentication() {
             </div>
           </div>
         ) : !isEditMode?.editApi1 && authMethodKey?.api1 ? (
-          <div className="flex flex-row w-[40rem] mt-36 ml-48 gap-6 justify-center">
+          <div className="flex flex-row w-[40rem] mt-28 ml-20 gap-6 justify-center">
             <div className="flex items-start">
               <Button
-                variant="outline"
+                variant="addAuth"
                 onClick={() => handleCloseAuthMethod("editApi1")}
-                className="bg-specc-neutral2 border-none rounded-full hover:bg-specc-neutral3 hover:border-specc-neutral4"
+                className="h-7 px-2 py-1.5 bg-sp-neutral-2 rounded-full justify-center items-center gap-1"
               >
-                <BackIcon className="text-white hover:text-specc-neutral4 mr-2" />
-                <span className="text-white font-medium">Close</span>
+                <BackIcon className="text-white hover:text-specc-neutral4" />
+                <span className="text-center text-white text-xs font-normal font-['Inter'] leading-none">
+                  Back
+                </span>
               </Button>
             </div>
-            <div className="w-4/5 flex flex-col gap-6">
-              <h3 className="text-specc-neutral3">AUTHENTICATION</h3>
-              <div className="flex flex-col gap-2">
-                <span className="text-[18px]">
-                  Choose a method of Authentication
-                </span>
-                <span className="text-[12px] text-specc-neutral3">
-                  You need to authenticate your API before you can build from
-                  response
-                </span>
+            <div className="w-[446px] h-[66px] flex-col justify-start items-start inline-flex gap-4">
+              <div className="gap-2">
+                <h3 className="text-sp-neutral-3 text-sm font-normal leading-[18px] font-['Inter']">
+                  AUTHENTICATION
+                </h3>
+                <div className="self-stretch h-[46px] flex-col justify-start items-start gap-1.5 flex">
+                  <span className="text-[#f6f6f6] text-lg font-medium font-['Inter'] leading-snug">
+                    Choose a method of Authentication
+                  </span>
+                  <span className="text-sp-neutral-3 text-xs font-normal font-['Inter'] leading-tight">
+                    You need to authenticate your API before you can build from
+                    response
+                  </span>
+                </div>
               </div>
               <div className="flex flex-row gap-4">
                 {apiTabs1.map(({ name, icon: Icon, tabKey }) => (
                   <Button
                     key={name}
-                    className={`${authButtonClass} bg-specc-cardbtn border border-specc-cardbtnborder rounded-md hover:bg-specc-neutral3 hover:border-specc-neutral4`}
+                    className={`${authButtonClass} h-9 px-5 py-4 bg-sp-neutral-2 hover:bg-sp-greys-tb-60 hover:border hover:border-sp-neutral-5 rounded-lg justify-center items-center gap-1`}
                     disabled={sourceAPI === null}
                     disableClassName={`${authButtonClass} bg-transparent border border-grey-13 opacity-50 `}
                     onClick={(e) => handleTabClick(e, tabKey, "api1")}
                   >
-                    <div className="flex gap-[10px] items-center">
-                      <span className="hover:text-white font-medium">
-                        {Icon}
-                      </span>
-                      <span className="text-white font-medium">{name}</span>
-                    </div>
+                    <span className="">{Icon}</span>
+                    <span className="text-white text-sm font-normal font-['Inter'] leading-[18px]">
+                      {name}
+                    </span>
                   </Button>
                 ))}
               </div>
             </div>
           </div>
         ) : !isEditMode?.editApi2 && authMethodKey?.api2 ? (
-          <div className="flex flex-row w-[40rem] mt-36 ml-48 gap-6 justify-center">
+          <div className="flex flex-row w-[40rem] mt-28 ml-20 gap-6 justify-center">
             <div className="flex items-start">
               <Button
-                variant="outline"
+                variant="addAuth"
                 onClick={() => handleCloseAuthMethod("editApi2")}
-                className="bg-specc-neutral2 border-none rounded-full hover:bg-specc-neutral3 hover:border-specc-neutral4"
+                className="h-7 px-2 py-1.5 bg-sp-neutral-2 rounded-full justify-center items-center gap-1"
               >
-                <BackIcon className="text-white hover:text-specc-neutral4 mr-2" />
-                <span className="text-white font-medium">Close</span>
+                <BackIcon className="text-white hover:text-sp-neutral-4" />
+                <span className="text-center text-white text-xs font-normal font-['Inter'] leading-none">
+                  Back
+                </span>
               </Button>
             </div>
-            <div className="w-4/5 flex flex-col gap-6">
-              <h3 className="text-specc-neutral3">AUTHENTICATION</h3>
-              <div className="flex flex-col gap-2">
-                <span className="text-[18px]">
-                  Choose a method of Authentication
-                </span>
-                <span className="text-[12px] text-specc-neutral3">
-                  You need to authenticate your API before you can build from
-                  response
-                </span>
+            <div className="w-[446px] h-[66px] flex-col justify-start items-start inline-flex gap-4">
+              <div className="gap-2">
+                <h3 className="text-sp-neutral-3 text-sm font-normal leading-[18px] font-['Inter']">
+                  AUTHENTICATION
+                </h3>
+                <div className="self-stretch h-[46px] flex-col justify-start items-start gap-1.5 flex">
+                  <span className="text-[#f6f6f6] text-lg font-medium font-['Inter'] leading-snug">
+                    Choose a method of Authentication
+                  </span>
+                  <span className="text-sp-neutral-3 text-xs font-normal font-['Inter'] leading-tight">
+                    You need to authenticate your API before you can build from
+                    response
+                  </span>
+                </div>
               </div>
               <div className="flex flex-row gap-4">
                 {apiTabs2.map(({ name, icon: Icon, tabKey }) => (
                   <Button
                     key={name}
-                    className={`${authButtonClass} bg-specc-cardbtn border border-specc-cardbtnborder rounded-md hover:bg-specc-neutral3 hover:border-specc-neutral4`}
+                    className={`${authButtonClass} h-9 px-5 py-4 bg-sp-neutral-2 hover:bg-sp-greys-tb-60 hover:border hover:border-sp-neutral-5 rounded-lg justify-center items-center gap-1`}
                     disabled={sourceAPI === null}
                     disableClassName={`${authButtonClass} bg-transparent border border-grey-13 opacity-50 `}
-                    onClick={(e) => handleTabClick(e, tabKey, "api1")}
+                    onClick={(e) => handleTabClick(e, tabKey, "api2")}
                   >
-                    <div className="flex gap-[10px] items-center">
-                      <span className="hover:text-white font-medium">
-                        {Icon}
-                      </span>
-                      <span className="text-white font-medium">{name}</span>
-                    </div>
+                    <span className="">{Icon}</span>
+                    <span className="text-white text-sm font-normal font-['Inter'] leading-[18px]">
+                      {name}
+                    </span>
                   </Button>
                 ))}
               </div>

@@ -225,9 +225,9 @@ function AddAnotherField({
           onClick={async () => {
             await addField();
           }}
-          className="flex gap-2 items-center underline underline-offset-4 leading-26"
+          className="flex gap-2 items-center text-sp-neutral-4 underline underline-offset-4 leading-26"
         >
-          <PlusSquareIcon />
+          <PlusSquareIcon className="text-sp-neutral-3" />
           Add input
         </Button>
       </div>

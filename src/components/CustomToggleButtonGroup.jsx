@@ -15,7 +15,7 @@ const ToggleButtonGroupCustom = ({
   const defaultGroupStyles = {
     padding: '2px',
     gap: '4px',
-    background: '#141619',
+    background: '#161616',
     width: 'max-content',
     borderRadius: '4px',
     boxShadow: '0px 4px 20px 3px #14161914',
@@ -40,7 +40,7 @@ const ToggleButtonGroupCustom = ({
     "&.Mui-selected": {
       boxShadow: "0px 4px 4px 0px #14161914",
       background: "transparent",
-      border: "1px solid #FFFFFF40 !important",
+      border: "1px solid #848484 !important",
       color: "#F8F9FA",
     },
   };

@@ -64,8 +64,9 @@ export const CustomSelect = ({
                 ...muiInputBaseStyles,
               },
               "& .MuiInputBase-input::placeholder": {
-                color: "white !important",
-                opacity: 1
+                color: "#848484 !important",
+                opacity: 1,
+                fontSize: "12px"
               },
               ...textFieldStyles
             }}
@@ -86,6 +87,7 @@ export const CustomSelect = ({
                     paddingRight: '9px !important',
                     border: '1px solid #C1BFC433',
                     color: 'white',
+                    height: '36px',
                     "fieldset": {
                       border: "none"
                     },

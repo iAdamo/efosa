@@ -1,17 +1,38 @@
 /** @type {import('tailwindcss').Config} */
 
 import plugin from "tailwindcss/plugin";
-import { boxShadow, colors, gradientColors, screens, spacing } from "./src/constants";
+import {
+  boxShadow,
+  colors,
+  gradientColors,
+  screens,
+  spacing,
+} from "./src/constants";
+import {
+  colorsSP,
+  fontSizeSP,
+  gradientSP,
+  spacingSP,
+} from "./src/constantsNew";
 
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        "gradient-radial":
+          "radial-gradient(circle, rgba(9,9,9,0.20) 67%, rgba(217,217,217,0.20) 100%)",
+      },
       screens: screens,
-      colors: colors,
-      backgroundImage: gradientColors,
+      colors: { ...colorsSP, ...colors },
+      backgroundImage: { ...gradientColors, ...gradientSP },
       boxShadow: boxShadow,
-      spacing: { ...spacing, gutter: "var(--gutter)", borderSpacing: "var(--border-spacing)" },
+      spacing: {
+        ...spacing,
+        ...spacingSP,
+        gutter: "var(--gutter)",
+        borderSpacing: "var(--border-spacing)",
+      },
       fontFamily: {
         sans: ['"Inter"', "Arial", "sans-serif"],
         display: ['"Inter"', "Arial", "sans-serif"],
@@ -21,11 +42,18 @@ export default {
       fontSize: {
         sm: ["10px", "12px"],
         base: ["12px", "14px"],
+        md: ["16px", "14px"],
         lg: ["14px", "16px"],
         "2lg": ["28px", "28px"],
         xl: ["48px", "24px"],
         "2xl": ["32px", "24px"],
         16: ["16px", "18px"],
+        14: ["14px", "14px"],
+        calendar: ["16px", "19.36px"],
+        API: ["28px", "34px"],
+        KPI: ["20px", "26.09px"],
+        Activity: ["20px", "34px"],
+        ...fontSizeSP,
       },
       fontWeight: {
         heading: "500",
@@ -113,7 +141,7 @@ export default {
     "border-[#8bdee4]",
   ],
   plugins: [
-    plugin(function ({ matchUtilities, theme }) {
+    plugin(({ matchUtilities, theme }) => {
       matchUtilities({
         "col-width": (fraction) => {
           // Extract the number of columns (cols) and total columns (total)
@@ -125,7 +153,14 @@ export default {
 
           return {
             // Base width calculation (default formula)
-            width: calcWidth(theme("spacing.gutter"), theme("spacing.borderSpacing")),
+            "min-width": calcWidth(
+              theme("spacing.gutter"),
+              theme("spacing.borderSpacing")
+            ),
+            width: calcWidth(
+              theme("spacing.gutter"),
+              theme("spacing.borderSpacing")
+            ),
           };
         },
         "col-width-with-border": (fraction) => {
@@ -140,10 +175,33 @@ export default {
 
           return {
             // Base width calculation (default formula)
-            width: calcWidth(theme("spacing.gutter"), theme("spacing.borderSpacing")),
+            "min-width": calcWidth(
+              theme("spacing.gutter"),
+              theme("spacing.borderSpacing")
+            ),
+            width: calcWidth(
+              theme("spacing.gutter"),
+              theme("spacing.borderSpacing")
+            ),
           };
         },
       });
     }),
+    ({ addUtilities }) => {
+      addUtilities({
+        ".scrollbar-thin": {
+          "&::-webkit-scrollbar": {
+            width: "4px",
+          },
+          "&::-webkit-scrollbar-track": {
+            backgroundColor: "#1C1C1C",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "#333438",
+            borderRadius: "100px",
+          },
+        },
+      });
+    },
   ],
 };
